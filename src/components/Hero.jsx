@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './Hero.css'
 
-const roles = ['Software Developer', 'Open Source Contributor', 'Problem Solver', 'Lifelong Learner']
+const roles = ['Software Developer', 'Open Source Contributor', 'Rust Enthusiast', 'Full Stack Developer']
 
 function useTypewriter(words, typingSpeed = 80, deletingSpeed = 40, pause = 1600) {
   const [text, setText] = useState('')
@@ -37,15 +37,15 @@ export default function Hero() {
     <section id="top" className="hero">
       <p className="hero__greeting">Hi, my name is</p>
       <h1 className="hero__name">
-        <span className="gradient-text">Your Name</span>
+        <span className="gradient-text">Hüseyin "b4lol"</span>
       </h1>
       <h2 className="hero__role">
         I'm a <span className="hero__typed">{typed}</span>
         <span className="hero__caret" />
       </h2>
       <p className="hero__description">
-        I build fast, accessible and delightful web experiences. Currently focused on modern
-        JavaScript, React and everything in between.
+        Full-stack developer with a focus on Rust — building privacy-first communication tools,
+        Linux package managers and system software that respects the user.
       </p>
       <div className="hero__actions">
         <a href="#projects" className="btn btn-primary">

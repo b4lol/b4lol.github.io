@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <a href="#top" className="navbar__logo">
-        &lt;YN /&gt;
+        &lt;b4lol /&gt;
       </a>
       <ul className="navbar__links">
         {links.map((l) => (

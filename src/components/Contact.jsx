@@ -1,10 +1,6 @@
 import './Contact.css'
 
-const socials = [
-  { label: 'GitHub', href: 'https://github.com/yourusername' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/yourusername' },
-  { label: 'Twitter / X', href: 'https://x.com/yourusername' },
-]
+const socials = [{ label: 'GitHub', href: 'https://github.com/b4lol' }]
 
 export default function Contact() {
   return (
@@ -18,7 +14,7 @@ export default function Contact() {
           My inbox is always open — whether you have a question, a project idea, or just want to
           say hi. I'll do my best to get back to you quickly.
         </p>
-        <a href="mailto:hello@example.com" className="btn btn-primary contact__cta">
+        <a href="mailto:admin@b4.lol" className="btn btn-primary contact__cta">
           Say hello
         </a>
         <ul className="contact__socials">

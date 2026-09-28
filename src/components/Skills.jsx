@@ -2,16 +2,16 @@ import './Skills.css'
 
 const groups = [
   {
-    title: 'Frontend',
-    items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Next.js'],
+    title: 'Systems & Backend',
+    items: ['Rust', 'Zig', 'Python', 'eBPF / XDP', 'Tor / P2P'],
   },
   {
-    title: 'Backend',
-    items: ['Node.js', 'Express', 'PostgreSQL', 'REST APIs', 'GraphQL'],
+    title: 'Frontend & Apps',
+    items: ['GTK4 / Libadwaita', 'Jetpack Compose', 'QML', 'React', 'JavaScript'],
   },
   {
-    title: 'Tools & Others',
-    items: ['Git', 'Docker', 'Linux', 'CI/CD', 'Figma'],
+    title: 'Platforms & Tools',
+    items: ['Linux (Fedora / Atomic)', 'Android', 'Flatpak / OSTree', 'Git', 'Docker'],
   },
 ]
 

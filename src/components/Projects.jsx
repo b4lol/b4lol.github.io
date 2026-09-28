@@ -2,30 +2,51 @@ import './Projects.css'
 
 const projects = [
   {
-    title: 'Project One',
+    title: 'umbra',
     description:
-      'A full-stack web app that does something useful. Describe the problem it solves and your role in building it.',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
-    demo: '#',
-    source: '#',
+      'Zero-trust, zero-metadata, post-quantum anonymous communication system. P2P over Tor v3, RAM-only, written in Rust.',
+    tags: ['Rust', 'Tor', 'Post-Quantum', 'E2EE'],
+    source: 'https://github.com/b4lol/umbra',
     color: 'var(--accent-1)',
   },
   {
-    title: 'Project Two',
+    title: 'brim',
     description:
-      'An open source tool with a growing community. Mention downloads, stars or users if you have them.',
-    tags: ['TypeScript', 'CLI', 'OSS'],
-    demo: '#',
-    source: '#',
+      'A modern, pure-Rust package manager and app store for Fedora and Debian — DNF5, APT, COPR and Flatpak under one GTK4 roof.',
+    tags: ['Rust', 'GTK4', 'Libadwaita', 'Flatpak'],
+    source: 'https://github.com/b4lol/brim',
     color: 'var(--accent-2)',
   },
   {
-    title: 'Project Three',
+    title: 'shelly-fedora',
     description:
-      'A fun side project experimenting with animations and creative coding on the canvas.',
-    tags: ['JavaScript', 'Canvas', 'CSS'],
-    demo: '#',
-    source: '#',
+      'Wayland-native DNF5, Flatpak and RPM-OSTree package manager for Fedora and Fedora Atomic, built with Zig and Libadwaita.',
+    tags: ['Zig', 'Wayland', 'Libadwaita', 'OSTree'],
+    source: 'https://github.com/b4lol/shelly-fedora',
+    color: 'var(--accent-3)',
+  },
+  {
+    title: 'protocol-void',
+    description:
+      'A 4-stage bare-metal CTF — no walkthrough, no hints. eBPF, XDP and KernelSU; the hardware keeps the score.',
+    tags: ['Security', 'eBPF', 'XDP', 'CTF'],
+    source: 'https://github.com/b4lol/protocol-void',
+    color: 'var(--accent-1)',
+  },
+  {
+    title: 'tkgs-navigator',
+    description:
+      'Local TKGS discovery and recoverable bouquet updates for Enigma2 receivers.',
+    tags: ['Python', 'Enigma2', 'Networking'],
+    source: 'https://github.com/b4lol/tkgs-navigator',
+    color: 'var(--accent-2)',
+  },
+  {
+    title: 'B4Assistant',
+    description:
+      'Material 3 Expressive Quick Settings toolkit for rooted Android devices, built with Jetpack Compose.',
+    tags: ['Android', 'Jetpack Compose', 'Magisk'],
+    source: 'https://github.com/b4lol/B4Assistant',
     color: 'var(--accent-3)',
   },
 ]
@@ -44,18 +65,21 @@ export default function Projects() {
           <article
             className="project-card reveal"
             key={p.title}
-            style={{ '--card-accent': p.color, transitionDelay: `${i * 0.12}s` }}
+            style={{ '--card-accent': p.color, transitionDelay: `${(i % 3) * 0.12}s` }}
           >
             <div className="project-card__glow" />
             <div className="project-card__content">
               <div className="project-card__top">
                 <span className="project-card__folder">▣</span>
                 <div className="project-card__links">
-                  <a href={p.source} aria-label="Source code" title="Source">
+                  <a
+                    href={p.source}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Source code"
+                    title="Source"
+                  >
                     &lt;/&gt;
-                  </a>
-                  <a href={p.demo} aria-label="Live demo" title="Demo">
-                    ↗
                   </a>
                 </div>
               </div>
