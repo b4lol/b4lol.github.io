@@ -38,6 +38,7 @@ export default defineConfig({
   // Custom domain (b4.lol) serves from the root path
   base: '/',
   build: {
+    cssCodeSplit: false,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
