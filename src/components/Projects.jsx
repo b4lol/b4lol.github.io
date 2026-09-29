@@ -18,30 +18,6 @@ const projects = [
     color: 'var(--accent-2)',
   },
   {
-    title: 'shelly-fedora',
-    description:
-      'Wayland-native DNF5, Flatpak and RPM-OSTree package manager for Fedora and Fedora Atomic, built with Zig and Libadwaita.',
-    tags: ['Zig', 'Wayland', 'Libadwaita', 'OSTree'],
-    source: 'https://github.com/b4lol/shelly-fedora',
-    color: 'var(--accent-3)',
-  },
-  {
-    title: 'protocol-void',
-    description:
-      'A 4-stage bare-metal CTF — no walkthrough, no hints. eBPF, XDP and KernelSU; the hardware keeps the score.',
-    tags: ['Security', 'eBPF', 'XDP', 'CTF'],
-    source: 'https://github.com/b4lol/protocol-void',
-    color: 'var(--accent-1)',
-  },
-  {
-    title: 'tkgs-navigator',
-    description:
-      'Local TKGS discovery and recoverable bouquet updates for Enigma2 receivers.',
-    tags: ['Python', 'Enigma2', 'Networking'],
-    source: 'https://github.com/b4lol/tkgs-navigator',
-    color: 'var(--accent-2)',
-  },
-  {
     title: 'B4Assistant',
     description:
       'Material 3 Expressive Quick Settings toolkit for rooted Android devices, built with Jetpack Compose.',
@@ -50,7 +26,6 @@ const projects = [
     color: 'var(--accent-3)',
   },
 ]
-
 export default function Projects() {
   return (
     <section id="projects">
