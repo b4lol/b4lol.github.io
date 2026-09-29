@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="umbra — zero-trust, zero-metadata, post-quantum anonymous communication system. P2P over Tor v3, RAM-only, written in Rust."
+    />
+    <link rel="canonical" href="https://b4.lol/umbra/" />
+    <meta name="theme-color" content="#0a0a14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://b4.lol/umbra/" />
+    <meta property="og:title" content="umbra — Post-Quantum Anonymous Communication" />
+    <meta
+      property="og:description"
+      content="Zero-trust, zero-metadata, post-quantum anonymous communication system. P2P over Tor v3, RAM-only, written in Rust."
+    />
+    <meta property="og:image" content="https://b4.lol/og.png" />
+    <title>umbra — Hüseyin "b4lol"</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "umbra",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Linux",
+        "programmingLanguage": "Rust",
+        "author": { "@type": "Person", "name": "Hüseyin \"b4lol\"", "url": "https://b4.lol/" },
+        "url": "https://b4.lol/umbra/",
+        "sameAs": "https://github.com/b4lol/umbra"
+      }
+    </script>
+    <link rel="stylesheet" href="/src/index.css" />
+    <link rel="stylesheet" href="/src/project.css" />
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="pp-nav" aria-label="Project navigation">
+      <a href="/" class="pp-nav__logo">&lt;b4lol /&gt;</a>
+      <a href="/#projects" class="pp-nav__back">&larr; Back to portfolio</a>
+    </nav>
+
+    <header class="pp-hero">
+      <div class="pp-hero__badges">
+        <span class="pp-badge">Rust</span>
+        <span class="pp-badge">Security</span>
+        <span class="pp-badge">v1.0.0-alpha</span>
+      </div>
+      <h1><span class="gradient-text">umbra</span></h1>
+      <p class="pp-hero__tagline">
+        Zero-trust, zero-metadata, post-quantum anonymous communication system — serverless,
+        P2P over Tor v3, RAM-only.
+      </p>
+      <div class="pp-hero__actions">
+        <a href="https://github.com/b4lol/umbra" class="btn btn-primary" target="_blank" rel="noreferrer">View on GitHub</a>
+        <a href="https://github.com/b4lol/umbra/releases" class="btn btn-ghost" target="_blank" rel="noreferrer">Releases</a>
+      </div>
+    </header>
+
+    <main class="pp-main">
+      <section class="pp-section" aria-labelledby="about-umbra">
+        <h2 id="about-umbra">About the project</h2>
+        <p>
+          <strong>umbra</strong> is an end-to-end encrypted communication protocol and client
+          designed for journalists, government officials and intelligence professionals operating
+          in high-threat environments. It is serverless — there is no central server — and built
+          on zero-metadata principles: traffic runs over embedded Arti (pure-Rust Tor) v3 onion
+          services, and message contents live in RAM only.
+        </p>
+        <p>
+          The cryptographic core is complete and continuously tested: a PQXDH handshake combining
+          X25519 with ML-KEM-768 (FIPS 203), the Signal-spec Double Ratchet, ChaCha20-Poly1305
+          AEAD and ML-DSA-65 signed pre-keys (FIPS 204).
+        </p>
+      </section>
+
+      <section class="pp-section" aria-labelledby="highlights-umbra">
+        <h2 id="highlights-umbra">Highlights</h2>
+        <ul class="pp-highlights">
+          <li>
+            <strong>Post-quantum cryptography</strong>
+            PQXDH handshake (X25519 + ML-KEM-768), Double Ratchet and ChaCha20-Poly1305 with
+            constant-time verification.
+          </li>
+          <li>
+            <strong>Embedded Tor transport</strong>
+            Pure-Rust Arti with persistent v3 onion identities, vanguards-lite circuit pinning
+            and burst-level cover traffic.
+          </li>
+          <li>
+            <strong>Hostile-environment hardening</strong>
+            Landlock zero-FS sandbox, seccomp-BPF allowlist with a kernel-level network
+            kill-switch, memory locks and zeroize everywhere.
+          </li>
+          <li>
+            <strong>Verified by construction</strong>
+            122 test cases, proptest, fuzzing, ASan nightly CI and weekly mutation testing on
+            every push.
+          </li>
+        </ul>
+      </section>
+
+      <section class="pp-section" aria-labelledby="tech-umbra">
+        <h2 id="tech-umbra">Tech stack</h2>
+        <ul class="pp-tags">
+          <li>Rust</li>
+          <li>Tor (Arti)</li>
+          <li>ML-KEM-768</li>
+          <li>Double Ratchet</li>
+          <li>ChaCha20-Poly1305</li>
+          <li>Landlock / seccomp</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="pp-footer">
+      <p><a href="/">b4.lol</a> — designed &amp; built by Hüseyin "b4lol"</p>
+    </footer>
+  </body>
+</html>

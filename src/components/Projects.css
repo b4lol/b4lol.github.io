@@ -94,3 +94,12 @@
   font-size: 0.78rem;
   color: var(--card-accent);
 }
+
+.project-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card__title a:hover {
+  color: var(--card-accent);
+}

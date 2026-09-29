@@ -1,0 +1,15 @@
+# Hüseyin "b4lol" — Software Developer
+
+> Personal portfolio of Hüseyin "b4lol", a full-stack software developer focused on Rust: privacy-first communication tools, Linux package managers and Android apps.
+
+## Pages
+
+- [Home](https://b4.lol/): About, skills, projects and contact
+- [umbra](https://b4.lol/umbra/): Zero-trust, post-quantum anonymous communication system (Rust, Tor)
+- [brim](https://b4.lol/brim/): Pure-Rust package manager and app store for Fedora and Debian
+- [B4Assistant](https://b4.lol/b4assistant/): Rooted Android Quick Settings toolkit (Jetpack Compose)
+
+## Contact
+
+- Email: admin@b4.lol
+- GitHub: https://github.com/b4lol

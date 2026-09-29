@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 :root {
   --bg: #0a0a14;
   --bg-soft: #12121f;
@@ -6,12 +8,13 @@
   --text: #e8e8f0;
   --text-dim: #9a9ab0;
   --accent-1: #7c3aed;
+  --accent-1-soft: #a78bfa;
   --accent-2: #06b6d4;
   --accent-3: #f472b6;
   --gradient: linear-gradient(120deg, var(--accent-1), var(--accent-2), var(--accent-3));
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk Variable', sans-serif;
+  --font-body: 'Inter Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
 }
 
 * {
@@ -186,5 +189,19 @@ section {
 @media (max-width: 640px) {
   section {
     padding: 72px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

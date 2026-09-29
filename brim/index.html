@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="brim — a modern, pure-Rust package manager and app store for Fedora and Debian. DNF5, APT, COPR and Flatpak behind one engine."
+    />
+    <link rel="canonical" href="https://b4.lol/brim/" />
+    <meta name="theme-color" content="#0a0a14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://b4.lol/brim/" />
+    <meta property="og:title" content="brim — Pure-Rust Package Manager for Fedora & Debian" />
+    <meta
+      property="og:description"
+      content="DNF5 packages, APT packages, COPR projects and Flathub apps — one engine, three frontends, one binary."
+    />
+    <meta property="og:image" content="https://b4.lol/og.png" />
+    <title>brim — Hüseyin "b4lol"</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "brim",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Linux",
+        "programmingLanguage": "Rust",
+        "license": "https://www.gnu.org/licenses/gpl-2.0.html",
+        "author": { "@type": "Person", "name": "Hüseyin \"b4lol\"", "url": "https://b4.lol/" },
+        "url": "https://b4.lol/brim/",
+        "sameAs": "https://github.com/b4lol/brim"
+      }
+    </script>
+    <link rel="stylesheet" href="/src/index.css" />
+    <link rel="stylesheet" href="/src/project.css" />
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="pp-nav" aria-label="Project navigation">
+      <a href="/" class="pp-nav__logo">&lt;b4lol /&gt;</a>
+      <a href="/#projects" class="pp-nav__back">&larr; Back to portfolio</a>
+    </nav>
+
+    <header class="pp-hero">
+      <div class="pp-hero__badges">
+        <span class="pp-badge">Rust</span>
+        <span class="pp-badge">GPL-2.0</span>
+        <span class="pp-badge">v0.2.0</span>
+      </div>
+      <h1><span class="gradient-text">brim</span></h1>
+      <p class="pp-hero__tagline">
+        A modern, pure-Rust package manager and app store for Fedora and Debian — DNF5, APT,
+        COPR and Flatpak behind one engine.
+      </p>
+      <div class="pp-hero__actions">
+        <a href="https://github.com/b4lol/brim" class="btn btn-primary" target="_blank" rel="noreferrer">View on GitHub</a>
+        <a href="https://github.com/b4lol/brim/releases" class="btn btn-ghost" target="_blank" rel="noreferrer">Releases</a>
+      </div>
+    </header>
+
+    <main class="pp-main">
+      <section class="pp-section" aria-labelledby="about-brim">
+        <h2 id="about-brim">About the project</h2>
+        <p>
+          <strong>brim</strong> unifies DNF5 (official Fedora RPMs), APT (Debian/Ubuntu packages),
+          COPR (community projects) and Flatpak (Flathub) behind a single async engine, and
+          exposes it through three frontends: a terminal CLI, a native GTK4/Libadwaita desktop
+          app and a glassmorphic web dashboard with a REST API. On any given machine only the
+          available backends activate — on Fedora that is DNF5 + Flatpak (+ COPR), on
+          Debian/Ubuntu APT + Flatpak.
+        </p>
+      </section>
+
+      <section class="pp-section" aria-labelledby="screenshots-brim">
+        <h2 id="screenshots-brim">Screenshots</h2>
+        <div class="pp-screenshots">
+          <figure>
+            <img
+              src="/screenshots/brim-gui.webp"
+              width="926"
+              height="968"
+              alt="Brim GTK4 desktop app showing Flathub's trending collection with real app logos"
+              loading="lazy"
+            />
+            <figcaption>The GTK4 desktop app — real app logos from Flathub and the system icon theme.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="/screenshots/brim-web.webp"
+              width="1400"
+              height="722"
+              alt="Brim web dashboard with per-source statistics and glassmorphic design"
+              loading="lazy"
+            />
+            <figcaption>The web dashboard — per-source statistics and glassmorphic design.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="pp-section" aria-labelledby="highlights-brim">
+        <h2 id="highlights-brim">Highlights</h2>
+        <ul class="pp-highlights">
+          <li>
+            <strong>One search across everything</strong>
+            Merged, relevance-sorted results from Fedora repos, COPR and Flathub in a single
+            query.
+          </li>
+          <li>
+            <strong>Three frontends, one engine</strong>
+            A single binary hosts the CLI, the GTK4 GUI and the web UI over one shared core;
+            missing tools degrade gracefully.
+          </li>
+          <li>
+            <strong>Real transactions</strong>
+            Install, remove and upgrade execute actual system changes via dnf5 / dnf copr /
+            flatpak — with confirmation first.
+          </li>
+          <li>
+            <strong>Sync export/import</strong>
+            Back up the installed package set as a versioned JSON file and reinstall from it on
+            a fresh system.
+          </li>
+        </ul>
+      </section>
+
+      <section class="pp-section" aria-labelledby="tech-brim">
+        <h2 id="tech-brim">Tech stack</h2>
+        <ul class="pp-tags">
+          <li>Rust</li>
+          <li>GTK4 / Libadwaita</li>
+          <li>DNF5</li>
+          <li>APT</li>
+          <li>COPR</li>
+          <li>Flatpak</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="pp-footer">
+      <p><a href="/">b4.lol</a> — designed &amp; built by Hüseyin "b4lol"</p>
+    </footer>
+  </body>
+</html>
