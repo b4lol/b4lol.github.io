@@ -18,7 +18,7 @@ interface TelyraAppProps {
 export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: TelyraAppProps) {
   const [lang, setLang] = useState<Language>(initialLang)
   const [privacyModalOpen, setPrivacyModalOpen] = useState(initialPrivacyModal)
-  const downloaderCode = '258963'
+  const downloaderCode = 'b4.lol/telyra/tv'
 
   const toggleLanguage = () => {
     setLang((prev) => (prev === 'tr' ? 'en' : 'tr'))
