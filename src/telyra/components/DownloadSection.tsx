@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Language } from '../data/telyraData'
-import { TELYRA_CONTENT, DOWNLOADS } from '../data/telyraData'
+import { TELYRA_CONTENT } from '../data/telyraData'
 
 interface DownloadSectionProps {
   lang: Language
@@ -87,7 +87,7 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
 
           {/* Standalone APK Downloads */}
           <div className="telyra-apk-cards">
-            {DOWNLOADS.map((item) => (
+            {content.items.map((item) => (
               <div key={item.id} className="telyra-apk-card">
                 <div className="telyra-apk-info">
                   <h4>{item.title}</h4>
@@ -95,9 +95,9 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
                     {item.targetDevice}
                   </p>
                   <div className="telyra-apk-meta">
-                    <span>Sürüm: {item.version}</span>
-                    <span>Boyut: {item.fileSize}</span>
-                    <span>Gereksinim: {item.minSdk}</span>
+                    <span>{content.labels.version} {item.version}</span>
+                    <span>{content.labels.fileSize} {item.fileSize}</span>
+                    <span>{content.labels.minSdk} {item.minSdk}</span>
                   </div>
                 </div>
 
@@ -109,7 +109,7 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
                     download
                   >
                     <span>⬇</span>
-                    <span>{item.fileName} İndir</span>
+                    <span>{item.fileName} {content.labels.downloadBtnText}</span>
                   </a>
 
                   <span style={{ fontFamily: 'var(--telyra-font-mono)', fontSize: '0.75rem', color: 'var(--telyra-emerald)' }}>
@@ -119,7 +119,7 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
 
                 <div className="telyra-apk-sha">
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                    <span>SHA-256 Checksum:</span>
+                    <span>{content.labels.checksum}</span>
                     <button
                       type="button"
                       onClick={() => handleCopySha(item.sha256)}
@@ -132,7 +132,7 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
                         fontFamily: 'inherit',
                       }}
                     >
-                      {copiedSha === item.sha256 ? 'Kopyalandı!' : 'Kopyala'}
+                      {copiedSha === item.sha256 ? content.labels.copiedChecksum : content.labels.copyChecksum}
                     </button>
                   </div>
                   <div>{item.sha256}</div>

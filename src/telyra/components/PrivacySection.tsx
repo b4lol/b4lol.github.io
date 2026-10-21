@@ -1,15 +1,16 @@
-import { useState } from 'react'
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
 
 interface PrivacySectionProps {
   lang: Language
-  showModalInitially?: boolean
+  isOpen?: boolean
+  onClose?: () => void
+  onOpen?: () => void
 }
 
-export function PrivacySection({ lang, showModalInitially = false }: PrivacySectionProps) {
+export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: PrivacySectionProps) {
   const content = TELYRA_CONTENT[lang].privacy
-  const [modalOpen, setModalOpen] = useState(showModalInitially)
+  const modalData = content.modal
 
   return (
     <section id="privacy" className="telyra-section" aria-labelledby="privacy-heading">
@@ -38,7 +39,7 @@ export function PrivacySection({ lang, showModalInitially = false }: PrivacySect
           <div style={{ textAlign: 'center', marginTop: '16px' }}>
             <button
               type="button"
-              onClick={() => setModalOpen(true)}
+              onClick={onOpen}
               className="telyra-btn-secondary"
             >
               {content.fullPolicyBtn}
@@ -47,8 +48,8 @@ export function PrivacySection({ lang, showModalInitially = false }: PrivacySect
         </div>
 
         {/* Modal */}
-        {modalOpen && (
-          <div className="telyra-modal-backdrop" onClick={() => setModalOpen(false)}>
+        {isOpen && (
+          <div className="telyra-modal-backdrop" onClick={onClose}>
             <div
               className="telyra-modal"
               onClick={(e) => e.stopPropagation()}
@@ -59,52 +60,48 @@ export function PrivacySection({ lang, showModalInitially = false }: PrivacySect
               <button
                 type="button"
                 className="telyra-modal-close"
-                onClick={() => setModalOpen(false)}
+                onClick={onClose}
                 aria-label={content.closeModal}
               >
                 ✕
               </button>
 
-              <h2 id="privacy-modal-title" style={{ fontFamily: 'var(--telyra-font-display)', marginBottom: '16px' }}>
-                TELYRA — {lang === 'tr' ? 'Gizlilik Politikası ve Şartlar' : 'Privacy Policy & Terms'}
+              <h2 id="privacy-modal-title" style={{ fontFamily: 'var(--telyra-font-display)', marginBottom: '12px' }}>
+                {modalData.title}
               </h2>
 
+              <p style={{ fontFamily: 'var(--telyra-font-mono)', fontSize: '0.82rem', color: 'var(--telyra-text-muted)', marginBottom: '20px' }}>
+                {modalData.effectiveDateLabel} {modalData.effectiveDate}
+              </p>
+
               <div style={{ fontSize: '0.92rem', color: '#c3cbd9', lineHeight: '1.7' }}>
-                <p>
-                  <strong>{lang === 'tr' ? 'Yürürlük Tarihi:' : 'Effective Date:'}</strong> 2026-10-21
-                </p>
-
-                <h3 style={{ color: '#fff', marginTop: '20px', marginBottom: '8px' }}>
-                  {lang === 'tr' ? '1. Sıfır Veri Toplama Politikası' : '1. Zero Data Collection Policy'}
-                </h3>
-                <p>
-                  {lang === 'tr'
-                    ? 'TELYRA hiçbir kullanıcı verisi toplamaz, kaydetmez veya üçüncü taraflarla paylaşmaz. Uygulamada reklam SDK\'ları, Firebase Analytics veya harici telemetri bulunmaz. Girilen M3U veya Xtream Codes kimlik bilgileri yalnızca AndroidKeyStore AES-256 GCM ile yerel cihazınızda saklanır.'
-                    : 'TELYRA does NOT collect, store, or transmit any user data or telemetry to remote servers. There are no advertising SDKs or third-party trackers. All entered playlist credentials remain encrypted on your local device using AndroidKeyStore AES-256 GCM.'}
-                </p>
-
-                <h3 style={{ color: '#fff', marginTop: '20px', marginBottom: '8px' }}>
-                  {lang === 'tr' ? '2. Yasal Sorumluluk Reddi (Disclaimer)' : '2. Legal Notice & Disclaimer'}
-                </h3>
-                <p>
-                  {lang === 'tr'
-                    ? 'TELYRA bağımsız bir açık kaynaklı medya oynatıcıdır. Hiçbir yayın, video, IPTV akışı veya çalma listesi barındırmaz ve satmaz. Kullanıcılar yalnızca yasal erişim iznine sahip oldukları yayınları oynatmakla yükümlüdür.'
-                    : 'TELYRA is strictly a standalone open-source media player application. It does NOT host, supply, or sell any streaming media, television channels, or playlists. Users are solely responsible for ensuring they have lawful access to the content they stream.'}
-                </p>
-
-                <h3 style={{ color: '#fff', marginTop: '20px', marginBottom: '8px' }}>
-                  {lang === 'tr' ? '3. Uygulama İzinleri' : '3. Application Permissions'}
-                </h3>
-                <p>
-                  {lang === 'tr'
-                    ? 'Uygulama yalnızca canlı yayınları oynatmak için INTERNET iznini, zamanlanmış kayıt bildirimleri için POST_NOTIFICATIONS iznini ve kayıtların güvenle tamamlanabilmesi için FOREGROUND_SERVICE_DATA_SYNC iznini kullanır.'
-                    : 'The app requests only essential permissions: INTERNET for streaming, POST_NOTIFICATIONS for recording alerts, and FOREGROUND_SERVICE_DATA_SYNC for running user-initiated scheduled DVR tasks.'}
-                </p>
+                {modalData.sections.map((sec, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      marginBottom: '20px',
+                      ...(sec.isWarning
+                        ? {
+                            background: 'rgba(255, 51, 102, 0.08)',
+                            border: '1px solid rgba(255, 51, 102, 0.25)',
+                            borderRadius: '10px',
+                            padding: '16px',
+                            color: '#ffc2d1',
+                          }
+                        : {}),
+                    }}
+                  >
+                    <h3 style={{ color: sec.isWarning ? '#ff6688' : '#fff', fontSize: '1.1rem', marginBottom: '8px' }}>
+                      {sec.title}
+                    </h3>
+                    <p>{sec.content}</p>
+                  </div>
+                ))}
 
                 <div style={{ marginTop: '28px', textAlign: 'right' }}>
                   <button
                     type="button"
-                    onClick={() => setModalOpen(false)}
+                    onClick={onClose}
                     className="telyra-btn-primary"
                   >
                     {content.closeModal}

@@ -26,7 +26,7 @@ export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: T
 
   return (
     <div className="telyra-page">
-      {/* Ambient Glows */}
+      {/* Optimized Ambient Glows */}
       <div className="telyra-aura telyra-aura-1" />
       <div className="telyra-aura telyra-aura-2" />
       <div className="telyra-aura telyra-aura-3" />
@@ -48,16 +48,18 @@ export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: T
         {/* 6 Engineering Pillars */}
         <FeatureGrid lang={lang} />
 
-        {/* 12-Metric Comparison Table */}
+        {/* 10-Metric Comparison Table */}
         <ComparisonMatrix lang={lang} />
 
         {/* Downloader Guide & Direct APK Downloads */}
         <DownloadSection lang={lang} downloaderCode={downloaderCode} />
 
-        {/* Privacy & Legal Summary */}
+        {/* Privacy & Legal Summary (Controlled Modal) */}
         <PrivacySection
           lang={lang}
-          showModalInitially={privacyModalOpen}
+          isOpen={privacyModalOpen}
+          onClose={() => setPrivacyModalOpen(false)}
+          onOpen={() => setPrivacyModalOpen(true)}
         />
       </main>
 

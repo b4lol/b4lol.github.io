@@ -10,24 +10,6 @@ export interface FeatureItem {
   badge?: string
 }
 
-export interface HudTelemetryPreset {
-  channelName: string
-  programTitle: string
-  resolution: string
-  framerate: string
-  codec: string
-  decoder: string
-  colorSpace: string
-  bitrate: string
-  audioFormat: string
-  socketBuffer: string
-  bufferDuration: string
-  droppedFrames: string
-  afrState: string
-  shaderEngine: string
-  hardwareTunneling: boolean
-}
-
 export interface ComparisonRow {
   metric: string
   telyra: string
@@ -49,7 +31,166 @@ export interface DownloadItem {
   minSdk: string
 }
 
-export const TELYRA_CONTENT = {
+export interface HudTelemetryPreset {
+  channelName: string
+  programTitle: string
+  resolution: string
+  framerate: string
+  codec: string
+  decoder: string
+  colorSpace: string
+  bitrate: string
+  audioFormat: string
+  socketBuffer: string
+  bufferDuration: string
+  droppedFrames: string
+  afrState: string
+  shaderEngine: string
+  hardwareTunneling: boolean
+}
+
+export interface PrivacyModalSection {
+  title: string
+  content: string
+  bullets?: string[]
+  isWarning?: boolean
+}
+
+export interface TelyraContent {
+  meta: {
+    title: string
+    description: string
+    canonical: string
+  }
+  nav: {
+    features: string
+    hud: string
+    comparison: string
+    downloads: string
+    privacy: string
+    backToPortfolio: string
+    directApk: string
+  }
+  hero: {
+    badge: string
+    headlinePrefix: string
+    headlineGradient: string
+    headlineSuffix: string
+    subtitle: string
+    ctaDownloadTv: string
+    ctaDownloadMobile: string
+    ctaDownloaderCode: string
+    copyButton: string
+    copiedFeedback: string
+    liveBadge: string
+  }
+  mockup: {
+    label: string
+    title: string
+    subtitle: string
+    toggleTv: string
+    toggleMobile: string
+    fastZappingLabel: string
+    hudViewLabel: string
+    remoteHint: string
+    tvTabs: {
+      live: string
+      guide: string
+      dev: string
+      sources: string
+    }
+    mobileTabs: {
+      player: string
+      stats: string
+      live: string
+      onboarding: string
+    }
+    hudModes: {
+      off: string
+      compact: string
+      detailed: string
+    }
+    hudLabels: {
+      recLive: string
+      showHud: string
+      program: string
+      resolution: string
+      decoder: string
+      framerate: string
+      shader: string
+      bitrate: string
+      audio: string
+      afr: string
+      switchProfile: string
+      compactBtn: string
+      closeBtn: string
+    }
+    presets: HudTelemetryPreset[]
+  }
+  features: {
+    label: string
+    title: string
+    subtitle: string
+    items: FeatureItem[]
+  }
+  comparison: {
+    label: string
+    title: string
+    subtitle: string
+    headers: {
+      metric: string
+      telyra: string
+      tivimate: string
+      standard: string
+    }
+    rows: ComparisonRow[]
+  }
+  downloads: {
+    label: string
+    title: string
+    subtitle: string
+    downloaderCodeTitle: string
+    downloaderCodeDesc: string
+    howToInstallTitle: string
+    steps: { num: string; text: string }[]
+    directTitle: string
+    verifiedBadge: string
+    labels: {
+      version: string
+      fileSize: string
+      minSdk: string
+      downloadBtnText: string
+      checksum: string
+      copyChecksum: string
+      copiedChecksum: string
+    }
+    items: DownloadItem[]
+  }
+  privacy: {
+    label: string
+    title: string
+    subtitle: string
+    zeroDataTitle: string
+    zeroDataDesc: string
+    disclaimerTitle: string
+    disclaimerText: string
+    fullPolicyBtn: string
+    closeModal: string
+    modal: {
+      title: string
+      effectiveDateLabel: string
+      effectiveDate: string
+      sections: PrivacyModalSection[]
+    }
+  }
+  footer: {
+    aboutTelyra: string
+    builtBy: string
+    allRights: string
+  }
+}
+
+export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
   tr: {
     meta: {
       title: 'TELYRA — Yeni Nesil Sinematik IPTV & Medya Oynatıcı',
@@ -79,18 +220,99 @@ export const TELYRA_CONTENT = {
       liveBadge: 'CANLI YAYIN MOTORU',
     },
     mockup: {
+      label: '// 10-FOOT OTURMA ODASI SİNEMATİK ARAYÜZÜ',
       title: 'Donanım Seviyesinde 60 FPS Canlı Deneyim',
       subtitle: 'Kumanda ergonomisi ve 10-foot TV arayüzü ile test edilmiş gerçek ekran görüntüleri ve canlı telemetri simülasyonu.',
       toggleTv: 'Android TV (10-Foot UI)',
-      toggleMobile: 'Mobil (Handheld)',
-      tabs: {
-        live: 'Canlı Yayın & HUD',
+      toggleMobile: 'Mobil (Handheld UI)',
+      fastZappingLabel: 'HIZLI ZAPPING:',
+      hudViewLabel: 'HUD GÖRÜNÜMÜ:',
+      remoteHint: '💡 İpucu: Klavye Yön Tuşları (Sol / Sağ: Kanal Değiştir, Yukarı: HUD Modu, Aşağı: Sekme) ile de kontrol edebilirsiniz.',
+      tvTabs: {
+        live: 'Canlı Yayın & OSD',
         guide: 'EPG Rehberi',
         dev: 'Geliştirici Teşhisi',
         sources: 'Kaynak Yönetimi',
       },
-      hudOverlayTitle: 'TELYRA HARDWARE TELEMETRY OSD',
-      fpsMeter: '60.0 FPS Kilitli',
+      mobileTabs: {
+        player: 'Oynatıcı (Player)',
+        stats: 'HUD Teşhis (Stats)',
+        live: 'Canlı Yayın (Live)',
+        onboarding: 'Kurulum (Onboarding)',
+      },
+      hudModes: {
+        off: 'Gizle',
+        compact: 'Kompakt',
+        detailed: 'Detaylı',
+      },
+      hudLabels: {
+        recLive: '● REC / CANLI',
+        showHud: '⚡ HUD Telemetriyi Aç',
+        program: 'Program:',
+        resolution: 'Çözünürlük & Panel:',
+        decoder: 'Video Dekoder (VPU):',
+        framerate: 'Kare Hızı & Düşen:',
+        shader: 'Görüntü İşleme (CAS):',
+        bitrate: 'Bitrate & Soket Halka:',
+        audio: 'Ses Passthrough:',
+        afr: 'HDMI 2.1 AFR Modu:',
+        switchProfile: '[Profil ⟳]',
+        compactBtn: '_ Kompakt',
+        closeBtn: '✕',
+      },
+      presets: [
+        {
+          channelName: 'TRT 1 4K HDR',
+          programTitle: 'UEFA Şampiyonlar Ligi Finali Canlı',
+          resolution: '3840×2160p @ 59.940 Hz',
+          framerate: '60.0 fps (0 düşen kare)',
+          codec: 'HEVC Main 10 (H.265 10-bit)',
+          decoder: 'c2.amlogic.hevc.decoder (Donanımsal VPU)',
+          colorSpace: 'BT.2020 / HLG HDR (ACES Ton Eşlemeli)',
+          bitrate: '34.8 Mbps (Tepe: 52.1 Mbps)',
+          audioFormat: 'Dolby Digital Plus (E-AC-3) 5.1ch @ 48kHz',
+          socketBuffer: '4.194.304 Bayt (Pre-Connect SO_RCVBUF)',
+          bufferDuration: '14.850 ms (RAM Guard Güvenli Tavan: 80MB)',
+          droppedFrames: '0 / 18.420 (%0.000)',
+          afrState: 'HDMI 2.1 QMS Modu 59.94 Hz (Kusursuz)',
+          shaderEngine: 'AMD FidelityFX CAS v1.0 (Güç: 0.85 Ultra)',
+          hardwareTunneling: true,
+        },
+        {
+          channelName: 'Sky Sport 1 HD',
+          programTitle: 'Premier League Canlı Karşılaşma (1080i)',
+          resolution: '1920×1080i @ 25.000 fps',
+          framerate: '50.0 fps progresif (Donanımsal Bob)',
+          codec: 'MPEG-TS AVC (H.264 High@L4.1)',
+          decoder: 'c2.android.avc.decoder (0ms Donanım Deinterlace)',
+          colorSpace: 'Rec.709 Standart Gamut',
+          bitrate: '14.2 Mbps (Sabit CBR)',
+          audioFormat: 'MPEG Audio Layer II 2.0ch @ 48kHz',
+          socketBuffer: '4.194.304 Bayt',
+          bufferDuration: '9.200 ms',
+          droppedFrames: '0 / 12.500 (%0.000)',
+          afrState: 'Ekran Eşleşti: 50.000 Hz',
+          shaderEngine: 'CAS Doğal Kenar Keskinleştirme (0.60)',
+          hardwareTunneling: false,
+        },
+        {
+          channelName: 'Dune: Part Two (4K)',
+          programTitle: 'Dolby Vision Profil 8 / Atmos VOD Remux',
+          resolution: '3840×2160p @ 23.976 fps',
+          framerate: '23.976 fps (Sinematik Kadans)',
+          codec: 'HEVC Main10 HDR10 / DV',
+          decoder: 'c2.amlogic.hevc.decoder (Tünelli VPU)',
+          colorSpace: 'BT.2020 PQ HDR10 (Geniş Dinamik Aralık)',
+          bitrate: '74.6 Mbps (Tepe: 98.4 Mbps Remux)',
+          audioFormat: 'Dolby TrueHD with Atmos (AudioTrack Bitstream)',
+          socketBuffer: '4.194.304 Bayt DirectMemory Halka Tampon',
+          bufferDuration: '18.400 ms',
+          droppedFrames: '0 / 34.800 (%0.000)',
+          afrState: 'Ekran Eşleşti: 23.976 Hz Sinema Modu',
+          shaderEngine: 'Bypass (Saf 4K Doğrudan Geçiş)',
+          hardwareTunneling: true,
+        },
+      ],
     },
     features: {
       label: '// MÜHENDİSLİK DETAYLARI',
@@ -187,6 +409,78 @@ export const TELYRA_CONTENT = {
         tivimate: '📺 TiviMate (Ücretli)',
         standard: '📁 Standart IPTV (Smarters, XC vb.)',
       },
+      rows: [
+        {
+          metric: 'Arayüz Mimarisi & Bellek',
+          telyra: 'Saf Java 17 Yerel Görünümler (<45MB Heap, 60 FPS Kilitli)',
+          telyraHighlight: true,
+          tivimate: 'Kapalı Kaynak Yerel Görünümler (~120MB Heap)',
+          standard: 'Hantal WebView / Cordova (250MB+ Heap, Sık OOM Çökmeleri)',
+        },
+        {
+          metric: 'Donanımsal Tarak Giderme (Deinterlace)',
+          telyra: '0ms Amlogic/MTK VPU Donanım Enjeksiyonu + LibVLC YADIF 2x',
+          telyraHighlight: true,
+          tivimate: 'Belirli dekoderlerde kısmi/yazılımsal deinterlace',
+          standard: 'Yok (Görünür taraklanma çizgileri ve titrek 25fps)',
+        },
+        {
+          metric: 'GPU Kenar Keskinleştirme',
+          telyra: 'AMD FidelityFX™ CAS (Gerçek zamanlı GLSL Shader, <1ms)',
+          telyraHighlight: true,
+          tivimate: 'Yok (Varsayılan bulanık ölçekleme)',
+          standard: 'Yok (Bulanık pikselleşme)',
+        },
+        {
+          metric: 'DVR Kayıt Yöntemi',
+          telyra: 'Tek Bağlantılı Byte-Tap (0 ek bağlantı, %0 ban riski)',
+          telyraHighlight: true,
+          tivimate: 'İkincil akış açar (Tek hatlı üyeliklerde ban riski)',
+          standard: 'Kararsız veya mevcut değil',
+        },
+        {
+          metric: '4K Yüksek Bitrate Soket Hattı',
+          telyra: '4MB SO_RCVBUF Bağlantı Öncesi + DirectMemory Ring Tampon',
+          telyraHighlight: true,
+          tivimate: 'Standart Java soket tamponları (~64KB - 256KB)',
+          standard: 'Varsayılan OkHttp 8KB tamponu (Şiddetli TCP pencere daralması)',
+        },
+        {
+          metric: 'Kusursuz Otomatik Kare Hızı (AFR)',
+          telyra: 'DisplayModeSelector + HDMI 2.1 QMS Hızlı Yol + 4K Panel Kilidi',
+          telyraHighlight: true,
+          tivimate: 'Temel ekran modu değişimi (kararma ve atlama)',
+          standard: 'Yok (Şiddetli 3:2 pulldown titremesi)',
+        },
+        {
+          metric: 'Çoklu Ekran (Multiview)',
+          telyra: '2\'li Split & 4\'lü Grid, Kumandayla Anında Ses Yönlendirme',
+          telyraHighlight: true,
+          tivimate: 'Ücretli Premium pakete kilitli',
+          standard: 'Yok',
+        },
+        {
+          metric: 'Kimlik Bilgisi Güvenliği',
+          telyra: 'AndroidKeyStore Donanım Destekli AES-256 GCM',
+          telyraHighlight: true,
+          tivimate: 'Standart yerel depolama',
+          standard: 'Düz metin SharedPreferences / SQLite (Açıkta kalan şifreler)',
+        },
+        {
+          metric: 'Gizlilik & Telemetri',
+          telyra: '%100 Sıfır Takip, Sıfır Analitik SDK, Sıfır Reklam',
+          telyraHighlight: true,
+          tivimate: 'Lisans doğrulama pingi',
+          standard: 'Reklam ağları, üçüncü taraf izleme kodları',
+        },
+        {
+          metric: 'Maliyet & Lisanslama',
+          telyra: 'Ücretsiz & Şeffaf Topluluk Yazılımı',
+          telyraHighlight: true,
+          tivimate: 'Yıllık Abonelik veya ~35$ Ömür Boyu Lisans',
+          standard: 'Reklam destekli veya şüpheli yinelenen panel ücretleri',
+        },
+      ],
     },
     downloads: {
       label: '// İNDİRME MERKEZİ',
@@ -201,8 +495,42 @@ export const TELYRA_CONTENT = {
         { num: '3', text: 'İndirme tamamlandığında ekrana gelen "Yükle / Install" butonuna basarak TELYRA\'yı kullanmaya başlayın.' },
       ],
       directTitle: 'Doğrudan APK Dosyaları (GitHub Sürümleri)',
-      shaTitle: 'SHA-256 Doğrulama Özeti:',
       verifiedBadge: 'Android v1/v2/v3 APK İmzalı',
+      labels: {
+        version: 'Sürüm:',
+        fileSize: 'Boyut:',
+        minSdk: 'Gereksinim:',
+        downloadBtnText: 'İndir',
+        checksum: 'SHA-256 Doğrulama Özeti:',
+        copyChecksum: 'Kopyala',
+        copiedChecksum: 'Kopyalandı!',
+      },
+      items: [
+        {
+          id: 'app-tv',
+          title: 'TELYRA Android TV / Google TV İçin',
+          targetDevice: 'Android TV, Google TV, Fire TV Stick, Xiaomi Mi Box, Nvidia Shield',
+          version: 'v1.0.0',
+          fileName: 'telyra-tv-v1.0.0.apk',
+          fileSize: '83 MB',
+          downloadUrl: 'https://github.com/b4lol/TELYRA/releases/download/v1.0.0/app-tv-release.apk',
+          sha256: 'a1e94d8f7b2c0193e481b37d45920a67e8913b82946c1092e094f83b276d418c',
+          releaseDate: '2026-10-21',
+          minSdk: 'Android 7.0+ (Nougat / API 24)',
+        },
+        {
+          id: 'app-mobile',
+          title: 'TELYRA Android Mobil & Tablet İçin',
+          targetDevice: 'Android Akıllı Telefonlar ve Tabletler (Dokunmatik Arayüz)',
+          version: 'v1.0.0',
+          fileName: 'telyra-mobile-v1.0.0.apk',
+          fileSize: '85 MB',
+          downloadUrl: 'https://github.com/b4lol/TELYRA/releases/download/v1.0.0/app-mobile-release.apk',
+          sha256: 'b4820d91ef47a8293c40192e76f53a19b8401e9204c81a293847e0129a74c091',
+          releaseDate: '2026-10-21',
+          minSdk: 'Android 7.0+ (Nougat / API 24)',
+        },
+      ],
     },
     privacy: {
       label: '// YASAL BİLGİLENDİRME & GİZLİLİK',
@@ -214,6 +542,26 @@ export const TELYRA_CONTENT = {
       disclaimerText: 'TELYRA hiçbir şekilde ses, video, IPTV akışı, kanal listesi veya telif hakkına tabi medya içeriği sağlamaz, barındırmaz, satmaz veya dağıtmaz. Kullanıcılar yalnızca kendilerine ait olan ve yasal olarak erişim iznine sahip oldukları yayın bağlantılarını (M3U, Xtream Codes) girmekle yükümlüdür.',
       fullPolicyBtn: 'Gizlilik Politikasının Tam Metnini Oku (TR / EN) →',
       closeModal: 'Kapat',
+      modal: {
+        title: 'TELYRA — Gizlilik Politikası ve Şartlar',
+        effectiveDateLabel: 'Yürürlük Tarihi:',
+        effectiveDate: '21 Ekim 2026',
+        sections: [
+          {
+            title: '1. Sıfır Veri Toplama Politikası',
+            content: 'TELYRA hiçbir kullanıcı verisi toplamaz, kaydetmez veya üçüncü taraflarla paylaşmaz. Uygulamada reklam SDK\'ları, Firebase Analytics veya harici telemetri bulunmaz. Girilen M3U veya Xtream Codes kimlik bilgileri yalnızca AndroidKeyStore AES-256 GCM ile yerel cihazınızda saklanır.',
+          },
+          {
+            title: '2. Yasal Sorumluluk Reddi (Disclaimer)',
+            content: 'TELYRA bağımsız bir açık kaynaklı medya oynatıcıdır. Hiçbir yayın, video, IPTV akışı veya çalma listesi barındırmaz ve satmaz. Kullanıcılar yalnızca yasal erişim iznine sahip oldukları yayınları oynatmakla yükümlüdür.',
+            isWarning: true,
+          },
+          {
+            title: '3. Uygulama İzinleri',
+            content: 'Uygulama yalnızca canlı yayınları oynatmak için INTERNET iznini, zamanlanmış kayıt bildirimleri için POST_NOTIFICATIONS iznini ve kayıtların güvenle tamamlanabilmesi için FOREGROUND_SERVICE_DATA_SYNC iznini kullanır.',
+          },
+        ],
+      },
     },
     footer: {
       aboutTelyra: 'TELYRA, Android TV ve mobil cihazlar için tasarlanmış yüksek performanslı, modern ve açık kaynaklı bir IPTV oynatıcısıdır.',
@@ -250,18 +598,99 @@ export const TELYRA_CONTENT = {
       liveBadge: 'LIVE STREAM ENGINE',
     },
     mockup: {
+      label: '// 10-FOOT LIVING ROOM CINEMATIC UI',
       title: 'Hardware-Grade 60 FPS Living Room Experience',
       subtitle: 'Actual screenshots and real-time telemetry simulation designed specifically for 10-foot remote control ergonomics.',
       toggleTv: 'Android TV (10-Foot UI)',
-      toggleMobile: 'Mobile (Handheld)',
-      tabs: {
-        live: 'Live Stream & HUD',
+      toggleMobile: 'Mobile (Handheld UI)',
+      fastZappingLabel: 'FAST ZAPPING:',
+      hudViewLabel: 'HUD TELEMETRY:',
+      remoteHint: '💡 Tip: Use Keyboard Arrow Keys (Left / Right: Zap Channel, Up: HUD Modes, Down: Tabs) for interactive testing.',
+      tvTabs: {
+        live: 'Live Stream & OSD',
         guide: 'EPG Guide',
         dev: 'Developer Telemetry',
         sources: 'Source Manager',
       },
-      hudOverlayTitle: 'TELYRA HARDWARE TELEMETRY OSD',
-      fpsMeter: '60.0 FPS Locked',
+      mobileTabs: {
+        player: 'Player',
+        stats: 'HUD Stats',
+        live: 'Live Stream',
+        onboarding: 'Onboarding',
+      },
+      hudModes: {
+        off: 'Off',
+        compact: 'Compact',
+        detailed: 'Detailed',
+      },
+      hudLabels: {
+        recLive: '● REC / LIVE',
+        showHud: '⚡ Show Telemetry OSD',
+        program: 'Program:',
+        resolution: 'Resolution & Refresh:',
+        decoder: 'Video Decoder (VPU):',
+        framerate: 'Frame Rate & Drops:',
+        shader: 'Shader Engine (CAS):',
+        bitrate: 'Bitrate & Linux Buffer:',
+        audio: 'Audio Passthrough:',
+        afr: 'HDMI 2.1 AFR Mode:',
+        switchProfile: '[Profile ⟳]',
+        compactBtn: '_ Compact',
+        closeBtn: '✕',
+      },
+      presets: [
+        {
+          channelName: 'TRT 1 4K HDR',
+          programTitle: 'UEFA Champions League Final Live',
+          resolution: '3840×2160p @ 59.940 Hz',
+          framerate: '60.0 fps (0 dropped)',
+          codec: 'HEVC Main 10 (H.265 10-bit)',
+          decoder: 'c2.amlogic.hevc.decoder (Hardware VPU)',
+          colorSpace: 'BT.2020 / HLG HDR (ACES Tonemapped)',
+          bitrate: '34.8 Mbps (Burst: 52.1 Mbps)',
+          audioFormat: 'Dolby Digital Plus (E-AC-3) 5.1ch @ 48kHz',
+          socketBuffer: '4,194,304 Bytes (Pre-Connect SO_RCVBUF)',
+          bufferDuration: '14,850 ms (RAM Guard Safe Cap: 80MB)',
+          droppedFrames: '0 / 18,420 (0.000%)',
+          afrState: 'HDMI 2.1 QMS Mode 59.94 Hz (Seamless)',
+          shaderEngine: 'AMD FidelityFX CAS v1.0 (Strength: 0.85 Ultra)',
+          hardwareTunneling: true,
+        },
+        {
+          channelName: 'Sky Sport 1 HD',
+          programTitle: 'Premier League Matchday Broadcast (1080i)',
+          resolution: '1920×1080i @ 25.000 fps',
+          framerate: '50.0 fps progressive (Deinterlaced)',
+          codec: 'MPEG-TS AVC (H.264 High@L4.1)',
+          decoder: 'c2.android.avc.decoder (0ms HW Bob Deinterlace)',
+          colorSpace: 'Rec.709 Standard Gamut',
+          bitrate: '14.2 Mbps (Stable CBR)',
+          audioFormat: 'MPEG Audio Layer II 2.0ch @ 48kHz',
+          socketBuffer: '4,194,304 Bytes',
+          bufferDuration: '9,200 ms',
+          droppedFrames: '0 / 12,500 (0.000%)',
+          afrState: 'Display Matched: 50.000 Hz',
+          shaderEngine: 'CAS Natural Edge Crisp (0.60)',
+          hardwareTunneling: false,
+        },
+        {
+          channelName: 'Dune: Part Two (4K)',
+          programTitle: 'Dolby Vision Profile 8 / Atmos VOD Remux',
+          resolution: '3840×2160p @ 23.976 fps',
+          framerate: '23.976 fps (Film Cinematic cadence)',
+          codec: 'HEVC Main10 HDR10 / DV',
+          decoder: 'c2.amlogic.hevc.decoder (Tunneled VPU)',
+          colorSpace: 'BT.2020 PQ HDR10 (Extended Headroom)',
+          bitrate: '74.6 Mbps (Peak: 98.4 Mbps Remux)',
+          audioFormat: 'Dolby TrueHD with Atmos (AudioTrack Bitstream)',
+          socketBuffer: '4,194,304 Bytes DirectMemory Ring Buffer',
+          bufferDuration: '18,400 ms',
+          droppedFrames: '0 / 34,800 (0.000%)',
+          afrState: 'Display Matched: 23.976 Hz Cinema Mode',
+          shaderEngine: 'Bypass (Native 4K Clean Pass)',
+          hardwareTunneling: true,
+        },
+      ],
     },
     features: {
       label: '// SYSTEM ENGINEERING',
@@ -358,6 +787,78 @@ export const TELYRA_CONTENT = {
         tivimate: '📺 TiviMate (Paid)',
         standard: '📁 Standard Players (Smarters, XC etc.)',
       },
+      rows: [
+        {
+          metric: 'Architecture & Heap Memory',
+          telyra: 'Pure Java 17 Native Views (<45MB Heap, 60fps locked)',
+          telyraHighlight: true,
+          tivimate: 'Closed-source Native Views (~120MB Heap)',
+          standard: 'Bloated WebView / Cordova (250MB+ Heap, frequent OOM crashes)',
+        },
+        {
+          metric: 'Hardware Deinterlacing',
+          telyra: '0ms Amlogic/MTK VPU Hardware Injection + LibVLC YADIF 2x',
+          telyraHighlight: true,
+          tivimate: 'Partial / Software deinterlace on select decoders',
+          standard: 'None (Visible combing lines & jerky 25fps half-rate)',
+        },
+        {
+          metric: 'GPU Edge Enhancement',
+          telyra: 'AMD FidelityFX™ CAS (Real-time GLSL Shader, <1ms)',
+          telyraHighlight: true,
+          tivimate: 'None (Default bilinear/bicubic scaling)',
+          standard: 'None (Blurry upscaled output)',
+        },
+        {
+          metric: 'DVR Recording Mechanism',
+          telyra: 'Single-Connection Byte-Tap (0 extra connections, 0% ban risk)',
+          telyraHighlight: true,
+          tivimate: 'Opens secondary stream (triggers provider ban on 1-conn lines)',
+          standard: 'Unstable or unavailable',
+        },
+        {
+          metric: '4K High-Bitrate Socket Pipeline',
+          telyra: '4MB SO_RCVBUF Pre-Connect + DirectMemory Off-Heap Ring Buffer',
+          telyraHighlight: true,
+          tivimate: 'Standard Java buffer sockets (~64KB - 256KB)',
+          standard: 'Default OkHttp 8KB buffer (Severe TCP window starvation)',
+        },
+        {
+          metric: 'Seamless Auto Frame Rate (AFR)',
+          telyra: 'DisplayModeSelector + HDMI 2.1 QMS Fast Path + 4K Panel Lock',
+          telyraHighlight: true,
+          tivimate: 'Basic display mode switch (blackout judder)',
+          standard: 'None (Severe 3:2 pulldown judder)',
+        },
+        {
+          metric: 'Multiview Support',
+          telyra: '2-Way Split & 4-Way Quad Grid with Instant D-Pad Audio Routing',
+          telyraHighlight: true,
+          tivimate: 'Locked behind paid Premium tier',
+          standard: 'None',
+        },
+        {
+          metric: 'Credential Security',
+          telyra: 'AndroidKeyStore Hardware-backed AES-256 GCM',
+          telyraHighlight: true,
+          tivimate: 'Standard local storage',
+          standard: 'Plaintext SharedPreferences / SQLite (Exposed passwords)',
+        },
+        {
+          metric: 'Privacy & Telemetry',
+          telyra: '100% Zero Tracking, Zero Analytics SDKs, Zero Ads',
+          telyraHighlight: true,
+          tivimate: 'License validation ping',
+          standard: 'Ad networks, third-party analytics beacons',
+        },
+        {
+          metric: 'Cost & Licensing',
+          telyra: 'Free & Transparent Community Software',
+          telyraHighlight: true,
+          tivimate: 'Annual Subscription or ~$35 Lifetime License',
+          standard: 'Ad-supported or shady recurring panel fees',
+        },
+      ],
     },
     downloads: {
       label: '// DOWNLOAD CENTER',
@@ -372,8 +873,42 @@ export const TELYRA_CONTENT = {
         { num: '3', text: 'When the download completes, click "Install" to start enjoying TELYRA.' },
       ],
       directTitle: 'Direct APK Downloads (GitHub Releases)',
-      shaTitle: 'SHA-256 Cryptographic Checksum:',
       verifiedBadge: 'Signed with Android v1/v2/v3 Schemes',
+      labels: {
+        version: 'Version:',
+        fileSize: 'Size:',
+        minSdk: 'Requirement:',
+        downloadBtnText: 'Download',
+        checksum: 'SHA-256 Checksum:',
+        copyChecksum: 'Copy',
+        copiedChecksum: 'Copied!',
+      },
+      items: [
+        {
+          id: 'app-tv',
+          title: 'TELYRA for Android TV / Google TV',
+          targetDevice: 'Android TV, Google TV, Fire TV Stick, Xiaomi Mi Box, Nvidia Shield',
+          version: 'v1.0.0',
+          fileName: 'telyra-tv-v1.0.0.apk',
+          fileSize: '83 MB',
+          downloadUrl: 'https://github.com/b4lol/TELYRA/releases/download/v1.0.0/app-tv-release.apk',
+          sha256: 'a1e94d8f7b2c0193e481b37d45920a67e8913b82946c1092e094f83b276d418c',
+          releaseDate: '2026-10-21',
+          minSdk: 'Android 7.0+ (Nougat / API 24)',
+        },
+        {
+          id: 'app-mobile',
+          title: 'TELYRA for Android Mobile & Tablet',
+          targetDevice: 'Android Smartphones & Tablets (Touch UI)',
+          version: 'v1.0.0',
+          fileName: 'telyra-mobile-v1.0.0.apk',
+          fileSize: '85 MB',
+          downloadUrl: 'https://github.com/b4lol/TELYRA/releases/download/v1.0.0/app-mobile-release.apk',
+          sha256: 'b4820d91ef47a8293c40192e76f53a19b8401e9204c81a293847e0129a74c091',
+          releaseDate: '2026-10-21',
+          minSdk: 'Android 7.0+ (Nougat / API 24)',
+        },
+      ],
     },
     privacy: {
       label: '// LEGAL & PRIVACY',
@@ -385,6 +920,26 @@ export const TELYRA_CONTENT = {
       disclaimerText: 'TELYRA does NOT supply, host, aggregate, or distribute any media content, television channels, or playlists. Users are solely responsible for providing their own lawfully authorized media sources (M3U / Xtream Codes).',
       fullPolicyBtn: 'Read Complete Privacy Policy (TR / EN) →',
       closeModal: 'Close',
+      modal: {
+        title: 'TELYRA — Privacy Policy & Terms',
+        effectiveDateLabel: 'Effective Date:',
+        effectiveDate: 'October 21, 2026',
+        sections: [
+          {
+            title: '1. Zero Data Collection Policy',
+            content: 'TELYRA does NOT collect, store, or transmit any user data or telemetry to remote servers. There are no advertising SDKs or third-party trackers. All entered playlist credentials remain encrypted on your local device using AndroidKeyStore AES-256 GCM.',
+          },
+          {
+            title: '2. Legal Notice & Disclaimer',
+            content: 'TELYRA is strictly a standalone open-source media player application. It does NOT host, supply, or sell any streaming media, television channels, or playlists. Users are solely responsible for ensuring they have lawful access to the content they stream.',
+            isWarning: true,
+          },
+          {
+            title: '3. Application Permissions',
+            content: 'The app requests only essential permissions: INTERNET for streaming, POST_NOTIFICATIONS for recording alerts, and FOREGROUND_SERVICE_DATA_SYNC for running user-initiated scheduled DVR tasks.',
+          },
+        ],
+      },
     },
     footer: {
       aboutTelyra: 'TELYRA is a high-performance, privacy-focused open source media player engineered for Android TV and mobile.',
@@ -393,157 +948,3 @@ export const TELYRA_CONTENT = {
     },
   },
 }
-
-export const COMPARISON_ROWS: ComparisonRow[] = [
-  {
-    metric: 'Architecture & Engine',
-    telyra: 'Pure Java 17 Native Views (<45MB Heap, 60fps locked)',
-    telyraHighlight: true,
-    tivimate: 'Closed-source Native Views (~120MB Heap)',
-    standard: 'Bloated WebView / Cordova (250MB+ Heap, frequent OOM crashes)',
-  },
-  {
-    metric: 'Hardware Deinterlacing',
-    telyra: '0ms Amlogic/MTK VPU Hardware Injection + LibVLC YADIF 2x Failover',
-    telyraHighlight: true,
-    tivimate: 'Partial / Software deinterlace on select decoders',
-    standard: 'None (Visible combing lines & jerky 25fps half-rate)',
-  },
-  {
-    metric: 'GPU Edge Enhancement',
-    telyra: 'AMD FidelityFX™ CAS (Real-time GLSL Shader, <1ms)',
-    telyraHighlight: true,
-    tivimate: 'None (Default bilinear/bicubic scaling)',
-    standard: 'None (Blurry upscaled output)',
-  },
-  {
-    metric: 'DVR Recording Mechanism',
-    telyra: 'Single-Connection Byte-Tap (0 extra connections, 0% ban risk)',
-    telyraHighlight: true,
-    tivimate: 'Opens secondary stream (triggers provider ban on 1-conn lines)',
-    standard: 'Unstable or unavailable',
-  },
-  {
-    metric: '4K High-Bitrate Socket Pipeline',
-    telyra: '4MB SO_RCVBUF Pre-Connect + DirectMemory Off-Heap Ring Buffer',
-    telyraHighlight: true,
-    tivimate: 'Standard Java buffer sockets (~64KB - 256KB)',
-    standard: 'Default OkHttp 8KB buffer (Severe TCP window starvation)',
-  },
-  {
-    metric: 'Seamless Auto Frame Rate (AFR)',
-    telyra: 'DisplayModeSelector + HDMI 2.1 QMS Fast Path + 4K Panel Lock',
-    telyraHighlight: true,
-    tivimate: 'Basic display mode switch (blackout judder)',
-    standard: 'None (Severe 3:2 pulldown judder)',
-  },
-  {
-    metric: 'Multiview Support',
-    telyra: '2-Way Split & 4-Way Quad Grid with Instant D-Pad Audio Routing',
-    telyraHighlight: true,
-    tivimate: 'Locked behind paid Premium tier',
-    standard: 'None',
-  },
-  {
-    metric: 'Credential Security',
-    telyra: 'AndroidKeyStore Hardware-backed AES-256 GCM',
-    telyraHighlight: true,
-    tivimate: 'Standard local storage',
-    standard: 'Plaintext SharedPreferences / SQLite (Exposed passwords)',
-  },
-  {
-    metric: 'Privacy & Telemetry',
-    telyra: '100% Zero Tracking, Zero Analytics SDKs, Zero Ads',
-    telyraHighlight: true,
-    tivimate: 'License validation ping',
-    standard: 'Ad networks, third-party analytics beacons',
-  },
-  {
-    metric: 'Cost & Licensing',
-    telyra: 'Free & Transparent Community Software',
-    telyraHighlight: true,
-    tivimate: 'Annual Subscription or ~$35 Lifetime License',
-    standard: 'Ad-supported or shady recurring panel fees',
-  },
-]
-
-export const TELEMETRY_PRESETS: HudTelemetryPreset[] = [
-  {
-    channelName: 'TRT 1 4K HDR',
-    programTitle: 'UEFA Champions League Final Live',
-    resolution: '3840×2160p @ 59.940 Hz',
-    framerate: '60.0 fps (0 dropped)',
-    codec: 'HEVC Main 10 (H.265 10-bit)',
-    decoder: 'c2.amlogic.hevc.decoder (Hardware VPU)',
-    colorSpace: 'BT.2020 / HLG HDR (ACES Tonemapped)',
-    bitrate: '34.8 Mbps (Burst: 52.1 Mbps)',
-    audioFormat: 'Dolby Digital Plus (E-AC-3) 5.1ch @ 48kHz (Passthrough)',
-    socketBuffer: '4,194,304 Bytes (Pre-Connect SO_RCVBUF)',
-    bufferDuration: '14,850 ms (RAM Guard Safe Cap: 80MB)',
-    droppedFrames: '0 / 18,420 (0.000%)',
-    afrState: 'HDMI 2.1 QMS Mode 59.94 Hz (Seamless)',
-    shaderEngine: 'AMD FidelityFX CAS v1.0 (Strength: 0.85 Ultra)',
-    hardwareTunneling: true,
-  },
-  {
-    channelName: 'Sky Sport 1 HD (1080i)',
-    programTitle: 'Premier League Matchday Broadcast',
-    resolution: '1920×1080i @ 25.000 fps',
-    framerate: '50.0 fps progressive (Deinterlaced)',
-    codec: 'MPEG-TS AVC (H.264 High@L4.1)',
-    decoder: 'c2.android.avc.decoder (0ms HW Bob Deinterlace)',
-    colorSpace: 'Rec.709 Standard Gamut',
-    bitrate: '14.2 Mbps (Stable CBR)',
-    audioFormat: 'MPEG Audio Layer II 2.0ch @ 48kHz',
-    socketBuffer: '4,194,304 Bytes',
-    bufferDuration: '9,200 ms',
-    droppedFrames: '0 / 12,500 (0.000%)',
-    afrState: 'Display Matched: 50.000 Hz',
-    shaderEngine: 'CAS Natural Edge Crisp (0.60)',
-    hardwareTunneling: false,
-  },
-  {
-    channelName: 'Dune: Part Two (4K UHD VOD)',
-    programTitle: 'Dolby Vision Profile 8 / Atmos Remux',
-    resolution: '3840×2160p @ 23.976 fps',
-    framerate: '23.976 fps (Film Cinematic cadence)',
-    codec: 'HEVC Main10 HDR10 / DV',
-    decoder: 'c2.amlogic.hevc.decoder (Tunneled VPU)',
-    colorSpace: 'BT.2020 PQ HDR10 (Extended Headroom)',
-    bitrate: '74.6 Mbps (Peak: 98.4 Mbps Remux)',
-    audioFormat: 'Dolby TrueHD with Atmos (AudioTrack Bitstream)',
-    socketBuffer: '4,194,304 Bytes DirectMemory Ring Buffer',
-    bufferDuration: '18,400 ms',
-    droppedFrames: '0 / 34,800 (0.000%)',
-    afrState: 'Display Matched: 23.976 Hz Cinema Mode',
-    shaderEngine: 'Bypass (Native 4K Clean Pass)',
-    hardwareTunneling: true,
-  },
-]
-
-export const DOWNLOADS: DownloadItem[] = [
-  {
-    id: 'app-tv',
-    title: 'TELYRA for Android TV / Google TV',
-    targetDevice: 'Android TV, Google TV, Fire TV Stick, Xiaomi Mi Box, Nvidia Shield',
-    version: 'v1.0.0',
-    fileName: 'telyra-tv-v1.0.0.apk',
-    fileSize: '83 MB',
-    downloadUrl: 'https://github.com/b4lol/TELYRA/releases/download/v1.0.0/app-tv-release.apk',
-    sha256: 'a1e94d8f7b2c0193e481b37d45920a67e8913b82946c1092e094f83b276d418c',
-    releaseDate: '2026-10-21',
-    minSdk: 'Android 7.0+ (Nougat / API 24)',
-  },
-  {
-    id: 'app-mobile',
-    title: 'TELYRA for Android Mobile & Tablet',
-    targetDevice: 'Android Akıllı Telefonlar ve Tabletler (Touch UI)',
-    version: 'v1.0.0',
-    fileName: 'telyra-mobile-v1.0.0.apk',
-    fileSize: '85 MB',
-    downloadUrl: 'https://github.com/b4lol/TELYRA/releases/download/v1.0.0/app-mobile-release.apk',
-    sha256: 'b4820d91ef47a8293c40192e76f53a19b8401e9204c81a293847e0129a74c091',
-    releaseDate: '2026-10-21',
-    minSdk: 'Android 7.0+ (Nougat / API 24)',
-  },
-]

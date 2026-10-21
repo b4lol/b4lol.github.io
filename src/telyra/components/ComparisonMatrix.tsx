@@ -1,5 +1,5 @@
 import type { Language } from '../data/telyraData'
-import { TELYRA_CONTENT, COMPARISON_ROWS } from '../data/telyraData'
+import { TELYRA_CONTENT } from '../data/telyraData'
 
 interface ComparisonMatrixProps {
   lang: Language
@@ -30,7 +30,7 @@ export function ComparisonMatrix({ lang }: ComparisonMatrixProps) {
               </tr>
             </thead>
             <tbody>
-              {COMPARISON_ROWS.map((row, index) => (
+              {content.rows.map((row, index) => (
                 <tr key={index}>
                   <td className="telyra-metric-cell">{row.metric}</td>
                   <td>{row.telyra}</td>
