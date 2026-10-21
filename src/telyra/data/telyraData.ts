@@ -94,11 +94,12 @@ export interface TelyraContent {
     hudViewLabel: string
     remoteHint: string
     tvTabs: {
+      home: string
+      live: string
+      guide: string
       movies: string
       detail: string
       hud: string
-      live: string
-      guide: string
       sources: string
     }
     mobileTabs: {
@@ -231,11 +232,12 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       hudViewLabel: 'HUD GÖRÜNÜMÜ:',
       remoteHint: '💡 İpucu: Klavye Yön Tuşları (Sol / Sağ: Kanal Değiştir, Yukarı: HUD Modu, Aşağı: Sekme) ile de kontrol edebilirsiniz.',
       tvTabs: {
+        home: 'Ana Ekran (Home)',
+        live: 'Canlı TV & Kanallar',
+        guide: 'EPG TV Rehberi',
         movies: 'Sinema Kataloğu',
         detail: 'Film Detayı & 4K',
         hud: 'Ultra-HUD Telemetri',
-        live: 'Canlı TV & Kanallar',
-        guide: 'EPG TV Rehberi',
         sources: 'Kaynak Yönetimi',
       },
       mobileTabs: {
@@ -611,11 +613,12 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       hudViewLabel: 'HUD TELEMETRY:',
       remoteHint: '💡 Tip: Use Keyboard Arrow Keys (Left / Right: Zap Channel, Up: HUD Modes, Down: Tabs) for interactive testing.',
       tvTabs: {
+        home: 'Home Dashboard',
+        live: 'Live TV & Channels',
+        guide: 'EPG TV Guide',
         movies: 'Cinema & Movies',
         detail: 'Movie Details & 4K',
         hud: 'Live Telemetry HUD',
-        live: 'Live TV & Channels',
-        guide: 'EPG TV Guide',
         sources: 'Source Manager',
       },
       mobileTabs: {

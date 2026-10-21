@@ -7,16 +7,17 @@ interface MockupProps {
 }
 
 type DeviceMode = 'tv' | 'mobile'
-type TvTab = 'movies' | 'detail' | 'hud' | 'live' | 'guide' | 'sources'
+type TvTab = 'home' | 'live' | 'guide' | 'movies' | 'detail' | 'hud' | 'sources'
 type MobileTab = 'player' | 'stats' | 'live' | 'onboarding'
 type HudMode = 'off' | 'compact' | 'detailed'
 
 const PRELOAD_IMAGES: string[] = [
+  '/telyra/screenshots/tv-home.webp',
+  '/telyra/screenshots/tv-live.webp',
+  '/telyra/screenshots/tv-guide.webp',
   '/telyra/screenshots/tv-movies.webp',
   '/telyra/screenshots/tv-detail.webp',
   '/telyra/screenshots/tv-hud-developer.webp',
-  '/telyra/screenshots/tv-live.webp',
-  '/telyra/screenshots/tv-guide.webp',
   '/telyra/screenshots/tv-sources.webp',
   '/telyra/screenshots/phone-player.webp',
   '/telyra/screenshots/phone-hud-detailed.webp',
@@ -24,12 +25,12 @@ const PRELOAD_IMAGES: string[] = [
   '/telyra/screenshots/phone-home-onboarding.webp',
 ]
 
-const TV_TABS_ORDER: TvTab[] = ['movies', 'detail', 'hud', 'live', 'guide', 'sources']
+const TV_TABS_ORDER: TvTab[] = ['home', 'live', 'guide', 'movies', 'detail', 'hud', 'sources']
 
 export function TvMockupShowcase({ lang }: MockupProps) {
   const content = TELYRA_CONTENT[lang].mockup
   const [device, setDevice] = useState<DeviceMode>('tv')
-  const [activeTvTab, setActiveTvTab] = useState<TvTab>('movies')
+  const [activeTvTab, setActiveTvTab] = useState<TvTab>('home')
   const [activeMobileTab, setActiveMobileTab] = useState<MobileTab>('player')
   const [channelIndex, setChannelIndex] = useState(0)
   const [hudMode, setHudMode] = useState<HudMode>('compact')
@@ -44,11 +45,32 @@ export function TvMockupShowcase({ lang }: MockupProps) {
     TvTab,
     { label: string; src: string; fallbackSrc: string; badge: string; icon: string }
   > = {
+    home: {
+      label: content.tvTabs.home,
+      src: '/telyra/screenshots/tv-home.webp',
+      fallbackSrc: '/telyra/screenshots/tv-home.png',
+      badge: 'NowSeen 10-Foot',
+      icon: '🏠',
+    },
+    live: {
+      label: content.tvTabs.live,
+      src: '/telyra/screenshots/tv-live.webp',
+      fallbackSrc: '/telyra/screenshots/tv-live.png',
+      badge: '1080i50 0ms',
+      icon: '📺',
+    },
+    guide: {
+      label: content.tvTabs.guide,
+      src: '/telyra/screenshots/tv-guide.webp',
+      fallbackSrc: '/telyra/screenshots/tv-guide.png',
+      badge: 'XMLTV EPG',
+      icon: '📅',
+    },
     movies: {
       label: content.tvTabs.movies,
       src: '/telyra/screenshots/tv-movies.webp',
       fallbackSrc: '/telyra/screenshots/tv-movies.png',
-      badge: 'TMDB 4K UHD',
+      badge: '4K Ultra HD',
       icon: '🎬',
     },
     detail: {
@@ -64,20 +86,6 @@ export function TvMockupShowcase({ lang }: MockupProps) {
       fallbackSrc: '/telyra/screenshots/tv-hud-developer.png',
       badge: '25.04 Mbps OSD',
       icon: '⚡',
-    },
-    live: {
-      label: content.tvTabs.live,
-      src: '/telyra/screenshots/tv-live.webp',
-      fallbackSrc: '/telyra/screenshots/tv-live.png',
-      badge: '15.869 Kanal',
-      icon: '📺',
-    },
-    guide: {
-      label: content.tvTabs.guide,
-      src: '/telyra/screenshots/tv-guide.webp',
-      fallbackSrc: '/telyra/screenshots/tv-guide.png',
-      badge: 'EPG Rehberi',
-      icon: '📅',
     },
     sources: {
       label: content.tvTabs.sources,
