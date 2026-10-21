@@ -41,10 +41,12 @@ export default defineConfig({
     cssCodeSplit: false,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        umbra: resolve(__dirname, 'umbra/index.html'),
-        brim: resolve(__dirname, 'brim/index.html'),
-        b4assistant: resolve(__dirname, 'b4assistant/index.html'),
+        main: resolve(import.meta.dirname, 'index.html'),
+        umbra: resolve(import.meta.dirname, 'umbra/index.html'),
+        brim: resolve(import.meta.dirname, 'brim/index.html'),
+        b4assistant: resolve(import.meta.dirname, 'b4assistant/index.html'),
+        telyra: resolve(import.meta.dirname, 'telyra/index.html'),
+        telyraPrivacy: resolve(import.meta.dirname, 'telyra/privacy/index.html'),
       },
     },
   },

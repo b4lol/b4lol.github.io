@@ -1,0 +1,937 @@
+/* ==========================================================================
+   TELYRA CINEMATIC DESIGN SYSTEM (v1.0.0)
+   Designed for Living Rooms & Flagship Web Showcase
+   Tokens: OLED Void, Obsidian, Neon Cyan, Amethyst, Glassmorphism
+   ========================================================================== */
+
+:root {
+  --telyra-void: #050508;
+  --telyra-obsidian: #07080d;
+  --telyra-surface: #0e111a;
+  --telyra-surface-raised: #141926;
+  --telyra-card-bg: rgba(14, 17, 26, 0.75);
+  
+  --telyra-glass-bg: rgba(255, 255, 255, 0.03);
+  --telyra-glass-border: rgba(255, 255, 255, 0.08);
+  --telyra-glass-border-hover: rgba(0, 240, 255, 0.4);
+  --telyra-glass-blur: blur(20px) saturate(180%);
+
+  --telyra-cyan: #00f0ff;
+  --telyra-cyan-soft: rgba(0, 240, 255, 0.15);
+  --telyra-purple: #8a2be2;
+  --telyra-violet: #a855f7;
+  --telyra-amber: #ffb300;
+  --telyra-emerald: #00e676;
+  --telyra-rose: #ff3366;
+
+  --telyra-text-primary: #f5f6fa;
+  --telyra-text-secondary: #9da6b9;
+  --telyra-text-muted: #5d677d;
+
+  --telyra-font-display: 'Space Grotesk Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --telyra-font-body: 'Inter Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --telyra-font-mono: 'JetBrains Mono Variable', monospace;
+
+  --telyra-glow-cyan: 0 0 50px rgba(0, 240, 255, 0.25);
+  --telyra-glow-purple: 0 0 60px rgba(138, 43, 226, 0.3);
+  --telyra-shadow-cinema: 0 30px 100px -20px rgba(0, 0, 0, 0.95);
+}
+
+/* Base Body Override for Telyra Showcase */
+.telyra-page {
+  background-color: var(--telyra-void);
+  color: var(--telyra-text-primary);
+  font-family: var(--telyra-font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background Atmospheric Aura Blobs */
+.telyra-aura {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+.telyra-aura-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--telyra-purple), transparent 70%);
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.telyra-aura-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--telyra-cyan), transparent 70%);
+  top: 800px;
+  right: -100px;
+}
+.telyra-aura-3 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, var(--telyra-violet), transparent 70%);
+  top: 2400px;
+  left: -150px;
+}
+
+/* Container */
+.telyra-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+.telyra-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(5, 5, 8, 0.82);
+  backdrop-filter: var(--telyra-glass-blur);
+  border-bottom: 1px solid var(--telyra-glass-border);
+  transition: all 0.3s ease;
+}
+.telyra-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.telyra-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--telyra-text-primary);
+}
+.telyra-brand__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 240, 255, 0.3);
+}
+.telyra-brand__text {
+  font-family: var(--telyra-font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 40%, var(--telyra-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.telyra-brand__tag {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.65rem;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--telyra-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  text-transform: uppercase;
+}
+.telyra-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.telyra-nav__link {
+  color: var(--telyra-text-secondary);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.telyra-nav__link:hover {
+  color: var(--telyra-cyan);
+}
+.telyra-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.telyra-lang-btn {
+  background: var(--telyra-glass-bg);
+  border: 1px solid var(--telyra-glass-border);
+  color: var(--telyra-text-secondary);
+  font-family: var(--telyra-font-mono);
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.telyra-lang-btn:hover {
+  color: var(--telyra-text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.telyra-btn-primary {
+  background: linear-gradient(135deg, var(--telyra-cyan), #00a2ff);
+  color: #050508;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 9px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  cursor: pointer;
+}
+.telyra-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 240, 255, 0.5);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.telyra-hero {
+  padding: 80px 0 60px;
+  text-align: center;
+  position: relative;
+}
+.telyra-hero__badge-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(138, 43, 226, 0.12);
+  border: 1px solid rgba(138, 43, 226, 0.35);
+  margin-bottom: 24px;
+}
+.telyra-hero__badge-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--telyra-emerald);
+  box-shadow: 0 0 10px var(--telyra-emerald);
+}
+.telyra-hero__badge-text {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.8rem;
+  color: #e2d9ff;
+  letter-spacing: 0.02em;
+}
+.telyra-hero__headline {
+  font-family: var(--telyra-font-display);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 auto 20px;
+  max-width: 950px;
+}
+.telyra-hero__gradient {
+  background: linear-gradient(135deg, #ffffff 10%, var(--telyra-cyan) 60%, var(--telyra-violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+.telyra-hero__subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--telyra-text-secondary);
+  max-width: 780px;
+  margin: 0 auto 36px;
+  font-weight: 400;
+}
+.telyra-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.telyra-btn-secondary {
+  background: var(--telyra-glass-bg);
+  border: 1px solid var(--telyra-glass-border);
+  color: var(--telyra-text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+.telyra-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+.telyra-hero-cta {
+  font-size: 1rem;
+  padding: 13px 26px;
+  border-radius: 12px;
+}
+
+/* Downloader Quick Card in Hero */
+.telyra-downloader-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(14, 17, 26, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 10px 18px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+}
+.telyra-downloader-bar__label {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.82rem;
+  color: var(--telyra-text-secondary);
+}
+.telyra-downloader-bar__code {
+  font-family: var(--telyra-font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--telyra-cyan);
+  letter-spacing: 0.1em;
+  padding: 2px 8px;
+  background: rgba(0, 240, 255, 0.08);
+  border-radius: 6px;
+}
+.telyra-copy-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--telyra-text-primary);
+  font-family: var(--telyra-font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.telyra-copy-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: var(--telyra-cyan);
+  color: var(--telyra-cyan);
+}
+.telyra-copy-btn--copied {
+  background: rgba(0, 230, 118, 0.2) !important;
+  border-color: var(--telyra-emerald) !important;
+  color: var(--telyra-emerald) !important;
+}
+
+/* ==========================================================================
+   INTERACTIVE OLED TV & MOBILE MOCKUP
+   ========================================================================== */
+.telyra-mockup-wrapper {
+  margin: 50px auto 100px;
+  max-width: 1100px;
+  position: relative;
+}
+.telyra-mockup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.telyra-device-switcher {
+  display: inline-flex;
+  background: var(--telyra-surface);
+  border: 1px solid var(--telyra-glass-border);
+  padding: 4px;
+  border-radius: 12px;
+}
+.telyra-device-tab {
+  background: transparent;
+  border: none;
+  color: var(--telyra-text-secondary);
+  font-family: var(--telyra-font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.telyra-device-tab.active {
+  background: var(--telyra-surface-raised);
+  color: var(--telyra-text-primary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+.telyra-screen-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.telyra-screen-btn {
+  background: var(--telyra-glass-bg);
+  border: 1px solid var(--telyra-glass-border);
+  color: var(--telyra-text-muted);
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.telyra-screen-btn:hover {
+  color: var(--telyra-text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.telyra-screen-btn.active {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--telyra-cyan);
+  color: var(--telyra-cyan);
+}
+
+/* TV Frame */
+.telyra-tv-chassis {
+  position: relative;
+  background: #000000;
+  border: 3px solid #232733;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--telyra-shadow-cinema), 0 0 80px rgba(138, 43, 226, 0.2);
+  transition: transform 0.4s ease;
+}
+.telyra-tv-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+.telyra-tv-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.telyra-tv-stand {
+  width: 280px;
+  height: 14px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #373c4d 0%, #151821 100%);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+}
+.telyra-tv-reflection {
+  height: 40px;
+  width: 90%;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(0, 240, 255, 0.08) 0%, transparent 100%);
+  filter: blur(10px);
+  border-radius: 50%;
+}
+
+/* Live Simulated HUD Telemetry Overlay on TV */
+.telyra-hud-overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(10, 12, 18, 0.82);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 12px;
+  padding: 14px 18px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  font-family: var(--telyra-font-mono);
+  font-size: 0.75rem;
+  color: #d1d8e6;
+}
+.telyra-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+.telyra-hud-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--telyra-rose);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.telyra-hud-channel {
+  color: var(--telyra-text-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.telyra-hud-engine-badge {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--telyra-cyan);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.telyra-hud-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px 16px;
+}
+.telyra-hud-item {
+  display: flex;
+  justify-content: space-between;
+}
+.telyra-hud-item span:first-child {
+  color: var(--telyra-text-muted);
+}
+.telyra-hud-item span:last-child {
+  color: var(--telyra-cyan);
+  font-weight: 600;
+}
+
+/* Mobile Frame */
+.telyra-phone-chassis {
+  max-width: 360px;
+  margin: 0 auto;
+  background: #000;
+  border: 4px solid #2e3344;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: var(--telyra-shadow-cinema), 0 0 60px rgba(0, 240, 255, 0.2);
+  position: relative;
+}
+.telyra-phone-notch {
+  width: 120px;
+  height: 20px;
+  background: #2e3344;
+  margin: 0 auto;
+  border-radius: 0 0 14px 14px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+.telyra-phone-screen {
+  aspect-ratio: 9 / 19.5;
+  width: 100%;
+  overflow: hidden;
+}
+.telyra-phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   FEATURES GRID (6 PILLARS OF ENGINEERING)
+   ========================================================================== */
+.telyra-section {
+  padding: 90px 0;
+  position: relative;
+}
+.telyra-section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 56px;
+}
+.telyra-section-label {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.8rem;
+  color: var(--telyra-cyan);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.telyra-section-title {
+  font-family: var(--telyra-font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.telyra-section-subtitle {
+  color: var(--telyra-text-secondary);
+  font-size: 1.1rem;
+}
+
+.telyra-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+.telyra-feature-card {
+  background: var(--telyra-card-bg);
+  border: 1px solid var(--telyra-glass-border);
+  border-radius: 18px;
+  padding: 32px 28px;
+  backdrop-filter: blur(14px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.telyra-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--telyra-glass-border-hover);
+  box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.15);
+}
+.telyra-feature-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.telyra-feature-icon {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.telyra-feature-badge {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(138, 43, 226, 0.15);
+  border: 1px solid rgba(138, 43, 226, 0.35);
+  color: #dfd2ff;
+}
+.telyra-feature-tag {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.75rem;
+  color: var(--telyra-cyan);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.telyra-feature-title {
+  font-family: var(--telyra-font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--telyra-text-primary);
+}
+.telyra-feature-desc {
+  color: var(--telyra-text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.telyra-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 16px;
+}
+.telyra-feature-list li {
+  font-size: 0.86rem;
+  color: #bdc5d6;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+.telyra-feature-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--telyra-cyan);
+}
+
+/* ==========================================================================
+   COMPARISON MATRIX
+   ========================================================================== */
+.telyra-table-wrap {
+  background: var(--telyra-surface);
+  border: 1px solid var(--telyra-glass-border);
+  border-radius: 18px;
+  overflow-x: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.telyra-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 800px;
+}
+.telyra-table th {
+  padding: 20px 24px;
+  font-family: var(--telyra-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--telyra-glass-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+.telyra-table th:nth-child(2) {
+  background: rgba(0, 240, 255, 0.06);
+  color: var(--telyra-cyan);
+  border-left: 1px solid rgba(0, 240, 255, 0.2);
+  border-right: 1px solid rgba(0, 240, 255, 0.2);
+}
+.telyra-table td {
+  padding: 18px 24px;
+  font-size: 0.92rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--telyra-text-secondary);
+}
+.telyra-table td:nth-child(2) {
+  background: rgba(0, 240, 255, 0.03);
+  color: var(--telyra-text-primary);
+  font-weight: 600;
+  border-left: 1px solid rgba(0, 240, 255, 0.15);
+  border-right: 1px solid rgba(0, 240, 255, 0.15);
+}
+.telyra-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+.telyra-table tr:hover td:nth-child(2) {
+  background: rgba(0, 240, 255, 0.08);
+}
+.telyra-metric-cell {
+  font-family: var(--telyra-font-display);
+  color: var(--telyra-text-primary) !important;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   DOWNLOAD CENTER & AFTV GUIDE
+   ========================================================================== */
+.telyra-download-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .telyra-download-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.telyra-guide-card {
+  background: var(--telyra-card-bg);
+  border: 1px solid var(--telyra-glass-border);
+  border-radius: 18px;
+  padding: 36px 32px;
+  backdrop-filter: blur(14px);
+}
+.telyra-guide-steps {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+.telyra-guide-step {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.telyra-guide-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: var(--telyra-cyan);
+  font-family: var(--telyra-font-mono);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.telyra-guide-text {
+  font-size: 0.95rem;
+  color: var(--telyra-text-secondary);
+  line-height: 1.5;
+}
+
+.telyra-apk-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.telyra-apk-card {
+  background: var(--telyra-surface);
+  border: 1px solid var(--telyra-glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+.telyra-apk-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.telyra-apk-info h4 {
+  font-family: var(--telyra-font-display);
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+.telyra-apk-meta {
+  display: flex;
+  gap: 12px;
+  font-family: var(--telyra-font-mono);
+  font-size: 0.78rem;
+  color: var(--telyra-text-muted);
+}
+.telyra-apk-sha {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.72rem;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--telyra-text-muted);
+  word-break: break-all;
+}
+
+/* ==========================================================================
+   PRIVACY POLICY SECTION & MODAL
+   ========================================================================== */
+.telyra-privacy-box {
+  background: var(--telyra-surface);
+  border: 1px solid var(--telyra-glass-border);
+  border-radius: 18px;
+  padding: 36px;
+  margin-top: 30px;
+}
+.telyra-privacy-highlight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.telyra-privacy-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 20px;
+}
+.telyra-privacy-card h4 {
+  font-family: var(--telyra-font-display);
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: var(--telyra-text-primary);
+}
+.telyra-privacy-card p {
+  font-size: 0.9rem;
+  color: var(--telyra-text-secondary);
+}
+
+/* Modal */
+.telyra-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(14px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.telyra-modal {
+  background: #0d1017;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 36px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+.telyra-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.telyra-footer {
+  border-top: 1px solid var(--telyra-glass-border);
+  padding: 60px 0 40px;
+  margin-top: 80px;
+  background: rgba(5, 5, 8, 0.9);
+}
+.telyra-footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.telyra-footer__links {
+  display: flex;
+  gap: 24px;
+}
+.telyra-footer__link {
+  color: var(--telyra-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+.telyra-footer__link:hover {
+  color: var(--telyra-cyan);
+}
+
+@media (max-width: 768px) {
+  .telyra-nav__links {
+    display: none;
+  }
+  .telyra-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .telyra-hero__headline {
+    font-size: 2.2rem;
+  }
+  .telyra-mockup-wrapper {
+    margin: 30px auto 60px;
+  }
+  .telyra-hud-overlay {
+    position: static;
+    margin-top: 12px;
+  }
+}

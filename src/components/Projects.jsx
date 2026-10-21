@@ -2,6 +2,15 @@ import './Projects.css'
 
 const projects = [
   {
+    title: 'TELYRA',
+    description:
+      'Cinematic 4K IPTV & media player for Android TV and mobile. Pure Java 17, Media3 ExoPlayer + LibVLC, AMD FidelityFX CAS, 1080i deinterlacing and single-connection DVR.',
+    tags: ['Android TV', 'Pure Java 17', 'Media3', 'LibVLC', 'AMD CAS'],
+    page: '/telyra/',
+    source: 'https://github.com/b4lol/TELYRA',
+    color: '#00f0ff',
+  },
+  {
     title: 'umbra',
     description:
       'Zero-trust, zero-metadata, post-quantum anonymous communication system. P2P over Tor v3, RAM-only, written in Rust.',
