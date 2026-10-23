@@ -1,7 +1,7 @@
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
 
-interface FooterProps {
+export interface FooterProps {
   lang: Language
   onOpenPrivacyModal?: () => void
 }
@@ -10,23 +10,43 @@ export function TelyraFooter({ lang, onOpenPrivacyModal }: FooterProps) {
   const content = TELYRA_CONTENT[lang].footer
 
   return (
-    <footer className="telyra-footer">
+    <footer className="telyra-footer" aria-label="TELYRA Footer">
       <div className="telyra-container telyra-footer__content">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span style={{ fontFamily: 'var(--telyra-font-display)', fontWeight: 800, fontSize: '1.2rem', color: '#fff' }}>
-              &lt;TELYRA /&gt;
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+            <span
+              style={{
+                fontFamily: 'var(--telyra-font-display)',
+                fontWeight: 800,
+                fontSize: '1.2rem',
+                letterSpacing: '-0.02em',
+                color: '#ffffff',
+              }}
+            >
+              TELYRA
             </span>
-            <span style={{ color: 'var(--telyra-text-muted)', fontSize: '0.85rem' }}>— v1.1.0</span>
+            <span className="telyra-brand__tag">v1.1.0</span>
           </div>
-          <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.85rem', maxWidth: '500px' }}>
+
+          <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.86rem', maxWidth: '520px', lineHeight: 1.6, margin: 0 }}>
             {content.aboutTelyra}
           </p>
-          <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.8rem', marginTop: '6px' }}>
+
+          <p style={{ color: 'var(--telyra-text-subtle)', fontSize: '0.8rem', marginTop: '10px', marginBottom: 0 }}>
             © 2026 TELYRA. {content.builtBy} {content.allRights}
           </p>
+
           {content.disclaimerNotice && (
-            <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.74rem', marginTop: '10px', lineHeight: '1.5', maxWidth: '640px' }}>
+            <p
+              style={{
+                color: 'var(--telyra-text-subtle)',
+                fontSize: '0.74rem',
+                marginTop: '12px',
+                marginBottom: 0,
+                lineHeight: '1.55',
+                maxWidth: '680px',
+              }}
+            >
               {content.disclaimerNotice}
             </p>
           )}
@@ -37,6 +57,14 @@ export function TelyraFooter({ lang, onOpenPrivacyModal }: FooterProps) {
             {TELYRA_CONTENT[lang].nav.backToPortfolio}
           </a>
           <a
+            href="https://github.com/b4lol/telyra-releases/releases"
+            target="_blank"
+            rel="noreferrer"
+            className="telyra-footer__link"
+          >
+            GitHub Releases
+          </a>
+          <a
             href="https://github.com/b4lol/TELYRA"
             target="_blank"
             rel="noreferrer"
@@ -44,20 +72,12 @@ export function TelyraFooter({ lang, onOpenPrivacyModal }: FooterProps) {
           >
             GitHub
           </a>
-          <a
-            href="https://github.com/b4lol/TELYRA/releases"
-            target="_blank"
-            rel="noreferrer"
-            className="telyra-footer__link"
-          >
-            Releases
-          </a>
           {onOpenPrivacyModal ? (
             <button
               type="button"
               onClick={onOpenPrivacyModal}
               className="telyra-footer__link"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
             >
               {TELYRA_CONTENT[lang].nav.privacy}
             </button>
@@ -71,3 +91,5 @@ export function TelyraFooter({ lang, onOpenPrivacyModal }: FooterProps) {
     </footer>
   )
 }
+
+export default TelyraFooter

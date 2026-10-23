@@ -4,14 +4,14 @@ import { TelyraNavbar } from './components/TelyraNavbar'
 import { HeroSection } from './components/HeroSection'
 import { TvMockupShowcase } from './components/TvMockupShowcase'
 import { FeatureGrid } from './components/FeatureGrid'
-import { ComparisonMatrix } from './components/ComparisonMatrix'
+import { TechnicalSpecsSection } from './components/TechnicalSpecsSection'
 import { LicensePortalSection } from './components/LicensePortalSection'
 import { DownloadSection } from './components/DownloadSection'
 import { PrivacySection } from './components/PrivacySection'
 import { TelyraFooter } from './components/TelyraFooter'
 import './styles/telyra.css'
 
-interface TelyraAppProps {
+export interface TelyraAppProps {
   initialLang?: Language
   initialPrivacyModal?: boolean
 }
@@ -27,12 +27,7 @@ export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: T
 
   return (
     <div className="telyra-page">
-      {/* Optimized Ambient Glows */}
-      <div className="telyra-aura telyra-aura-1" />
-      <div className="telyra-aura telyra-aura-2" />
-      <div className="telyra-aura telyra-aura-3" />
-
-      {/* Navigation */}
+      {/* Sticky Titanium Navigation */}
       <TelyraNavbar
         lang={lang}
         onToggleLang={toggleLanguage}
@@ -40,25 +35,33 @@ export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: T
       />
 
       <main>
-        {/* Hero Section */}
+        {/* 1. Hero Section */}
         <HeroSection lang={lang} downloaderCode={downloaderCode} />
 
-        {/* 16:9 OLED TV & Live Simulated HUD */}
-        <TvMockupShowcase lang={lang} />
+        {/* 2. 16:9 OLED TV & Live Simulated HUD */}
+        <div id="showcase">
+          <TvMockupShowcase lang={lang} />
+        </div>
 
-        {/* Engineering Pillars */}
-        <FeatureGrid lang={lang} />
+        {/* 3. The Four Engineering Pillars */}
+        <div id="pillars">
+          <FeatureGrid lang={lang} />
+        </div>
 
-        {/* Technical Comparison Table */}
-        <ComparisonMatrix lang={lang} />
+        {/* 4. Chipset & Codec Compatibility Matrix */}
+        <div id="specs">
+          <TechnicalSpecsSection lang={lang} />
+        </div>
 
-        {/* Cloudflare Edge Pro License Verification Portal */}
-        <LicensePortalSection lang={lang} />
+        {/* 5. Cloudflare Edge Pro License Verification Portal */}
+        <div id="license">
+          <LicensePortalSection lang={lang} />
+        </div>
 
-        {/* Downloader Guide & Direct APK Downloads */}
+        {/* 6. Direct Downloads Hub */}
         <DownloadSection lang={lang} downloaderCode={downloaderCode} />
 
-        {/* Privacy & Legal Summary */}
+        {/* 7. Legal Framework & Privacy */}
         <PrivacySection
           lang={lang}
           isOpen={privacyModalOpen}
@@ -67,7 +70,7 @@ export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: T
         />
       </main>
 
-      {/* Footer */}
+      {/* 8. Cinema Footer */}
       <TelyraFooter
         lang={lang}
         onOpenPrivacyModal={() => setPrivacyModalOpen(true)}

@@ -1,8 +1,9 @@
+import { useEffect } from 'react'
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
 import { ShieldIcon, ScaleIcon, CloseIcon } from './TelyraIcons'
 
-interface PrivacySectionProps {
+export interface PrivacySectionProps {
   lang: Language
   isOpen?: boolean
   onClose?: () => void
@@ -12,6 +13,30 @@ interface PrivacySectionProps {
 export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: PrivacySectionProps) {
   const content = TELYRA_CONTENT[lang].privacy
   const modalData = content.modal
+
+  // Handle ESC key to dismiss modal
+  useEffect(() => {
+    if (!isOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose?.()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
+
+  // Prevent background scroll when modal is active
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   return (
     <section id="privacy" className="telyra-section" aria-labelledby="privacy-heading">
@@ -27,23 +52,27 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
         <div className="telyra-privacy-box">
           <div className="telyra-privacy-highlight">
             <div className="telyra-privacy-card">
-              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ShieldIcon width="20" height="20" className="text-cyan-400" />
-                <span>{content.zeroDataTitle}</span>
-              </h4>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                <span style={{ color: 'var(--telyra-accent-blue)', display: 'inline-flex' }} aria-hidden="true">
+                  <ShieldIcon width="20" height="20" />
+                </span>
+                <h4 style={{ margin: 0 }}>{content.zeroDataTitle}</h4>
+              </div>
               <p>{content.zeroDataDesc}</p>
             </div>
 
             <div className="telyra-privacy-card">
-              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ScaleIcon width="20" height="20" className="text-amber-400" />
-                <span>{content.disclaimerTitle}</span>
-              </h4>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                <span style={{ color: 'var(--telyra-amber)', display: 'inline-flex' }} aria-hidden="true">
+                  <ScaleIcon width="20" height="20" />
+                </span>
+                <h4 style={{ margin: 0 }}>{content.disclaimerTitle}</h4>
+              </div>
               <p>{content.disclaimerText}</p>
             </div>
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '16px' }}>
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
             <button
               type="button"
               onClick={onOpen}
@@ -54,7 +83,7 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
           </div>
         </div>
 
-        {/* Modal */}
+        {/* Legal & Privacy Policy Modal */}
         {isOpen && (
           <div className="telyra-modal-backdrop" onClick={onClose}>
             <div
@@ -70,15 +99,24 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
                 onClick={onClose}
                 aria-label={content.closeModal}
               >
-                <CloseIcon width="20" height="20" />
+                <CloseIcon width="18" height="18" />
               </button>
 
-              <h2 id="privacy-modal-title" style={{ fontFamily: 'var(--telyra-font-display)', marginBottom: '12px' }}>
+              <h2
+                id="privacy-modal-title"
+                style={{
+                  fontFamily: 'var(--telyra-font-display)',
+                  fontSize: '1.35rem',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '8px',
+                  color: '#ffffff',
+                }}
+              >
                 {modalData.title}
               </h2>
 
-              <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.82rem', marginBottom: '20px' }}>
-                {modalData.effectiveDateLabel}: {modalData.effectiveDate}
+              <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.82rem', marginBottom: '24px' }}>
+                {modalData.effectiveDateLabel} {modalData.effectiveDate}
               </p>
 
               <div className="telyra-modal-content">
@@ -87,37 +125,48 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
                     key={idx}
                     style={{
                       marginBottom: '20px',
-                      padding: sec.isWarning ? '16px' : '0',
-                      borderRadius: sec.isWarning ? '8px' : '0',
-                      background: sec.isWarning ? 'rgba(255, 51, 102, 0.08)' : 'transparent',
-                      border: sec.isWarning ? '1px solid rgba(255, 51, 102, 0.25)' : 'none',
+                      padding: sec.isWarning ? '18px' : '0',
+                      borderRadius: sec.isWarning ? '10px' : '0',
+                      background: sec.isWarning ? 'rgba(255, 69, 58, 0.06)' : 'transparent',
+                      border: sec.isWarning ? '1px solid rgba(255, 69, 58, 0.22)' : 'none',
                     }}
                   >
-                    <h3 style={{
-                      fontSize: '1.05rem',
-                      color: sec.isWarning ? '#ff4d6d' : '#fff',
-                      marginBottom: '6px'
-                    }}>
+                    <h3
+                      style={{
+                        fontSize: '1.02rem',
+                        fontWeight: 600,
+                        color: sec.isWarning ? 'var(--telyra-rose, #ff453a)' : '#ffffff',
+                        marginBottom: '8px',
+                      }}
+                    >
                       {sec.title}
                     </h3>
-                    <p style={{
-                      color: sec.isWarning ? '#ffc2d1' : 'var(--telyra-text-secondary)',
-                      fontSize: '0.92rem',
-                      lineHeight: '1.6'
-                    }}>
+                    <p
+                      style={{
+                        color: sec.isWarning ? '#fcd0d0' : 'var(--telyra-text-secondary)',
+                        fontSize: '0.9rem',
+                        lineHeight: '1.65',
+                        margin: 0,
+                      }}
+                    >
                       {sec.content}
                     </p>
 
-                    {sec.bullets && (
-                      <ul style={{
-                        paddingLeft: '20px',
-                        marginTop: '8px',
-                        color: 'var(--telyra-text-secondary)',
-                        fontSize: '0.9rem',
-                        lineHeight: '1.6'
-                      }}>
-                        {sec.bullets.map((b, bIdx) => (
-                          <li key={bIdx}>{b}</li>
+                    {sec.bullets && sec.bullets.length > 0 && (
+                      <ul
+                        style={{
+                          paddingLeft: '20px',
+                          marginTop: '10px',
+                          marginBottom: 0,
+                          color: sec.isWarning ? '#fcd0d0' : 'var(--telyra-text-secondary)',
+                          fontSize: '0.88rem',
+                          lineHeight: '1.65',
+                        }}
+                      >
+                        {sec.bullets.map((bullet, bulletIdx) => (
+                          <li key={bulletIdx} style={{ marginBottom: '6px' }}>
+                            {bullet}
+                          </li>
                         ))}
                       </ul>
                     )}
@@ -131,3 +180,5 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
     </section>
   )
 }
+
+export default PrivacySection
