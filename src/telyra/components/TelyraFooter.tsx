@@ -17,7 +17,7 @@ export function TelyraFooter({ lang, onOpenPrivacyModal }: FooterProps) {
             <span style={{ fontFamily: 'var(--telyra-font-display)', fontWeight: 800, fontSize: '1.2rem', color: '#fff' }}>
               &lt;TELYRA /&gt;
             </span>
-            <span style={{ color: 'var(--telyra-text-muted)', fontSize: '0.85rem' }}>— v1.0.0</span>
+            <span style={{ color: 'var(--telyra-text-muted)', fontSize: '0.85rem' }}>— v1.1.0</span>
           </div>
           <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.85rem', maxWidth: '500px' }}>
             {content.aboutTelyra}

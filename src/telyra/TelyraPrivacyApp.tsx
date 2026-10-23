@@ -51,8 +51,8 @@ export function TelyraPrivacyApp() {
 
         <p style={{ color: 'var(--telyra-text-muted)', fontFamily: 'var(--telyra-font-mono)', fontSize: '0.85rem' }}>
           {isTr
-            ? 'Son Güncelleme: 21 Ekim 2026 • Sürüm 1.0.0 • 6698 Sayılı KVKK ve (AB) 2016/679 GDPR Uyumlu'
-            : 'Last Updated: October 21, 2026 • Version 1.0.0 • GDPR & KVKK Regulatory Compliance'}
+            ? 'Son Güncelleme: 23 Ekim 2026 • Sürüm 1.1.0 • 6698 Sayılı KVKK ve (AB) 2016/679 GDPR Uyumlu'
+            : 'Last Updated: October 23, 2026 • Version 1.1.0 • GDPR & KVKK Regulatory Compliance'}
         </p>
 
         <article
