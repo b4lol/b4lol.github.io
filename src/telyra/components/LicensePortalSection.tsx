@@ -132,9 +132,9 @@ export function LicensePortalSection({ lang }: LicensePortalProps) {
                 type="text"
                 value={keyInput}
                 onChange={(e) => setKeyInput(e.target.value.toUpperCase())}
-                placeholder="TELY-M12A-XXXX-XXXX"
+                placeholder="TELY-M12-XXXXX-XXXXX-XXXXX"
                 className="telyra-license-input"
-                maxLength={26}
+                maxLength={32}
                 spellCheck={false}
               />
             </div>
