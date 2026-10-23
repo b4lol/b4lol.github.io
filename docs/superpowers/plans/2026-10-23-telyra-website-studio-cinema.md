@@ -264,24 +264,24 @@ git commit -m "feat(telyra): refactor Direct Downloads Hub and License Portal to
 - Consumes: All sections, language state, privacy modal toggle.
 - Produces: Clean, coherent root page without cyber glows or neon auras.
 
-- [ ] **Step 1: Refactor `TelyraNavbar.tsx`**
+- [x] **Step 1: Refactor `TelyraNavbar.tsx`**
 
 Minimal dark bar with subtle border, 5 section jump links, language toggle button (TR / EN), and direct APK download button.
 
-- [ ] **Step 2: Refactor `PrivacySection.tsx` and `TelyraFooter.tsx`**
+- [x] **Step 2: Refactor `PrivacySection.tsx` and `TelyraFooter.tsx`**
 
 Dignified legal statement clarifying independent player status, copyright compliance, and zero content hosting. Clean footer with legal modal trigger.
 
-- [ ] **Step 3: Update `TelyraApp.tsx`**
+- [x] **Step 3: Update `TelyraApp.tsx`**
 
 Remove `.telyra-aura` divs, assemble the updated components in exact 8-part sequence: Navbar, Hero + TV Showcase, Four Pillars, Technical Specs, License Portal, Downloads Hub, Legal & Privacy, Footer.
 
-- [ ] **Step 4: Run typecheck and verify standards**
+- [x] **Step 4: Run typecheck and verify standards**
 
 Run: `npm run typecheck && node scripts/verify-telyra-standards.mjs`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/telyra/components/TelyraNavbar.tsx src/telyra/components/PrivacySection.tsx src/telyra/components/TelyraFooter.tsx src/telyra/TelyraApp.tsx
@@ -299,22 +299,22 @@ git commit -m "feat(telyra): assemble Studio Cinema root application and clean n
 - Consumes: Entire portfolio codebase.
 - Produces: Production build in `dist/` with valid SSR prerendered HTML files.
 
-- [ ] **Step 1: Run comprehensive standards verification**
+- [x] **Step 1: Run comprehensive standards verification**
 
 Run: `node scripts/verify-telyra-standards.mjs`
 Expected: PASS (0 emojis, 0 banned phrases, 0 superlatives).
 
-- [ ] **Step 2: Run linter and typechecker**
+- [x] **Step 2: Run linter and typechecker**
 
 Run: `npm run lint && npm run typecheck`
 Expected: PASS with 0 warnings or errors.
 
-- [ ] **Step 3: Run full production build with SSR prerendering**
+- [x] **Step 3: Run full production build with SSR prerendering**
 
 Run: `npm run build`
 Expected: Both client build, SSR build, and `prerender.mjs` succeed, producing `dist/telyra/index.html` and `dist/telyra/privacy/index.html`.
 
-- [ ] **Step 4: Final verification commit and push to origin**
+- [x] **Step 4: Final verification commit and push to origin**
 
 ```bash
 git add .
