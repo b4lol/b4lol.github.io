@@ -4,11 +4,8 @@ import { TELYRA_CONTENT } from '../data/telyraData'
 import {
   TvIcon,
   PhoneIcon,
-  HomeIcon,
   CalendarIcon,
   FilmIcon,
-  SparklesIcon,
-  ZapIcon,
   LinkIcon,
   DpadArrowIcon,
 } from './TelyraIcons'
@@ -18,36 +15,35 @@ interface MockupProps {
 }
 
 type DeviceMode = 'tv' | 'mobile'
-type TvTab = 'home' | 'live' | 'guide' | 'movies' | 'detail' | 'hud' | 'sources'
+type TvTab = 'live' | 'guide' | 'movies' | 'sources'
 type MobileTab = 'player' | 'stats' | 'live' | 'onboarding'
 type HudMode = 'off' | 'compact' | 'detailed'
 
 const PRELOAD_IMAGES: string[] = [
-  '/telyra/screenshots/tv-home.webp',
   '/telyra/screenshots/tv-live.webp',
   '/telyra/screenshots/tv-guide.webp',
   '/telyra/screenshots/tv-movies.webp',
-  '/telyra/screenshots/tv-detail.webp',
-  '/telyra/screenshots/tv-hud-developer.webp',
   '/telyra/screenshots/tv-sources.webp',
+  '/telyra/screenshots/tv-home.webp',
   '/telyra/screenshots/phone-player.webp',
   '/telyra/screenshots/phone-hud-detailed.webp',
   '/telyra/screenshots/phone-live.webp',
   '/telyra/screenshots/phone-home-onboarding.webp',
 ]
 
-const TV_TABS_ORDER: TvTab[] = ['home', 'live', 'guide', 'movies', 'detail', 'hud', 'sources']
+const TV_TABS_ORDER: TvTab[] = ['live', 'guide', 'movies', 'sources']
 
 export function TvMockupShowcase({ lang }: MockupProps) {
   const content = TELYRA_CONTENT[lang].mockup
   const [device, setDevice] = useState<DeviceMode>('tv')
-  const [activeTvTab, setActiveTvTab] = useState<TvTab>('home')
+  const [activeTvTab, setActiveTvTab] = useState<TvTab>('live')
   const [activeMobileTab, setActiveMobileTab] = useState<MobileTab>('player')
   const [channelIndex, setChannelIndex] = useState(0)
   const [hudMode, setHudMode] = useState<HudMode>('compact')
   const [showZappingBanner, setShowZappingBanner] = useState(false)
   const [isCrossFading, setIsCrossFading] = useState(false)
   const zappingTimerRef = useRef<number | null>(null)
+  const tabChangeTimerRef = useRef<number | null>(null)
 
   const presets = content.presets
   const currentPreset = presets[channelIndex % presets.length]
@@ -56,18 +52,11 @@ export function TvMockupShowcase({ lang }: MockupProps) {
     TvTab,
     { label: string; src: string; fallbackSrc: string; badge: string; iconKey: string }
   > = {
-    home: {
-      label: content.tvTabs.home,
-      src: '/telyra/screenshots/tv-home.webp',
-      fallbackSrc: '/telyra/screenshots/tv-home.png',
-      badge: 'NowSeen 10-Foot',
-      iconKey: 'home',
-    },
     live: {
       label: content.tvTabs.live,
       src: '/telyra/screenshots/tv-live.webp',
       fallbackSrc: '/telyra/screenshots/tv-live.png',
-      badge: '1080i50 0ms',
+      badge: '1080p50 0ms',
       iconKey: 'tv',
     },
     guide: {
@@ -84,20 +73,6 @@ export function TvMockupShowcase({ lang }: MockupProps) {
       badge: '4K Ultra HD',
       iconKey: 'film',
     },
-    detail: {
-      label: content.tvTabs.detail,
-      src: '/telyra/screenshots/tv-detail.webp',
-      fallbackSrc: '/telyra/screenshots/tv-detail.png',
-      badge: 'HDR10 & Künye',
-      iconKey: 'sparkles',
-    },
-    hud: {
-      label: content.tvTabs.hud,
-      src: '/telyra/screenshots/tv-hud-developer.webp',
-      fallbackSrc: '/telyra/screenshots/tv-hud-developer.png',
-      badge: '25.04 Mbps OSD',
-      iconKey: 'zap',
-    },
     sources: {
       label: content.tvTabs.sources,
       src: '/telyra/screenshots/tv-sources.webp',
@@ -109,13 +84,14 @@ export function TvMockupShowcase({ lang }: MockupProps) {
 
   const renderTabIcon = (key: string) => {
     switch (key) {
-      case 'home': return <HomeIcon width="15" height="15" />
-      case 'tv': return <TvIcon width="15" height="15" />
-      case 'calendar': return <CalendarIcon width="15" height="15" />
-      case 'film': return <FilmIcon width="15" height="15" />
-      case 'sparkles': return <SparklesIcon width="15" height="15" />
-      case 'zap': return <ZapIcon width="15" height="15" />
-      default: return <LinkIcon width="15" height="15" />
+      case 'tv':
+        return <TvIcon width="15" height="15" />
+      case 'calendar':
+        return <CalendarIcon width="15" height="15" />
+      case 'film':
+        return <FilmIcon width="15" height="15" />
+      default:
+        return <LinkIcon width="15" height="15" />
     }
   }
 
@@ -142,7 +118,7 @@ export function TvMockupShowcase({ lang }: MockupProps) {
     },
   }
 
-  // Preload all high-res assets in idle time
+  // Preload high-resolution assets in idle time
   useEffect(() => {
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
       window.requestIdleCallback(() => {
@@ -151,6 +127,18 @@ export function TvMockupShowcase({ lang }: MockupProps) {
           img.src = src
         })
       })
+    }
+  }, [])
+
+  // Cleanup active timers on unmount
+  useEffect(() => {
+    return () => {
+      if (zappingTimerRef.current) {
+        window.clearTimeout(zappingTimerRef.current)
+      }
+      if (tabChangeTimerRef.current) {
+        window.clearTimeout(tabChangeTimerRef.current)
+      }
     }
   }, [])
 
@@ -196,19 +184,29 @@ export function TvMockupShowcase({ lang }: MockupProps) {
   const handleTvTabChange = (tab: TvTab) => {
     setIsCrossFading(true)
     setActiveTvTab(tab)
-    setTimeout(() => setIsCrossFading(false), 240)
+    if (tabChangeTimerRef.current) {
+      window.clearTimeout(tabChangeTimerRef.current)
+    }
+    tabChangeTimerRef.current = window.setTimeout(() => {
+      setIsCrossFading(false)
+    }, 240)
   }
 
   const handleMobileTabChange = (tab: MobileTab) => {
     setIsCrossFading(true)
     setActiveMobileTab(tab)
-    setTimeout(() => setIsCrossFading(false), 240)
+    if (tabChangeTimerRef.current) {
+      window.clearTimeout(tabChangeTimerRef.current)
+    }
+    tabChangeTimerRef.current = window.setTimeout(() => {
+      setIsCrossFading(false)
+    }, 240)
   }
 
   // Keyboard remote control (Arrow Keys)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't intercept if user is typing in an input
+      // Do not intercept if user is typing in an input
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return
 
       if (e.key === 'ArrowRight') {
@@ -233,9 +231,9 @@ export function TvMockupShowcase({ lang }: MockupProps) {
 
   // Context-aware ambilight glow based on active content
   const getAmbilightClass = () => {
-    if (activeTvTab === 'home') return 'ambilight-cyan'
     if (activeTvTab === 'movies') return 'ambilight-amber'
-    if (activeTvTab === 'hud') return 'ambilight-purple'
+    if (activeTvTab === 'guide') return 'ambilight-purple'
+    if (activeTvTab === 'sources') return 'ambilight-cyan'
     if (activeTvTab === 'live') {
       if (channelIndex === 1) return 'ambilight-red'
       return 'ambilight-blue'
@@ -255,10 +253,10 @@ export function TvMockupShowcase({ lang }: MockupProps) {
         </div>
 
         <div className="telyra-mockup-wrapper">
-          {/* Top Control Bar: Device Switcher + Screen Tabs */}
+          {/* Top Control Bar: Device Switcher + 10-Foot Screen Tabs */}
           <div className="telyra-mockup-header">
             {/* Device Switcher */}
-            <div className="telyra-device-switcher" role="tablist">
+            <div className="telyra-device-switcher" role="tablist" aria-label="Device Viewport Switcher">
               <button
                 type="button"
                 role="tab"
@@ -281,8 +279,8 @@ export function TvMockupShowcase({ lang }: MockupProps) {
               </button>
             </div>
 
-            {/* Screen Tabs */}
-            <div className="telyra-screen-tabs" role="tablist">
+            {/* 10-Foot Screen Tabs */}
+            <div className="telyra-screen-tabs" role="tablist" aria-label="10-Foot Navigation Tabs">
               {device === 'tv'
                 ? TV_TABS_ORDER.map((tabKey) => (
                     <button
@@ -321,155 +319,175 @@ export function TvMockupShowcase({ lang }: MockupProps) {
               {/* Dynamic Ambilight Backlight */}
               <div className={`telyra-tv-ambilight ${getAmbilightClass()}`} />
 
-              {/* TV Hardware Chassis */}
-              <div className="telyra-tv-chassis">
-                <div className="telyra-tv-screen">
-                  {/* Layered Preloaded Images */}
-                  {TV_TABS_ORDER.map((tabKey) => (
-                    <picture key={tabKey}>
-                      <source srcSet={tvScreens[tabKey].src} type="image/webp" />
-                      <img
-                        src={tvScreens[tabKey].fallbackSrc}
-                        alt={`TELYRA TV - ${tvScreens[tabKey].label}`}
-                        width={1920}
-                        height={1080}
-                        className={`telyra-screen-img ${activeTvTab === tabKey ? 'active' : ''} ${
-                          isCrossFading ? 'cross-fading' : ''
-                        }`}
-                        draggable={false}
-                      />
-                    </picture>
-                  ))}
+              {/* 4K TV Frame & Bezel Assembly (Strict 16:9, Zero Layout Shift) */}
+              <div className="telyra-tv-frame">
+                <div className="telyra-tv-bezel">
+                  <div className="telyra-tv-screen">
+                    {/* Subtle Optical Screen Glare */}
+                    <div className="telyra-tv-glare" />
 
-                  {/* 1. CHANNEL ZAPPING OSD TOAST BANNER */}
-                  <div className={`telyra-zapping-banner ${showZappingBanner ? 'visible' : ''}`}>
-                    <div className="telyra-zapping-header">
-                      <span className="telyra-zapping-ch-badge">CH {channelIndex + 1}</span>
-                      <span className="telyra-zapping-ch-name">{currentPreset.channelName}</span>
-                      <span className="telyra-zapping-live-dot">{content.hudLabels.recLive}</span>
-                    </div>
-                    <div className="telyra-zapping-program">{currentPreset.programTitle}</div>
-                    <div className="telyra-zapping-pills">
-                      <span>{currentPreset.resolution.split('@')[0]}</span>
-                      <span>{currentPreset.framerate.split(' ')[0]}</span>
-                      <span>{currentPreset.codec.split(' ')[0]}</span>
-                      <span>{currentPreset.bitrate.split(' ')[0]}</span>
-                    </div>
-                  </div>
+                    {/* Layered Preloaded Images with strict 16:9 dimensions */}
+                    {TV_TABS_ORDER.map((tabKey) => (
+                      <picture key={tabKey}>
+                        <source srcSet={tvScreens[tabKey].src} type="image/webp" />
+                        <img
+                          src={tvScreens[tabKey].fallbackSrc}
+                          alt={`TELYRA TV - ${tvScreens[tabKey].label}`}
+                          width={1920}
+                          height={1080}
+                          loading={tabKey === 'live' ? 'eager' : 'lazy'}
+                          decoding="async"
+                          className={`telyra-screen-img ${activeTvTab === tabKey ? 'active' : ''} ${
+                            isCrossFading ? 'cross-fading' : ''
+                          }`}
+                          draggable={false}
+                        />
+                      </picture>
+                    ))}
 
-                  {/* 2. COMPACT HUD PILL (Top-Right) */}
-                  {hudMode === 'compact' && activeTvTab === 'live' && (
-                    <div className="telyra-hud-compact">
-                      <div className="telyra-hud-compact__dot" />
-                      <span className="telyra-hud-compact__badge">4K UHD</span>
-                      <span className="telyra-hud-compact__fps">50.0 FPS</span>
-                      <span className="telyra-hud-compact__bitrate">{currentPreset.bitrate.split(' ')[0]}</span>
-                      <span className="telyra-hud-compact__audio">PASSTHROUGH</span>
+                    {/* 1. CHANNEL ZAPPING OSD TOAST BANNER */}
+                    <div className={`telyra-zapping-banner ${showZappingBanner ? 'visible' : ''}`}>
+                      <div className="telyra-zapping-header">
+                        <span className="telyra-zapping-ch-badge">CH {channelIndex + 1}</span>
+                        <span className="telyra-zapping-ch-name">{currentPreset.channelName}</span>
+                        <span className="telyra-zapping-live-dot">{content.hudLabels.recLive}</span>
+                      </div>
+                      <div className="telyra-zapping-program">{currentPreset.programTitle}</div>
+                      <div className="telyra-zapping-pills">
+                        <span>{currentPreset.resolution.split('@')[0]}</span>
+                        <span>{currentPreset.framerate.split(' ')[0]}</span>
+                        <span>{currentPreset.codec.split(' ')[0]}</span>
+                        <span>{currentPreset.bitrate.split(' ')[0]}</span>
+                      </div>
+                    </div>
+
+                    {/* 2. COMPACT HUD PILL (Top-Right) with Required Telemetries */}
+                    {hudMode === 'compact' && activeTvTab === 'live' && (
+                      <div className="telyra-hud-compact" role="status" aria-label="Stream Telemetry HUD">
+                        <div className="telyra-hud-compact__dot" />
+                        <span className="telyra-hud-compact__badge">Direct Stream 1080p50</span>
+                        <span className="telyra-hud-compact__fps">Media3 ExoPlayer</span>
+                        <span className="telyra-hud-compact__audio">AES-256 StrongBox</span>
+                        <span className="telyra-hud-compact__bitrate">{currentPreset.bitrate.split(' ')[0]}</span>
+                        <button
+                          type="button"
+                          onClick={() => setHudMode('detailed')}
+                          className="telyra-hud-compact__expand"
+                          title={content.hudLabels.showHud}
+                          aria-label={content.hudLabels.showHud}
+                        >
+                          [+]
+                        </button>
+                      </div>
+                    )}
+
+                    {/* 3. DETAILED RAYCAST HUD PANEL */}
+                    {hudMode === 'detailed' && activeTvTab === 'live' && (
+                      <div className="telyra-hud-detailed-panel" role="region" aria-label="Detailed Telemetry Panel">
+                        <div className="telyra-hud-header">
+                          <div className="telyra-hud-header__left">
+                            <span className="telyra-hud-live-tag">
+                              <span className="telyra-hero__badge-pulse" />
+                              {content.hudLabels.recLive}
+                            </span>
+                            <span className="telyra-hud-channel">{currentPreset.channelName}</span>
+                          </div>
+                          <div className="telyra-hud-header__actions">
+                            <button
+                              type="button"
+                              onClick={handleNextChannel}
+                              className="telyra-hud-action-btn telyra-hud-preset-btn"
+                              title={content.hudLabels.switchProfile}
+                            >
+                              {content.hudLabels.switchProfile}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setHudMode('compact')}
+                              className="telyra-hud-action-btn telyra-hud-min-btn"
+                              title={content.hudLabels.compactBtn}
+                            >
+                              {content.hudLabels.compactBtn}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setHudMode('off')}
+                              className="telyra-hud-action-btn telyra-hud-close-btn"
+                              title={content.hudLabels.closeBtn}
+                            >
+                              {content.hudLabels.closeBtn}
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="telyra-hud-grid">
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.program}</span>
+                            <span className="text-white font-medium">{currentPreset.programTitle}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{lang === 'tr' ? 'Akış Modu' : 'Stream Mode'}</span>
+                            <span className="text-cyan font-mono">Direct Stream 1080p50</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{lang === 'tr' ? 'Oynatıcı Çekirdeği' : 'Player Core'}</span>
+                            <span className="text-cyan font-mono">Media3 ExoPlayer</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{lang === 'tr' ? 'Donanım Güvenliği' : 'Hardware Security'}</span>
+                            <span className="text-emerald font-mono">AES-256 StrongBox</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.resolution}</span>
+                            <span>{currentPreset.resolution}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.decoder}</span>
+                            <span className="text-cyan">{currentPreset.decoder}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.framerate}</span>
+                            <span className="text-emerald font-mono">{currentPreset.framerate}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.shader}</span>
+                            <span>{currentPreset.shaderEngine}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.bitrate}</span>
+                            <span className="font-mono">{currentPreset.bitrate}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.audio}</span>
+                            <span>{currentPreset.audioFormat}</span>
+                          </div>
+                          <div className="telyra-hud-item">
+                            <span>{content.hudLabels.afr}</span>
+                            <span className="text-cyan font-mono">{currentPreset.afrState}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 4. BUTTON TO OPEN HUD WHEN OFF */}
+                    {hudMode === 'off' && activeTvTab === 'live' && (
                       <button
                         type="button"
-                        onClick={() => setHudMode('detailed')}
-                        className="telyra-hud-compact__expand"
-                        title={content.hudLabels.showHud}
+                        className="telyra-hud-open-btn"
+                        onClick={() => setHudMode('compact')}
                       >
-                        [+]
+                        {content.hudLabels.showHud}
                       </button>
-                    </div>
-                  )}
-
-                  {/* 3. DETAILED RAYCAST HUD PANEL */}
-                  {hudMode === 'detailed' && (activeTvTab === 'live' || activeTvTab === 'hud') && (
-                    <div className="telyra-hud-detailed-panel">
-                      <div className="telyra-hud-header">
-                        <div className="telyra-hud-header__left">
-                          <span className="telyra-hud-live-tag">
-                            <span className="telyra-hero__badge-pulse" />
-                            {content.hudLabels.recLive}
-                          </span>
-                          <span className="telyra-hud-channel">{currentPreset.channelName}</span>
-                        </div>
-                        <div className="telyra-hud-header__actions">
-                          <button
-                            type="button"
-                            onClick={handleNextChannel}
-                            className="telyra-hud-action-btn telyra-hud-preset-btn"
-                            title={content.hudLabels.switchProfile}
-                          >
-                            {content.hudLabels.switchProfile}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setHudMode('compact')}
-                            className="telyra-hud-action-btn telyra-hud-min-btn"
-                            title={content.hudLabels.compactBtn}
-                          >
-                            {content.hudLabels.compactBtn}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setHudMode('off')}
-                            className="telyra-hud-action-btn telyra-hud-close-btn"
-                            title={content.hudLabels.closeBtn}
-                          >
-                            {content.hudLabels.closeBtn}
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="telyra-hud-grid">
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.program}</span>
-                          <span className="text-white font-medium">{currentPreset.programTitle}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.resolution}</span>
-                          <span>{currentPreset.resolution}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.decoder}</span>
-                          <span className="text-cyan">{currentPreset.decoder}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.framerate}</span>
-                          <span className="text-green font-mono">{currentPreset.framerate}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.shader}</span>
-                          <span>{currentPreset.shaderEngine}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.bitrate}</span>
-                          <span className="font-mono">{currentPreset.bitrate}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.audio}</span>
-                          <span>{currentPreset.audioFormat}</span>
-                        </div>
-                        <div className="telyra-hud-item">
-                          <span>{content.hudLabels.afr}</span>
-                          <span className="text-cyan font-mono">{currentPreset.afrState}</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 4. BUTTON TO OPEN HUD WHEN OFF */}
-                  {hudMode === 'off' && activeTvTab === 'live' && (
-                    <button
-                      type="button"
-                      className="telyra-hud-open-btn"
-                      onClick={() => setHudMode('compact')}
-                    >
-                      {content.hudLabels.showHud}
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
-
-                {/* TV Metal Stand */}
-                <div className="telyra-tv-stand" />
               </div>
 
-              {/* Reflection */}
-              <div className="telyra-tv-reflection" />
+              {/* TV Metal Stand */}
+              <div className="telyra-tv-stand" />
+
+              {/* TV Under-Chassis Shadow */}
+              <div className="telyra-tv-shadow" />
 
               {/* Remote Control Bar */}
               <div className="telyra-remote-control-bar">
@@ -499,6 +517,7 @@ export function TvMockupShowcase({ lang }: MockupProps) {
                       onClick={handleCycleHudMode}
                       className="telyra-dpad-btn dpad-up"
                       title="HUD Mode"
+                      aria-label="Toggle HUD Mode"
                     >
                       <DpadArrowIcon direction="up" />
                     </button>
@@ -507,6 +526,7 @@ export function TvMockupShowcase({ lang }: MockupProps) {
                       onClick={handlePrevChannel}
                       className="telyra-dpad-btn dpad-left"
                       title="Prev Channel"
+                      aria-label="Previous Channel"
                     >
                       <DpadArrowIcon direction="left" />
                     </button>
@@ -515,6 +535,7 @@ export function TvMockupShowcase({ lang }: MockupProps) {
                       onClick={() => handleSelectChannel(channelIndex)}
                       className="telyra-dpad-btn dpad-ok"
                       title="Select"
+                      aria-label="Select Channel"
                     >
                       OK
                     </button>
@@ -523,6 +544,7 @@ export function TvMockupShowcase({ lang }: MockupProps) {
                       onClick={handleNextChannel}
                       className="telyra-dpad-btn dpad-right"
                       title="Next Channel"
+                      aria-label="Next Channel"
                     >
                       <DpadArrowIcon direction="right" />
                     </button>
@@ -534,6 +556,7 @@ export function TvMockupShowcase({ lang }: MockupProps) {
                       }}
                       className="telyra-dpad-btn dpad-down"
                       title="Next Tab"
+                      aria-label="Next Navigation Tab"
                     >
                       <DpadArrowIcon direction="down" />
                     </button>
@@ -593,6 +616,8 @@ export function TvMockupShowcase({ lang }: MockupProps) {
                           alt={`TELYRA Mobile - ${mobileScreens[tabKey].label}`}
                           width={1080}
                           height={2400}
+                          loading={tabKey === 'player' ? 'eager' : 'lazy'}
+                          decoding="async"
                           className={`telyra-mobile-img ${activeMobileTab === tabKey ? 'active' : ''} ${
                             isCrossFading ? 'cross-fading' : ''
                           }`}
