@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
+import { TvIcon, PhoneIcon, CheckIcon, CopyIcon } from './TelyraIcons'
 
 interface HeroProps {
   lang: Language
@@ -17,7 +18,6 @@ export function HeroSection({ lang, downloaderCode }: HeroProps) {
       setCopied(true)
       setTimeout(() => setCopied(false), 2200)
     } catch {
-      // Fallback
       setCopied(true)
       setTimeout(() => setCopied(false), 2200)
     }
@@ -40,12 +40,12 @@ export function HeroSection({ lang, downloaderCode }: HeroProps) {
 
         <div className="telyra-hero__actions">
           <a href="#downloads" className="telyra-btn-primary telyra-hero-cta">
-            <span>📺</span>
+            <TvIcon width="20" height="20" />
             <span>{content.ctaDownloadTv}</span>
           </a>
 
           <a href="#downloads" className="telyra-btn-secondary telyra-hero-cta">
-            <span>📱</span>
+            <PhoneIcon width="20" height="20" />
             <span>{content.ctaDownloadMobile}</span>
           </a>
         </div>
@@ -60,7 +60,7 @@ export function HeroSection({ lang, downloaderCode }: HeroProps) {
             className={`telyra-copy-btn ${copied ? 'telyra-copy-btn--copied' : ''}`}
             aria-live="polite"
           >
-            <span>{copied ? '✓' : '📋'}</span>
+            {copied ? <CheckIcon width="16" height="16" /> : <CopyIcon width="16" height="16" />}
             <span>{copied ? content.copiedFeedback : content.copyButton}</span>
           </button>
         </div>

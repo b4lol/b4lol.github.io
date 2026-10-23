@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
+import { CheckIcon, CopyIcon, DownloadIcon, ShieldIcon } from './TelyraIcons'
 
 interface DownloadSectionProps {
   lang: Language
@@ -65,33 +66,39 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
                   onClick={handleCopyCode}
                   className={`telyra-copy-btn ${copiedCode ? 'telyra-copy-btn--copied' : ''}`}
                 >
-                  <span>{copiedCode ? '✓' : '📋'}</span>
+                  {copiedCode ? <CheckIcon width="16" height="16" /> : <CopyIcon width="16" height="16" />}
                   <span>{copiedCode ? TELYRA_CONTENT[lang].hero.copiedFeedback : TELYRA_CONTENT[lang].hero.copyButton}</span>
                 </button>
               </div>
             </div>
 
-            <h4 style={{ fontFamily: 'var(--telyra-font-display)', fontSize: '1.1rem', marginTop: '16px' }}>
+            <h4 style={{ color: '#fff', fontSize: '1.05rem', marginBottom: '14px' }}>
               {content.howToInstallTitle}
             </h4>
 
-            <ul className="telyra-guide-steps">
+            <ol className="telyra-steps-list">
               {content.steps.map((s) => (
-                <li key={s.num} className="telyra-guide-step">
-                  <span className="telyra-guide-num">{s.num}</span>
-                  <span className="telyra-guide-text">{s.text}</span>
+                <li key={s.num} className="telyra-step-item">
+                  <span className="telyra-step-num">{s.num}</span>
+                  <p className="telyra-step-text">{s.text}</p>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
 
-          {/* Standalone APK Downloads */}
-          <div className="telyra-apk-cards">
+          {/* Direct APK Downloads */}
+          <div className="telyra-direct-card">
+            <h3 style={{ fontFamily: 'var(--telyra-font-display)', fontSize: '1.4rem', marginBottom: '18px' }}>
+              {content.directTitle}
+            </h3>
+
             {content.items.map((item) => (
-              <div key={item.id} className="telyra-apk-card">
-                <div className="telyra-apk-info">
-                  <h4>{item.title}</h4>
-                  <p style={{ color: 'var(--telyra-text-secondary)', fontSize: '0.88rem', margin: '4px 0 10px' }}>
+              <div key={item.id} className="telyra-apk-box">
+                <div style={{ marginBottom: '14px' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.15rem', marginBottom: '4px' }}>
+                    {item.title}
+                  </h4>
+                  <p style={{ color: 'var(--telyra-text-secondary)', fontSize: '0.85rem' }}>
                     {item.targetDevice}
                   </p>
                   <div className="telyra-apk-meta">
@@ -108,12 +115,13 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
                     style={{ padding: '10px 20px', fontSize: '0.88rem' }}
                     download
                   >
-                    <span>⬇</span>
+                    <DownloadIcon width="16" height="16" />
                     <span>{item.fileName} {content.labels.downloadBtnText}</span>
                   </a>
 
-                  <span style={{ fontFamily: 'var(--telyra-font-mono)', fontSize: '0.75rem', color: 'var(--telyra-emerald)' }}>
-                    ✓ {content.verifiedBadge}
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--telyra-font-mono)', fontSize: '0.75rem', color: 'var(--telyra-emerald)' }}>
+                    <ShieldIcon width="14" height="14" />
+                    <span>{content.verifiedBadge}</span>
                   </span>
                 </div>
 
@@ -130,9 +138,13 @@ export function DownloadSection({ lang, downloaderCode }: DownloadSectionProps) 
                         cursor: 'pointer',
                         fontSize: '0.72rem',
                         fontFamily: 'inherit',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px'
                       }}
                     >
-                      {copiedSha === item.sha256 ? content.labels.copiedChecksum : content.labels.copyChecksum}
+                      {copiedSha === item.sha256 ? <CheckIcon width="12" height="12" /> : <CopyIcon width="12" height="12" />}
+                      <span>{copiedSha === item.sha256 ? content.labels.copiedChecksum : content.labels.copyChecksum}</span>
                     </button>
                   </div>
                   <div>{item.sha256}</div>

@@ -67,8 +67,8 @@ export function TelyraPrivacyApp() {
             </h2>
             <p>
               {lang === 'tr'
-                ? 'TELYRA, Android TV, Google TV, Fire TV ve Android mobil cihazlar için geliştirilmiş açık kaynaklı, saf yerel bir IPTV ve medya akış oynatıcısıdır. Kullanıcı gizliliği projenin temel taşıdır. Bu politika, TELYRA\'nın veri toplama, saklama ve güvenlik yaklaşımını şeffaf bir şekilde açıklar.'
-                : 'TELYRA is an open-source, pure native IPTV and media stream player engineered for Android TV, Google TV, Fire TV, and Android mobile devices. User privacy is a foundational tenet. This policy explains our zero-data collection approach.'}
+                ? 'TELYRA, Android TV, Google TV, Fire TV ve Android mobil cihazlar için geliştirilmiş bağımsız, saf yerel bir IPTV ve medya akış oynatıcısıdır. Kullanıcı gizliliği projenin temel taşıdır. Bu politika, TELYRA\'nın veri toplama, saklama ve güvenlik yaklaşımını şeffaf bir şekilde açıklar.'
+                : 'TELYRA is an independent, pure native IPTV and media stream player engineered for Android TV, Google TV, Fire TV, and Android mobile devices. User privacy is a foundational tenet. This policy explains our zero-data collection approach.'}
             </p>
           </section>
 
@@ -150,12 +150,12 @@ export function TelyraPrivacyApp() {
 
           <section>
             <h2 style={{ color: '#fff', fontSize: '1.35rem', marginBottom: '12px' }}>
-              {lang === 'tr' ? '6. İletişim ve Lisans' : '6. Contact & Source Code'}
+              {lang === 'tr' ? '6. İletişim ve Destek' : '6. Contact & Support'}
             </h2>
             <p>
               {lang === 'tr'
-                ? 'Gizlilik politikamız veya kaynak kodumuz hakkında sorularınız için GitHub üzerinden iletişim kurabilirsiniz:'
-                : 'For questions regarding this policy or to audit the open source codebase, visit:'}
+                ? 'Gizlilik politikamız veya teknik mimari hakkında sorularınız için repository üzerinden iletişim kurabilirsiniz:'
+                : 'For questions regarding this policy or technical architecture, visit:'}
             </p>
             <p style={{ marginTop: '8px' }}>
               <a

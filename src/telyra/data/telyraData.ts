@@ -210,16 +210,16 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       directApk: 'APK İndir',
     },
     hero: {
-      badge: 'v1.0.0 Resmi Sürüm • %100 Açık & Sıfır Takip',
+      badge: 'v1.0.0 Resmi Sürüm • Model D Hibrit • Sıfır Takip',
       headlinePrefix: 'Televizyonunuz İçin',
       headlineGradient: 'Sinematik 4K Performans',
       headlineSuffix: 'Yeniden Tanımlandı',
-      subtitle: 'Pure Java 17 mimarisi, Media3 ExoPlayer & LibVLC çift motoru, AMD FidelityFX CAS GLSL keskinleştirmesi ve Amlogic 0ms donanımsal deinterlacing ile donma ve taraklanmaya son.',
+      subtitle: '%100 Kotlin 2.1 ve Jetpack Compose TV mimarisi, Media3 ExoPlayer & LibVLC çift motoru, AMD FidelityFX CAS GLSL keskinleştirmesi ve Amlogic 0ms donanımsal deinterlacing ile donma ve taraklanmaya son.',
       ctaDownloadTv: 'Android TV İçin İndir (.apk)',
       ctaDownloadMobile: 'Mobil İçin İndir (.apk)',
       ctaDownloaderCode: 'Downloader Kodu:',
       copyButton: 'Kodu Kopyala',
-      copiedFeedback: 'Kopyalandı! 🚀',
+      copiedFeedback: 'Kopyalandı!',
       liveBadge: 'CANLI YAYIN MOTORU',
     },
     mockup: {
@@ -230,7 +230,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       toggleMobile: 'Mobil (Handheld UI)',
       fastZappingLabel: 'HIZLI ZAPPING:',
       hudViewLabel: 'HUD GÖRÜNÜMÜ:',
-      remoteHint: '💡 İpucu: Klavye Yön Tuşları (Sol / Sağ: Kanal Değiştir, Yukarı: HUD Modu, Aşağı: Sekme) ile de kontrol edebilirsiniz.',
+      remoteHint: 'İpucu: Klavye Yön Tuşları (Sol / Sağ: Kanal Değiştir, Yukarı: HUD Modu, Aşağı: Sekme) ile de kontrol edebilirsiniz.',
       tvTabs: {
         home: 'Ana Ekran (Home)',
         live: 'Canlı TV & Kanallar',
@@ -252,8 +252,8 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         detailed: 'Detaylı',
       },
       hudLabels: {
-        recLive: '● REC / CANLI',
-        showHud: '⚡ HUD Telemetriyi Aç',
+        recLive: '[REC] CANLI',
+        showHud: 'HUD Telemetriyi Aç',
         program: 'Program:',
         resolution: 'Çözünürlük & Panel:',
         decoder: 'Video Dekoder (VPU):',
@@ -262,9 +262,9 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         bitrate: 'Bitrate & Soket Halka:',
         audio: 'Ses Passthrough:',
         afr: 'HDMI 2.1 AFR Modu:',
-        switchProfile: '[Profil ⟳]',
+        switchProfile: '[Profil Yenile]',
         compactBtn: '_ Kompakt',
-        closeBtn: '✕',
+        closeBtn: 'X',
       },
       presets: [
         {
@@ -335,7 +335,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Amlogic vdec-deinterlace ve Realtek donanım kayıtlarına doğrudan enjeksiyon',
             'LibVLC YADIF 2x ve BOB algoritmaları ile kesintisiz çift motor yedekleme',
           ],
-          icon: '⚡',
+          icon: 'zap',
           badge: 'Spor Kanalları İçin Şart',
         },
         {
@@ -348,7 +348,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Doğal, Dengeli, Ultra ve Canlı hazır ayar profilleri',
             'ACES Filmic Ton Eşleme ve IGN (Interleaved Gradient Noise) bantlaşma önleyici',
           ],
-          icon: '🎯',
+          icon: 'target',
           badge: 'Sektörde İlk',
         },
         {
@@ -361,7 +361,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'DirectMemory ring buffer ile ART/Dalvik çöp toplayıcı yükünü sıfırlama',
             'Dinamik bellek muhafızı (RAM Guard): Cihaz boş hafızasının %25 tavan koruması',
           ],
-          icon: '🚀',
+          icon: 'cpu',
           badge: 'Sıfır Donma',
         },
         {
@@ -374,7 +374,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Zamanlanmış program kaydı ve disk doluluk emniyet kilidi (<50MB güvenli durma)',
             'TV kapalıyken veya uyku modundayken Headless Foreground Service kaydı',
           ],
-          icon: '💾',
+          icon: 'hard-drive',
           badge: 'Ban Riski %0',
         },
         {
@@ -387,7 +387,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'D-Pad tek dokunuşla anında ses kanalı değiştirme',
             'Düşük donanımlı Android TV cihazları için hafıza ölçekleme emniyeti',
           ],
-          icon: '🔀',
+          icon: 'grid',
           badge: 'Maç Geceleri',
         },
         {
@@ -400,7 +400,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Tamamen yerel XMLTV EPG ve SQLite FTS4 tam metin arama',
             '%100 Sıfır telemetri, sıfır çerez, sıfır izleyici kodu',
           ],
-          icon: '🛡️',
+          icon: 'shield',
           badge: 'Tam Gizlilik',
         },
       ],
@@ -411,16 +411,16 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       subtitle: 'Piyasadaki popüler oynatıcılarla mimari ve donanım kabiliyetlerinin dürüst ve objektif karşılaştırması.',
       headers: {
         metric: 'Kriter / Donanım Özelliği',
-        telyra: '🌟 TELYRA (v1.0)',
-        tivimate: '📺 TiviMate (Ücretli)',
-        standard: '📁 Standart IPTV (Smarters, XC vb.)',
+        telyra: 'TELYRA Pro (v1.1)',
+        tivimate: 'TiviMate (Ücretli)',
+        standard: 'Standart IPTV (Smarters, XC vb.)',
       },
       rows: [
         {
           metric: 'Arayüz Mimarisi & Bellek',
-          telyra: 'Saf Java 17 Yerel Görünümler (<45MB Heap, 60 FPS Kilitli)',
+          telyra: '100% Kotlin 2.1 + Jetpack Compose TV (<45MB Heap, 60 FPS Kilitli)',
           telyraHighlight: true,
-          tivimate: 'Kapalı Kaynak Yerel Görünümler (~120MB Heap)',
+          tivimate: 'Tescilli Yerel Görünümler (~120MB Heap)',
           standard: 'Hantal WebView / Cordova (250MB+ Heap, Sık OOM Çökmeleri)',
         },
         {
@@ -481,7 +481,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           metric: 'Maliyet & Lisanslama',
-          telyra: 'Ücretsiz & Şeffaf Topluluk Yazılımı',
+          telyra: 'TELYRA Pro (Cloudflare Edge D1 Doğrulama & Çevrimdışı Mod)',
           telyraHighlight: true,
           tivimate: 'Yıllık Abonelik veya ~35$ Ömür Boyu Lisans',
           standard: 'Reklam destekli veya şüpheli yinelenen panel ücretleri',
@@ -541,7 +541,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
     privacy: {
       label: '// YASAL BİLGİLENDİRME & GİZLİLİK',
       title: 'Gizlilik Politikası ve Yasal Feragatname',
-      subtitle: 'TELYRA bağımsız bir açık kaynak oynatıcı yazılımıdır. Sıfır veri toplama ilkemiz ve yasal bildirimlerimiz aşağıda özetlenmiştir.',
+      subtitle: 'TELYRA bağımsız ve yüksek performanslı bir medya oynatıcı yazılımıdır. Sıfır veri toplama ilkemiz ve yasal bildirimlerimiz aşağıda özetlenmiştir.',
       zeroDataTitle: 'Sıfır Veri Toplama Beyanı',
       zeroDataDesc: 'TELYRA hiçbir kişisel veriyi, izleme geçmişini, oynatma kaydını veya kimlik bilgisini toplamaz, saklamaz ya da sunuculara göndermez. Tüm ayarlarınız ve çalma listeleriniz yalnızca kendi cihazınızda şifreli olarak barındırılır.',
       disclaimerTitle: 'Zorunlu Yasal Sorumluluk Reddi (Disclaimer)',
@@ -559,7 +559,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
           },
           {
             title: '2. Yasal Sorumluluk Reddi (Disclaimer)',
-            content: 'TELYRA bağımsız bir açık kaynaklı medya oynatıcıdır. Hiçbir yayın, video, IPTV akışı veya çalma listesi barındırmaz ve satmaz. Kullanıcılar yalnızca yasal erişim iznine sahip oldukları yayınları oynatmakla yükümlüdür.',
+            content: 'TELYRA bağımsız ve gelişmiş bir medya oynatıcıdır. Hiçbir yayın, video, IPTV akışı veya çalma listesi barındırmaz ve satmaz. Kullanıcılar yalnızca yasal erişim iznine sahip oldukları yayınları oynatmakla yükümlüdür.',
             isWarning: true,
           },
           {
@@ -570,7 +570,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       },
     },
     footer: {
-      aboutTelyra: 'TELYRA, Android TV ve mobil cihazlar için tasarlanmış yüksek performanslı, modern ve açık kaynaklı bir IPTV oynatıcısıdır.',
+      aboutTelyra: 'TELYRA, Android TV ve mobil cihazlar için tasarlanmış yüksek performanslı, modern ve bağımsız bir IPTV oynatıcısıdır.',
       builtBy: 'Hüseyin "b4lol" tarafından geliştirilmiştir.',
       allRights: 'Tüm hakları saklıdır.',
     },
@@ -600,7 +600,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       ctaDownloadMobile: 'Download for Mobile (.apk)',
       ctaDownloaderCode: 'Downloader Code:',
       copyButton: 'Copy Code',
-      copiedFeedback: 'Copied! 🚀',
+      copiedFeedback: 'Copied!',
       liveBadge: 'LIVE STREAM ENGINE',
     },
     mockup: {
@@ -611,7 +611,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       toggleMobile: 'Mobile (Handheld UI)',
       fastZappingLabel: 'FAST ZAPPING:',
       hudViewLabel: 'HUD TELEMETRY:',
-      remoteHint: '💡 Tip: Use Keyboard Arrow Keys (Left / Right: Zap Channel, Up: HUD Modes, Down: Tabs) for interactive testing.',
+      remoteHint: 'Tip: Use Keyboard Arrow Keys (Left / Right: Zap Channel, Up: HUD Modes, Down: Tabs) for interactive testing.',
       tvTabs: {
         home: 'Home Dashboard',
         live: 'Live TV & Channels',
@@ -633,8 +633,8 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         detailed: 'Detailed',
       },
       hudLabels: {
-        recLive: '● REC / LIVE',
-        showHud: '⚡ Show Telemetry OSD',
+        recLive: '[REC] LIVE',
+        showHud: 'Show Telemetry OSD',
         program: 'Program:',
         resolution: 'Resolution & Refresh:',
         decoder: 'Video Decoder (VPU):',
@@ -643,9 +643,9 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         bitrate: 'Bitrate & Linux Buffer:',
         audio: 'Audio Passthrough:',
         afr: 'HDMI 2.1 AFR Mode:',
-        switchProfile: '[Profile ⟳]',
+        switchProfile: '[Profile Refresh]',
         compactBtn: '_ Compact',
-        closeBtn: '✕',
+        closeBtn: 'X',
       },
       presets: [
         {
@@ -716,7 +716,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Direct kernel register injection for Amlogic vdec-deinterlace and Realtek SoCs',
             'LibVLC YADIF 2x and BOB fallback pipeline for legacy hardware',
           ],
-          icon: '⚡',
+          icon: 'zap',
           badge: 'Crucial for Sports',
         },
         {
@@ -729,7 +729,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Natural, Balanced, Ultra, and Vivid algorithmic tuning presets',
             'ACES Filmic Tone Mapping and IGN (Interleaved Gradient Noise) debanding',
           ],
-          icon: '🎯',
+          icon: 'target',
           badge: 'Industry First',
         },
         {
@@ -742,7 +742,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'DirectMemory ring buffer bypassing Dalvik heap allocations entirely',
             'Dynamic RAM Guard clamping buffer allocation to 25% of free system heap',
           ],
-          icon: '🚀',
+          icon: 'cpu',
           badge: 'Zero Buffering',
         },
         {
@@ -755,7 +755,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Headless Scheduled DVR: Records programs even when the TV is asleep',
             'Storage safety brake: Inhibits recording below 100MB and stops below 50MB',
           ],
-          icon: '💾',
+          icon: 'hard-drive',
           badge: 'Zero Ban Risk',
         },
         {
@@ -768,7 +768,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Instant D-Pad single-click audio track routing',
             'Resource-aware decoder fallback safeguarding lower-spec TV sticks',
           ],
-          icon: '🔀',
+          icon: 'grid',
           badge: 'Game Nights',
         },
         {
@@ -781,7 +781,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'In-memory SQLite FTS4 full-text search with zero network dependencies',
             'Strict zero-tracking policy: No Google Analytics, no telemetry beacons',
           ],
-          icon: '🛡️',
+          icon: 'shield',
           badge: 'Total Privacy',
         },
       ],
@@ -792,16 +792,16 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       subtitle: 'An objective architectural comparison against popular market alternatives.',
       headers: {
         metric: 'Feature / Hardware Capability',
-        telyra: '🌟 TELYRA (v1.0)',
-        tivimate: '📺 TiviMate (Paid)',
-        standard: '📁 Standard Players (Smarters, XC etc.)',
+        telyra: 'TELYRA Pro (v1.1)',
+        tivimate: 'TiviMate (Paid)',
+        standard: 'Standard Players (Smarters, XC etc.)',
       },
       rows: [
         {
           metric: 'Architecture & Heap Memory',
-          telyra: 'Pure Java 17 Native Views (<45MB Heap, 60fps locked)',
+          telyra: '100% Kotlin 2.1 + Jetpack Compose TV (<45MB Heap, 60fps locked)',
           telyraHighlight: true,
-          tivimate: 'Closed-source Native Views (~120MB Heap)',
+          tivimate: 'Proprietary Native Views (~120MB Heap)',
           standard: 'Bloated WebView / Cordova (250MB+ Heap, frequent OOM crashes)',
         },
         {
@@ -862,7 +862,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           metric: 'Cost & Licensing',
-          telyra: 'Free & Transparent Community Software',
+          telyra: 'TELYRA Pro (Cloudflare Edge D1 Verification & Offline Mode)',
           telyraHighlight: true,
           tivimate: 'Annual Subscription or ~$35 Lifetime License',
           standard: 'Ad-supported or shady recurring panel fees',
@@ -922,7 +922,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
     privacy: {
       label: '// LEGAL & PRIVACY',
       title: 'Privacy Policy & Legal Disclaimers',
-      subtitle: 'TELYRA is an open-source media player utility. Read our zero-tracking commitment and mandatory IPTV notices below.',
+      subtitle: 'TELYRA is an independent, high-performance media player utility. Read our zero-tracking commitment and mandatory IPTV notices below.',
       zeroDataTitle: 'Zero Data Collection Commitment',
       zeroDataDesc: 'TELYRA collects, stores, and transmits zero user data, viewing logs, or personal information. All playlist credentials and settings remain strictly on your local device under hardware-backed encryption.',
       disclaimerTitle: 'Mandatory IPTV Legal Notice & Disclaimer',
@@ -940,7 +940,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
           },
           {
             title: '2. Legal Notice & Disclaimer',
-            content: 'TELYRA is strictly a standalone open-source media player application. It does NOT host, supply, or sell any streaming media, television channels, or playlists. Users are solely responsible for ensuring they have lawful access to the content they stream.',
+            content: 'TELYRA is strictly an independent, standalone media player application. It does NOT host, supply, or sell any streaming media, television channels, or playlists. Users are solely responsible for ensuring they have lawful access to the content they stream.',
             isWarning: true,
           },
           {
@@ -951,7 +951,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       },
     },
     footer: {
-      aboutTelyra: 'TELYRA is a high-performance, privacy-focused open source media player engineered for Android TV and mobile.',
+      aboutTelyra: 'TELYRA is a high-performance, privacy-focused media player engineered for Android TV and mobile.',
       builtBy: 'Designed & Built by Hüseyin "b4lol".',
       allRights: 'All rights reserved.',
     },

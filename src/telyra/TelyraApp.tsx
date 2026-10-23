@@ -5,6 +5,7 @@ import { HeroSection } from './components/HeroSection'
 import { TvMockupShowcase } from './components/TvMockupShowcase'
 import { FeatureGrid } from './components/FeatureGrid'
 import { ComparisonMatrix } from './components/ComparisonMatrix'
+import { LicensePortalSection } from './components/LicensePortalSection'
 import { DownloadSection } from './components/DownloadSection'
 import { PrivacySection } from './components/PrivacySection'
 import { TelyraFooter } from './components/TelyraFooter'
@@ -45,16 +46,19 @@ export function TelyraApp({ initialLang = 'tr', initialPrivacyModal = false }: T
         {/* 16:9 OLED TV & Live Simulated HUD */}
         <TvMockupShowcase lang={lang} />
 
-        {/* 6 Engineering Pillars */}
+        {/* Engineering Pillars */}
         <FeatureGrid lang={lang} />
 
-        {/* 10-Metric Comparison Table */}
+        {/* Technical Comparison Table */}
         <ComparisonMatrix lang={lang} />
+
+        {/* Cloudflare Edge Pro License Verification Portal */}
+        <LicensePortalSection lang={lang} />
 
         {/* Downloader Guide & Direct APK Downloads */}
         <DownloadSection lang={lang} downloaderCode={downloaderCode} />
 
-        {/* Privacy & Legal Summary (Controlled Modal) */}
+        {/* Privacy & Legal Summary */}
         <PrivacySection
           lang={lang}
           isOpen={privacyModalOpen}

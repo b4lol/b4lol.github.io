@@ -1,5 +1,6 @@
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
+import { RenderSemanticIcon } from './TelyraIcons'
 
 interface FeatureGridProps {
   lang: Language
@@ -24,7 +25,7 @@ export function FeatureGrid({ lang }: FeatureGridProps) {
             <article key={item.id} className="telyra-feature-card">
               <div className="telyra-feature-top">
                 <span className="telyra-feature-icon" aria-hidden="true">
-                  {item.icon}
+                  {RenderSemanticIcon(item.icon, "w-6 h-6 text-cyan-400")}
                 </span>
                 {item.badge && <span className="telyra-feature-badge">{item.badge}</span>}
               </div>

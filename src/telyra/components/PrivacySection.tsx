@@ -1,5 +1,6 @@
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
+import { ShieldIcon, ScaleIcon, CloseIcon } from './TelyraIcons'
 
 interface PrivacySectionProps {
   lang: Language
@@ -26,12 +27,18 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
         <div className="telyra-privacy-box">
           <div className="telyra-privacy-highlight">
             <div className="telyra-privacy-card">
-              <h4>🛡️ {content.zeroDataTitle}</h4>
+              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <ShieldIcon width="20" height="20" className="text-cyan-400" />
+                <span>{content.zeroDataTitle}</span>
+              </h4>
               <p>{content.zeroDataDesc}</p>
             </div>
 
             <div className="telyra-privacy-card">
-              <h4>⚖️ {content.disclaimerTitle}</h4>
+              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <ScaleIcon width="20" height="20" className="text-amber-400" />
+                <span>{content.disclaimerTitle}</span>
+              </h4>
               <p>{content.disclaimerText}</p>
             </div>
           </div>
@@ -63,50 +70,59 @@ export function PrivacySection({ lang, isOpen = false, onClose, onOpen }: Privac
                 onClick={onClose}
                 aria-label={content.closeModal}
               >
-                ✕
+                <CloseIcon width="20" height="20" />
               </button>
 
               <h2 id="privacy-modal-title" style={{ fontFamily: 'var(--telyra-font-display)', marginBottom: '12px' }}>
                 {modalData.title}
               </h2>
 
-              <p style={{ fontFamily: 'var(--telyra-font-mono)', fontSize: '0.82rem', color: 'var(--telyra-text-muted)', marginBottom: '20px' }}>
-                {modalData.effectiveDateLabel} {modalData.effectiveDate}
+              <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.82rem', marginBottom: '20px' }}>
+                {modalData.effectiveDateLabel}: {modalData.effectiveDate}
               </p>
 
-              <div style={{ fontSize: '0.92rem', color: '#c3cbd9', lineHeight: '1.7' }}>
+              <div className="telyra-modal-content">
                 {modalData.sections.map((sec, idx) => (
                   <div
                     key={idx}
                     style={{
                       marginBottom: '20px',
-                      ...(sec.isWarning
-                        ? {
-                            background: 'rgba(255, 51, 102, 0.08)',
-                            border: '1px solid rgba(255, 51, 102, 0.25)',
-                            borderRadius: '10px',
-                            padding: '16px',
-                            color: '#ffc2d1',
-                          }
-                        : {}),
+                      padding: sec.isWarning ? '16px' : '0',
+                      borderRadius: sec.isWarning ? '8px' : '0',
+                      background: sec.isWarning ? 'rgba(255, 51, 102, 0.08)' : 'transparent',
+                      border: sec.isWarning ? '1px solid rgba(255, 51, 102, 0.25)' : 'none',
                     }}
                   >
-                    <h3 style={{ color: sec.isWarning ? '#ff6688' : '#fff', fontSize: '1.1rem', marginBottom: '8px' }}>
+                    <h3 style={{
+                      fontSize: '1.05rem',
+                      color: sec.isWarning ? '#ff4d6d' : '#fff',
+                      marginBottom: '6px'
+                    }}>
                       {sec.title}
                     </h3>
-                    <p>{sec.content}</p>
+                    <p style={{
+                      color: sec.isWarning ? '#ffc2d1' : 'var(--telyra-text-secondary)',
+                      fontSize: '0.92rem',
+                      lineHeight: '1.6'
+                    }}>
+                      {sec.content}
+                    </p>
+
+                    {sec.bullets && (
+                      <ul style={{
+                        paddingLeft: '20px',
+                        marginTop: '8px',
+                        color: 'var(--telyra-text-secondary)',
+                        fontSize: '0.9rem',
+                        lineHeight: '1.6'
+                      }}>
+                        {sec.bullets.map((b, bIdx) => (
+                          <li key={bIdx}>{b}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 ))}
-
-                <div style={{ marginTop: '28px', textAlign: 'right' }}>
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="telyra-btn-primary"
-                  >
-                    {content.closeModal}
-                  </button>
-                </div>
               </div>
             </div>
           </div>

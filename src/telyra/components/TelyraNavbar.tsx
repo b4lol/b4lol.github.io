@@ -1,5 +1,6 @@
 import type { Language } from '../data/telyraData'
 import { TELYRA_CONTENT } from '../data/telyraData'
+import { GlobeIcon, DownloadIcon } from './TelyraIcons'
 
 interface NavbarProps {
   lang: Language
@@ -9,6 +10,7 @@ interface NavbarProps {
 
 export function TelyraNavbar({ lang, onToggleLang, onOpenPrivacyModal }: NavbarProps) {
   const content = TELYRA_CONTENT[lang].nav
+  const isTr = lang === 'tr'
 
   return (
     <nav className="telyra-nav" aria-label="TELYRA Navigation">
@@ -22,7 +24,7 @@ export function TelyraNavbar({ lang, onToggleLang, onOpenPrivacyModal }: NavbarP
             height={38}
           />
           <span className="telyra-brand__text">TELYRA</span>
-          <span className="telyra-brand__tag">v1.0</span>
+          <span className="telyra-brand__tag">v1.1</span>
         </a>
 
         <div className="telyra-nav__links">
@@ -34,6 +36,9 @@ export function TelyraNavbar({ lang, onToggleLang, onOpenPrivacyModal }: NavbarP
           </a>
           <a href="#comparison" className="telyra-nav__link">
             {content.comparison}
+          </a>
+          <a href="#license-portal" className="telyra-nav__link">
+            {isTr ? 'Pro Lisans' : 'Pro License'}
           </a>
           <a href="#downloads" className="telyra-nav__link">
             {content.downloads}
@@ -61,12 +66,12 @@ export function TelyraNavbar({ lang, onToggleLang, onOpenPrivacyModal }: NavbarP
             className="telyra-lang-btn"
             title={lang === 'tr' ? 'Switch to English' : 'Türkçeye geç'}
           >
-            <span>🌐</span>
+            <GlobeIcon width="14" height="14" />
             <span>{lang.toUpperCase()}</span>
           </button>
 
           <a href="#downloads" className="telyra-btn-primary">
-            <span>⬇</span>
+            <DownloadIcon width="14" height="14" />
             <span>{content.directApk}</span>
           </a>
         </div>
