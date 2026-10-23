@@ -224,26 +224,26 @@ git commit -m "feat(telyra): implement Four Pillars and Hardware Compatibility M
 - Consumes: `TELYRA_CONTENT[lang].downloads`, Cloudflare Worker `https://license.b4.lol/api/v1/license/check`.
 - Produces: High-contrast direct APK download cards with SHA-256 copy and refined license verification portal.
 
-- [ ] **Step 1: Refactor `DownloadSection.tsx`**
+- [x] **Step 1: Refactor `DownloadSection.tsx`**
 
 Render TV APK card (`app-tv-release.apk`, 85.6 MB) and Mobile APK card (`app-mobile-release.apk`, 178.9 MB):
 - Verified download link to `https://github.com/b4lol/telyra-releases/releases/download/v1.1.0/...`.
 - One-click copy for SHA-256 checksum with fallback.
 - 3-step Downloader instructions for Fire TV / Google TV.
 
-- [ ] **Step 2: Refactor `LicensePortalSection.tsx`**
+- [x] **Step 2: Refactor `LicensePortalSection.tsx`**
 
 Style with Studio Cinema dark titanium container:
 - Input form for license key (auto-formatting uppercase).
 - Resilience for all error codes (404 Not Found, 403 Revoked, 429 Rate Limit, Offline).
 - Displays Plan, Expiry Date, and Server Time upon verification.
 
-- [ ] **Step 3: Run typecheck and verify standards**
+- [x] **Step 3: Run typecheck and verify standards**
 
 Run: `npm run typecheck && node scripts/verify-telyra-standards.mjs`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/telyra/components/DownloadSection.tsx src/telyra/components/LicensePortalSection.tsx
