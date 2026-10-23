@@ -41,6 +41,21 @@ export function ComparisonMatrix({ lang }: ComparisonMatrixProps) {
             </tbody>
           </table>
         </div>
+
+        {content.trademarkNotice && (
+          <p
+            style={{
+              color: 'var(--telyra-text-muted)',
+              fontSize: '0.78rem',
+              marginTop: '16px',
+              lineHeight: '1.6',
+              borderTop: '1px solid var(--telyra-glass-border)',
+              paddingTop: '14px',
+            }}
+          >
+            {content.trademarkNotice}
+          </p>
+        )}
       </div>
     </section>
   )

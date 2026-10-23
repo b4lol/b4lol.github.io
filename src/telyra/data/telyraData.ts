@@ -147,6 +147,7 @@ export interface TelyraContent {
       standard: string
     }
     rows: ComparisonRow[]
+    trademarkNotice: string
   }
   downloads: {
     label: string
@@ -190,6 +191,7 @@ export interface TelyraContent {
     aboutTelyra: string
     builtBy: string
     allRights: string
+    disclaimerNotice: string
   }
 }
 
@@ -210,11 +212,11 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       directApk: 'APK İndir',
     },
     hero: {
-      badge: 'v1.0.0 Resmi Sürüm • Model D Hibrit • Sıfır Takip',
+      badge: 'v1.0.0 Resmi Sürüm • Donanımsal İvmelendirme • Sıfır Takip',
       headlinePrefix: 'Televizyonunuz İçin',
       headlineGradient: 'Sinematik 4K Performans',
       headlineSuffix: 'Yeniden Tanımlandı',
-      subtitle: '%100 Kotlin 2.1 ve Jetpack Compose TV mimarisi, Media3 ExoPlayer & LibVLC çift motoru, AMD FidelityFX CAS GLSL keskinleştirmesi ve Amlogic 0ms donanımsal deinterlacing ile donma ve taraklanmaya son.',
+      subtitle: 'Saf Kotlin 2.1 ve Jetpack Compose TV mimarisi, Media3 ExoPlayer ve LibVLC çift motoru, AMD FidelityFX CAS GLSL keskinleştirmesi ve Amlogic donanımsal tarak giderme (deinterlacing) ile optimize edilmiş televizyon deneyimi.',
       ctaDownloadTv: 'Android TV İçin İndir (.apk)',
       ctaDownloadMobile: 'Mobil İçin İndir (.apk)',
       ctaDownloaderCode: 'Downloader Kodu:',
@@ -366,16 +368,16 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           id: 'dvr',
-          tag: 'KOTA & BAN KORUMASI',
+          tag: 'KOTA VE BAĞLANTI OPTİMİZASYONU',
           title: 'Tek Bağlantılı Byte-Tap DVR (Arka Plan Kaydı)',
-          description: 'IPTV sağlayıcınızın "Aynı anda iki bağlantı açtınız" diyerek hesabınızı banlamasını önler. İzlediğiniz yayını ayrıştırarak doğrudan depolama alanına yazar; sunucudan ikinci hat tüketmez.',
+          description: 'Sağlayıcı tarafında eşzamanlı çift bağlantı oluşmasını engellemek üzere tasarlanan aktif akış kopyalama mimarisi, izlediğiniz yayını soket seviyesinde yerel depolama alanına yazar ve sunucudan ikincil bir hat açılmasını gerektirmez.',
           details: [
-            'Single-connection byte-tap: Sıfır ek bant genişliği tüketimi',
+            'Aktif akış kopyalama (Byte-Tap): İkincil bağlantı açmaksızın doğrudan soketten yerel kayıt',
             'Zamanlanmış program kaydı ve disk doluluk emniyet kilidi (<50MB güvenli durma)',
             'TV kapalıyken veya uyku modundayken Headless Foreground Service kaydı',
           ],
           icon: 'hard-drive',
-          badge: 'Ban Riski %0',
+          badge: 'Aktif Akış Kopyalama',
         },
         {
           id: 'multiview',
@@ -398,10 +400,10 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
           details: [
             'Donanım destekli AndroidKeyStore AES-256 GCM yerel şifreleme',
             'Tamamen yerel XMLTV EPG ve SQLite FTS4 tam metin arama',
-            '%100 Sıfır telemetri, sıfır çerez, sıfır izleyici kodu',
+            'Sıfır telemetri, sıfır çerez, sıfır izleyici kodu',
           ],
           icon: 'shield',
-          badge: 'Tam Gizlilik',
+          badge: 'Donanımsal İzolasyon',
         },
       ],
     },
@@ -418,7 +420,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       rows: [
         {
           metric: 'Arayüz Mimarisi & Bellek',
-          telyra: '100% Kotlin 2.1 + Jetpack Compose TV (<45MB Heap, 60 FPS Kilitli)',
+          telyra: 'Saf Kotlin 2.1 + Jetpack Compose TV (<45MB Heap, 60 FPS Hedefli)',
           telyraHighlight: true,
           tivimate: 'Tescilli Yerel Görünümler (~120MB Heap)',
           standard: 'Hantal WebView / Cordova (250MB+ Heap, Sık OOM Çökmeleri)',
@@ -439,9 +441,9 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           metric: 'DVR Kayıt Yöntemi',
-          telyra: 'Tek Bağlantılı Byte-Tap (0 ek bağlantı, %0 ban riski)',
+          telyra: 'Aktif Akış Kopyalama / Byte-Tap (İkincil bağlantı gerektirmez)',
           telyraHighlight: true,
-          tivimate: 'İkincil akış açar (Tek hatlı üyeliklerde ban riski)',
+          tivimate: 'İkincil akış açar (Eşzamanlı çift bağlantı kotası gerektirir)',
           standard: 'Kararsız veya mevcut değil',
         },
         {
@@ -470,11 +472,11 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
           telyra: 'AndroidKeyStore Donanım Destekli AES-256 GCM',
           telyraHighlight: true,
           tivimate: 'Standart yerel depolama',
-          standard: 'Düz metin SharedPreferences / SQLite (Açıkta kalan şifreler)',
+          standard: 'Düz metin SharedPreferences / SQLite (Şifresiz yerel depolama)',
         },
         {
           metric: 'Gizlilik & Telemetri',
-          telyra: '%100 Sıfır Takip, Sıfır Analitik SDK, Sıfır Reklam',
+          telyra: 'Sıfır Takip, Sıfır Analitik SDK, Sıfır Reklam',
           telyraHighlight: true,
           tivimate: 'Lisans doğrulama pingi',
           standard: 'Reklam ağları, üçüncü taraf izleme kodları',
@@ -487,6 +489,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
           standard: 'Reklam destekli veya şüpheli yinelenen panel ücretleri',
         },
       ],
+      trademarkNotice: 'Ticari Marka ve Karşılaştırma Bildirimi: Tabloda bahsi geçen TiviMate ve ilgili ticari unvanlar kendi hak sahiplerinin mülkiyetindedir. Bu markalar, yalnızca teknik mimari ve donanım kabiliyetlerinin nesnel karşılaştırmasını sunmak amacıyla 6769 sayılı Sınai Mülkiyet Kanunu ve yasal Adil Kullanım (Nominative Fair Use) ilkeleri uyarınca referans verilmiştir. TELYRA\'nın bu hak sahipleriyle doğrudan veya dolaylı hiçbir ticari bağı ya da sponsorluk ilişkisi bulunmamaktadır.',
     },
     downloads: {
       label: '// İNDİRME MERKEZİ',
@@ -539,32 +542,53 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       ],
     },
     privacy: {
-      label: '// YASAL BİLGİLENDİRME & GİZLİLİK',
-      title: 'Gizlilik Politikası ve Yasal Feragatname',
-      subtitle: 'TELYRA bağımsız ve yüksek performanslı bir medya oynatıcı yazılımıdır. Sıfır veri toplama ilkemiz ve yasal bildirimlerimiz aşağıda özetlenmiştir.',
-      zeroDataTitle: 'Sıfır Veri Toplama Beyanı',
-      zeroDataDesc: 'TELYRA hiçbir kişisel veriyi, izleme geçmişini, oynatma kaydını veya kimlik bilgisini toplamaz, saklamaz ya da sunuculara göndermez. Tüm ayarlarınız ve çalma listeleriniz yalnızca kendi cihazınızda şifreli olarak barındırılır.',
-      disclaimerTitle: 'Zorunlu Yasal Sorumluluk Reddi (Disclaimer)',
-      disclaimerText: 'TELYRA hiçbir şekilde ses, video, IPTV akışı, kanal listesi veya telif hakkına tabi medya içeriği sağlamaz, barındırmaz, satmaz veya dağıtmaz. Kullanıcılar yalnızca kendilerine ait olan ve yasal olarak erişim iznine sahip oldukları yayın bağlantılarını (M3U, Xtream Codes) girmekle yükümlüdür.',
-      fullPolicyBtn: 'Gizlilik Politikasının Tam Metnini Oku (TR / EN) →',
+      label: '// YASAL BİLGİLENDİRME VE GİZLİLİK İLKELERİ',
+      title: 'Gizlilik İlkeleri ve Yasal Sorumluluk Beyanı',
+      subtitle: 'TELYRA, kullanıcı mahremiyetini ve yasal mevzuata tam uyumluluğu temel mühendislik standardı olarak kabul eder. Kişisel veri işlememe taahhüdümüz, donanım seviyesinde izole şifreleme mimarimiz ve yasal sorumluluk sınırları aşağıda özetlenmiştir.',
+      zeroDataTitle: 'Kişisel Veri İşlememe Taahhüdü (KVKK ve GDPR)',
+      zeroDataDesc: 'TELYRA, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) kapsamında veri sorumlusu sıfatıyla hiçbir kişisel veri, IP adresi, cihaz tanıtıcısı, izleme geçmişi veya medya oynatma kütüğü toplamaz, işlemez ve merkezi sunucularda saklamaz.',
+      disclaimerTitle: 'Zorunlu IPTV ve Medya İçeriği Sorumluluk Reddi',
+      disclaimerText: 'TELYRA münhasıran bağımsız bir medya oynatıcı yazılım aracıdır. Hiçbir televizyon yayını, video akışı, kanal listesi veya telifli medya içeriği barındırmaz, sağlamaz, satmaz veya dağıtmaz. Oynatılan tüm kaynakların yasal haklarına ve yürürlükteki fikri mülkiyet mevzuatına uygunluğundan münhasıran kullanıcı sorumludur.',
+      fullPolicyBtn: 'Gizlilik Politikası ve Yasal Bildirim Metninin Tamamını İncele (TR / EN) →',
       closeModal: 'Kapat',
       modal: {
-        title: 'TELYRA — Gizlilik Politikası ve Şartlar',
+        title: 'TELYRA — Gizlilik Politikası, Yasal Sorumluluk Reddi ve Şartlar',
         effectiveDateLabel: 'Yürürlük Tarihi:',
-        effectiveDate: '21 Ekim 2026',
+        effectiveDate: '21 Ekim 2026 (Sürüm 1.0.0)',
         sections: [
           {
-            title: '1. Sıfır Veri Toplama Politikası',
-            content: 'TELYRA hiçbir kullanıcı verisi toplamaz, kaydetmez veya üçüncü taraflarla paylaşmaz. Uygulamada reklam SDK\'ları, Firebase Analytics veya harici telemetri bulunmaz. Girilen M3U veya Xtream Codes kimlik bilgileri yalnızca AndroidKeyStore AES-256 GCM ile yerel cihazınızda saklanır.',
+            title: '1. Veri Sorumlusu ve Kişisel Veri İşlememe Taahhüdü (KVKK ve GDPR)',
+            content: 'TELYRA geliştiricileri, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) ve 2016/679 sayılı AB Genel Veri Koruma Tüzüğü (“GDPR”) kapsamında veri sorumlusu sıfatıyla kullanıcıların kişisel verilerini toplamama, profillememe ve merkezi veri tabanlarında işlememe ilkesini benimsemiştir. Uygulamada reklam SDK\'sı, harici telemetri ve davranışsal analiz kütüphanesi veya uzaktan kullanıcı profilleme mekanizmaları kesinlikle yer almaz.',
           },
           {
-            title: '2. Yasal Sorumluluk Reddi (Disclaimer)',
-            content: 'TELYRA bağımsız ve gelişmiş bir medya oynatıcıdır. Hiçbir yayın, video, IPTV akışı veya çalma listesi barındırmaz ve satmaz. Kullanıcılar yalnızca yasal erişim iznine sahip oldukları yayınları oynatmakla yükümlüdür.',
+            title: '2. Donanım Seviyesinde İzole Şifreleme ve Yerel Anahtar Mimarisi',
+            content: 'Kullanıcı tarafından uygulamaya eklenen Xtream Codes veya M3U kimlik bilgileri (kullanıcı adı, şifre, sunucu URL\'si) hiçbir koşulda harici bir sunucuya aktarılmaz. Bu bilgiler, doğrudan cihaz üzerinde bulunan AndroidKeyStore donanımsal güvenlik modülü (Trusted Execution Environment - TEE / StrongBox) aracılığıyla AES-256 GCM algoritması ile yerel olarak şifrelenir. Şifreleme anahtarları donanım katmanında izole edilmiş olup fiziki cihaz dışına çıkartılamaz.',
+          },
+          {
+            title: '3. Lisans Doğrulama Mimarisi ve Anonim Donanım Karma Değeri',
+            content: 'TELYRA Pro lisans doğrulama sorguları sırasında kullanıcının kimliğini ortaya çıkarabilecek hiçbir ad, soyad, e-posta, IP adresi veya çalma listesi verisi saklanmaz ya da işlenmez. Lisans sunucusu sorgusunda yalnızca cihazın donanım kimliklerinden tek yönlü matematiksel özet çıkarma yöntemiyle üretilen anonim kriptografik karma (hash) değeri kullanılır. Bu karma değer üzerinden kullanıcı kimliğine veya fiziki cihaza geri dönüşümlü erişim sağlanması teknik olarak olanaksızdır.',
+          },
+          {
+            title: '4. Zorunlu IPTV ve Medya İçeriği Sorumluluk Reddi (İçerik Sağlamama İlkesi)',
+            content: 'TELYRA herhangi bir video, ses, televizyon kanalı yayını, IPTV akışı veya çalma listesi içeriği SAĞLAMAZ, BARINDIRMAZ, İLETMEZ VE SATMAZ. TELYRA yalnızca kullanıcının kendi inisiyatifiyle sağladığı çalma listelerini ayrıştırarak oynatan bağımsız bir yazılım aracıdır.',
+            bullets: [
+              'Kullanıcı, uygulamaya eklediği tüm yayın bağlantılarının ve içeriklerin telif haklarına ve yasal lisanslarına sahip olduğunu veya yetkili yayıncıdan yasal abonelik temin ettiğini gayrikabili rücu kabul, beyan ve taahhüt eder.',
+              'TELYRA geliştiricileri ve hak sahipleri, kullanıcıların üçüncü taraf kaynaklardan elde ettiği korsan, yetkisiz veya telif hakkı ihlali içeren yayınların oynatılmasından hukuki, cezai veya idari olarak hiçbir surette sorumlu tutulamaz.',
+              'Uygulamanın satışı veya lisanslanması, kullanıcılara hiçbir şekilde medya içeriği erişim hakkı sağlama taahhüdü içermez.',
+            ],
             isWarning: true,
           },
           {
-            title: '3. Uygulama İzinleri',
-            content: 'Uygulama yalnızca canlı yayınları oynatmak için INTERNET iznini, zamanlanmış kayıt bildirimleri için POST_NOTIFICATIONS iznini ve kayıtların güvenle tamamlanabilmesi için FOREGROUND_SERVICE_DATA_SYNC iznini kullanır.',
+            title: '5. Üçüncü Taraf Ticari Markalar ve Adil Kullanım (Fair Use) Beyanı',
+            content: 'Bu platformda ve yazılım dokümantasyonunda yer verilen Android TV, Google TV, Fire TV, Nvidia Shield, TiviMate ve benzeri marka, ticari unvan, logo ve ürün adları ilgili hak sahiplerinin tescilli mülkiyetindedir.',
+            bullets: [
+              'Söz konusu markalara yapılan tüm atıflar, yalnızca yazılımın donanım, işletim sistemi veya format uyumluluğunu tüketiciye açıklamak ve teknik nitelikleri nesnel olarak karşılaştırmak amacıyla 6769 sayılı Sınai Mülkiyet Kanunu ve "Adil Kullanım" (Nominative Fair Use) ilkeleri uyarınca yapılmıştır.',
+              'TELYRA\'nın bahsi geçen hak sahipleriyle (Google LLC, Amazon.com Inc., NVIDIA Corporation, Armobsoft FZE vb.) doğrudan veya dolaylı hiçbir ticari bağı, ortaklığı, sponsorluğu, resmi onayı veya lisans anlaşması bulunmamaktadır.',
+            ],
+          },
+          {
+            title: '6. Tüketici Hakları, İlgili Kişi Hakları ve Yerel Veri İmhası',
+            content: 'TELYRA tarafından merkezi bir sunucuda hiçbir kişisel veri tutulmadığı için, KVKK m. 11 ve GDPR m. 15-22 uyarınca silinmesi, düzeltilmesi veya taşınması gereken merkezi bir veri kaydı bulunmamaktadır. Kullanıcılar cihazlarının "Uygulama Bilgileri" menüsünden verileri temizledikleri veya uygulamayı kaldırdıkları anda yerel şifrelenmiş tüm anahtarlar, ayarlar ve önbellekler cihaz donanımından anında ve geri döndürülemez şekilde silinir.',
           },
         ],
       },
@@ -573,6 +597,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       aboutTelyra: 'TELYRA, Android TV ve mobil cihazlar için tasarlanmış yüksek performanslı, modern ve bağımsız bir IPTV oynatıcısıdır.',
       builtBy: 'Hüseyin "b4lol" tarafından geliştirilmiştir.',
       allRights: 'Tüm hakları saklıdır.',
+      disclaimerNotice: 'Yasal Sorumluluk Reddi: TELYRA bağımsız bir medya oynatıcı yazılımıdır; hiçbir televizyon yayını, video akışı veya IPTV içeriği barındırmaz ve satmaz. Oynatılan tüm içeriklerin yasal yayın haklarına uygunluğundan münhasıran kullanıcı sorumludur. Sitede adı geçen Android TV, Google TV, Fire TV, Nvidia Shield ve TiviMate ticari markaları kendi hak sahiplerinin mülkiyetinde olup yalnızca uyumluluk belirtme amacıyla adil kullanım kapsamında referans verilmiştir.',
     },
   },
   en: {
@@ -591,7 +616,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       directApk: 'Download APK',
     },
     hero: {
-      badge: 'v1.0.0 Official Release • 100% Open & Zero Tracking',
+      badge: 'v1.0.0 Official Release • Privacy-First Architecture • Zero Tracking',
       headlinePrefix: 'Cinematic 4K Playback',
       headlineGradient: 'Engineered for Living Rooms',
       headlineSuffix: 'Zero Compromise',
@@ -747,16 +772,16 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           id: 'dvr',
-          tag: 'BANDWIDTH & BAN PROTECTION',
+          tag: 'BANDWIDTH & CONCURRENCY OPTIMIZATION',
           title: 'Single-Connection Byte-Tap DVR (Background Recording)',
-          description: 'Prevents IPTV providers from banning accounts due to multiple simultaneous connections. Records the active stream directly to storage without opening a second HTTP connection.',
+          description: 'Engineered to avoid concurrent multi-connection triggers by capturing the active socket stream directly to local storage, requiring zero additional HTTP connections to your provider.',
           details: [
-            'Single-connection byte-tap: Consumes 0 additional network bandwidth',
+            'Active socket byte-tap: Consumes zero secondary connection overhead',
             'Headless Scheduled DVR: Records programs even when the TV is asleep',
             'Storage safety brake: Inhibits recording below 100MB and stops below 50MB',
           ],
           icon: 'hard-drive',
-          badge: 'Zero Ban Risk',
+          badge: 'Active Stream Tap',
         },
         {
           id: 'multiview',
@@ -782,7 +807,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
             'Strict zero-tracking policy: No Google Analytics, no telemetry beacons',
           ],
           icon: 'shield',
-          badge: 'Total Privacy',
+          badge: 'Hardware Isolation',
         },
       ],
     },
@@ -799,7 +824,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       rows: [
         {
           metric: 'Architecture & Heap Memory',
-          telyra: '100% Kotlin 2.1 + Jetpack Compose TV (<45MB Heap, 60fps locked)',
+          telyra: 'Pure Kotlin 2.1 + Jetpack Compose TV (<45MB Heap, 60 fps target)',
           telyraHighlight: true,
           tivimate: 'Proprietary Native Views (~120MB Heap)',
           standard: 'Bloated WebView / Cordova (250MB+ Heap, frequent OOM crashes)',
@@ -820,9 +845,9 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           metric: 'DVR Recording Mechanism',
-          telyra: 'Single-Connection Byte-Tap (0 extra connections, 0% ban risk)',
+          telyra: 'Single-Connection Active Stream Tap (Zero secondary connection overhead)',
           telyraHighlight: true,
-          tivimate: 'Opens secondary stream (triggers provider ban on 1-conn lines)',
+          tivimate: 'Opens secondary stream (Requires dual-connection concurrency allowance)',
           standard: 'Unstable or unavailable',
         },
         {
@@ -855,7 +880,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
         },
         {
           metric: 'Privacy & Telemetry',
-          telyra: '100% Zero Tracking, Zero Analytics SDKs, Zero Ads',
+          telyra: 'Zero Tracking, Zero Analytics SDKs, Zero Ads',
           telyraHighlight: true,
           tivimate: 'License validation ping',
           standard: 'Ad networks, third-party analytics beacons',
@@ -868,6 +893,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
           standard: 'Ad-supported or shady recurring panel fees',
         },
       ],
+      trademarkNotice: 'Trademark & Comparative Notice: TiviMate and other third-party brand names listed in this matrix are the registered trademarks of their respective owners. These marks are referenced solely for objective technical benchmarking and compatibility description under nominative fair use doctrines. TELYRA is an independent project with no endorsement, sponsorship, or affiliation with any referenced third-party entities.',
     },
     downloads: {
       label: '// DOWNLOAD CENTER',
@@ -920,32 +946,53 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       ],
     },
     privacy: {
-      label: '// LEGAL & PRIVACY',
-      title: 'Privacy Policy & Legal Disclaimers',
-      subtitle: 'TELYRA is an independent, high-performance media player utility. Read our zero-tracking commitment and mandatory IPTV notices below.',
-      zeroDataTitle: 'Zero Data Collection Commitment',
-      zeroDataDesc: 'TELYRA collects, stores, and transmits zero user data, viewing logs, or personal information. All playlist credentials and settings remain strictly on your local device under hardware-backed encryption.',
-      disclaimerTitle: 'Mandatory IPTV Legal Notice & Disclaimer',
-      disclaimerText: 'TELYRA does NOT supply, host, aggregate, or distribute any media content, television channels, or playlists. Users are solely responsible for providing their own lawfully authorized media sources (M3U / Xtream Codes).',
-      fullPolicyBtn: 'Read Complete Privacy Policy (TR / EN) →',
+      label: '// LEGAL COMPLIANCE & PRIVACY',
+      title: 'Privacy Commitment & Legal Disclaimers',
+      subtitle: 'TELYRA is built upon foundational principles of user privacy, data minimization, and regulatory transparency. Review our non-processing commitment, hardware-isolated encryption architecture, and legal disclaimers below.',
+      zeroDataTitle: 'Commitment to Non-Processing of Personal Data (GDPR & KVKK)',
+      zeroDataDesc: 'In strict accordance with Regulation (EU) 2016/679 (GDPR) and Law No. 6698 (KVKK), TELYRA operates under a zero-data architecture as a data controller. The application does not collect, process, log, or transmit any personally identifiable information, IP addresses, viewing histories, or playback telemetry to external servers.',
+      disclaimerTitle: 'Mandatory IPTV & Media Playback Disclaimer',
+      disclaimerText: 'TELYRA is strictly an independent client-side media player utility. It does not provide, host, syndicate, rebroadcast, or sell any media streams, television broadcasts, or playlist subscriptions. Users are solely and exclusively responsible for ensuring that all imported playlists and media sources comply with applicable copyright and broadcast licensing laws.',
+      fullPolicyBtn: 'Read Complete Privacy Policy & Legal Disclaimers (TR / EN) →',
       closeModal: 'Close',
       modal: {
-        title: 'TELYRA — Privacy Policy & Terms',
+        title: 'TELYRA — Privacy Policy, Mandatory Legal Disclaimers & Terms',
         effectiveDateLabel: 'Effective Date:',
-        effectiveDate: 'October 21, 2026',
+        effectiveDate: 'October 21, 2026 (Version 1.0.0)',
         sections: [
           {
-            title: '1. Zero Data Collection Policy',
-            content: 'TELYRA does NOT collect, store, or transmit any user data or telemetry to remote servers. There are no advertising SDKs or third-party trackers. All entered playlist credentials remain encrypted on your local device using AndroidKeyStore AES-256 GCM.',
+            title: '1. Data Controller & Commitment to Non-Processing (GDPR & KVKK Compliance)',
+            content: 'In accordance with Regulation (EU) 2016/679 (“GDPR”) and Law No. 6698 on the Protection of Personal Data (“KVKK”), the developers of TELYRA act as a data controller operating under a strict zero-data architecture. TELYRA does not collect, track, profile, or process personal data on remote servers. The software contains zero advertising SDKs (e.g., Google AdMob), zero third-party behavioral telemetry frameworks (e.g., Firebase, Mixpanel), and zero remote user tracking beacons.',
           },
           {
-            title: '2. Legal Notice & Disclaimer',
-            content: 'TELYRA is strictly an independent, standalone media player application. It does NOT host, supply, or sell any streaming media, television channels, or playlists. Users are solely responsible for ensuring they have lawful access to the content they stream.',
+            title: '2. Hardware-Isolated Local Encryption & Key Security Architecture',
+            content: 'All credentials, authentication tokens, and playlist URLs entered by the user (Xtream Codes credentials, M3U addresses) remain strictly confined to the local physical device. Credentials are encrypted locally via AndroidKeyStore AES-256 GCM backed by the hardware Trusted Execution Environment (TEE / StrongBox). Master encryption keys are isolated at the silicon level and cannot be exported, extracted, or transmitted across the network.',
+          },
+          {
+            title: '3. License Verification Architecture & Anonymous Hardware Hash Processing',
+            content: 'TELYRA Pro license verification queries conducted against our edge verification infrastructure (Cloudflare Anycast) do not collect, process, or store names, email addresses, IP logs, or personal identifiers. Verification relies strictly on an irreversibly calculated one-way cryptographic hash derived from hardware properties. It is technically impossible to reverse-engineer this anonymous hash to discover the identity of the user or physical device.',
+          },
+          {
+            title: '4. Mandatory IPTV & Media Playback Legal Disclaimer (Content Neutrality)',
+            content: 'TELYRA does NOT host, supply, distribute, broadcast, index, or sell any media streams, television channels, IPTV links, or subscription playlists. TELYRA is strictly an independent client-side media player utility designed to decode and render user-supplied streams.',
+            bullets: [
+              'Users expressly represent and warrant that they possess legitimate broadcast licenses, lawful subscriptions, or intellectual property authorizations for every media stream or playlist configured in the application.',
+              'TELYRA and its developers categorically disclaim all legal, civil, regulatory, or criminal liability resulting from the playback or redistribution of unauthorized, pirated, or copyright-infringing content through the application.',
+              'Purchasing a TELYRA Pro software license grants access solely to the media playback software features and does not include or imply any access to audio, video, or broadcast media content.',
+            ],
             isWarning: true,
           },
           {
-            title: '3. Application Permissions',
-            content: 'The app requests only essential permissions: INTERNET for streaming, POST_NOTIFICATIONS for recording alerts, and FOREGROUND_SERVICE_DATA_SYNC for running user-initiated scheduled DVR tasks.',
+            title: '5. Third-Party Trademarks & Nominative Fair Use Statement',
+            content: 'All third-party trademarks, registered brand names, product titles, and logos referenced across this website and within the software documentation—including Android TV, Google TV, Fire TV, Nvidia Shield, and TiviMate—are the intellectual property of their respective owners.',
+            bullets: [
+              'References to these marks are strictly made under nominative fair use doctrine to denote device compatibility, operating system interoperability, and objective technical benchmark comparisons.',
+              'TELYRA is completely independent and has no commercial affiliation, sponsorship, endorsement, partnership, or official connection with Google LLC, Amazon.com Inc., NVIDIA Corporation, Armobsoft FZE, or any other respective trademark owners.',
+            ],
+          },
+          {
+            title: '6. Consumer Protection, Data Subject Rights & Local Data Erasure',
+            content: 'Because TELYRA does not process or retain personal data on central servers, there are no centralized databases subject to rectification, access, restriction, or erasure requests under GDPR Articles 15-22 or KVKK Article 11. Users maintain absolute sovereignty over their data: clearing application data or uninstalling TELYRA immediately and irreversibly destroys all locally encrypted credentials, caches, and configuration files from the device.',
           },
         ],
       },
@@ -954,6 +1001,7 @@ export const TELYRA_CONTENT: Record<Language, TelyraContent> = {
       aboutTelyra: 'TELYRA is a high-performance, privacy-focused media player engineered for Android TV and mobile.',
       builtBy: 'Designed & Built by Hüseyin "b4lol".',
       allRights: 'All rights reserved.',
+      disclaimerNotice: 'Legal Disclaimer: TELYRA is strictly an independent media player client utility; it does not host, supply, or sell any streaming media, broadcasts, or IPTV playlists. Users are solely responsible for ensuring lawful broadcast access. Android TV, Google TV, Fire TV, Nvidia Shield, and TiviMate are trademarks of their respective owners, referenced strictly under nominative fair use for compatibility purposes.',
     },
   },
 }

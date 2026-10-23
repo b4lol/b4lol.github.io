@@ -25,6 +25,11 @@ export function TelyraFooter({ lang, onOpenPrivacyModal }: FooterProps) {
           <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.8rem', marginTop: '6px' }}>
             © 2026 TELYRA. {content.builtBy} {content.allRights}
           </p>
+          {content.disclaimerNotice && (
+            <p style={{ color: 'var(--telyra-text-muted)', fontSize: '0.74rem', marginTop: '10px', lineHeight: '1.5', maxWidth: '640px' }}>
+              {content.disclaimerNotice}
+            </p>
+          )}
         </div>
 
         <div className="telyra-footer__links">
