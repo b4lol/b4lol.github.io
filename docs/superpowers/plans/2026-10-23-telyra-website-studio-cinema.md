@@ -40,20 +40,20 @@
 - Consumes: Files inside `src/telyra/` and `docs/superpowers/`
 - Produces: CLI verification script returning exit code 0 if all rules pass, 1 if any emoji, banned word, or unapproved term is found.
 
-- [ ] **Step 1: Write verification script `scripts/verify-telyra-standards.mjs`**
+- [x] **Step 1: Write verification script `scripts/verify-telyra-standards.mjs`**
 
 Implement regex scanning for emojis (`/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u`), banned phrases (`open source`, `açık kaynak`, `foss`), and forbidden marketing superlatives (`%100`, `rakipsiz`, `devrimsel`).
 
-- [ ] **Step 2: Add `verify` script to `package.json`**
+- [x] **Step 2: Add `verify` script to `package.json`**
 
 Add `"verify:telyra": "node scripts/verify-telyra-standards.mjs"` to `package.json`.
 
-- [ ] **Step 3: Run verification script to check baseline**
+- [x] **Step 3: Run verification script to check baseline**
 
 Run: `node scripts/verify-telyra-standards.mjs`
 Expected: Outputs scan results for existing codebase.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add scripts/verify-telyra-standards.mjs package.json
@@ -71,11 +71,11 @@ git commit -m "chore: add TELYRA standards and zero-emoji verification gate"
 - Consumes: Design spec definitions for The Four Pillars, Hardware Matrix, v1.1.0 release details.
 - Produces: `TELYRA_CONTENT` object with complete `tr` and `en` structures adhering to the factual, dignified tone.
 
-- [ ] **Step 1: Update TypeScript interfaces in `telyraData.ts`**
+- [x] **Step 1: Update TypeScript interfaces in `telyraData.ts`**
 
 Update `FeatureItem`, `DownloadItem`, `HudTelemetryPreset`, and replace `ComparisonRow` with `TechnicalSpecGroup` / `CodecSpecRow`.
 
-- [ ] **Step 2: Overhaul Turkish (`tr`) content dictionary**
+- [x] **Step 2: Overhaul Turkish (`tr`) content dictionary**
 
 Write pure engineering facts:
 - Headline: "Televizyon deneyimi, kusursuzlaştırıldı."
@@ -84,19 +84,19 @@ Write pure engineering facts:
 - Downloads: v1.1.0 metadata, SHA-256 hashes, Downloader talimatları.
 - Legal & Privacy: 5846 FSEK ve uluslararası telif hakları uyum beyanı.
 
-- [ ] **Step 3: Overhaul English (`en`) content dictionary**
+- [x] **Step 3: Overhaul English (`en`) content dictionary**
 
 Write exact counterpart in dignified, understated English:
 - Headline: "The television experience, perfected."
 - Subtitle: "Purpose-built, hardware-accelerated independent IPTV and media client for Android TV and Google TV. Zero telemetry, zero ads, zero compromise."
 - Counterparts for 4 Pillars, Technical Matrix, Downloads, and Legal disclaimers.
 
-- [ ] **Step 4: Verify standards and TypeScript types**
+- [x] **Step 4: Verify standards and TypeScript types**
 
 Run: `npm run typecheck && node scripts/verify-telyra-standards.mjs`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/telyra/data/telyraData.ts
@@ -114,28 +114,28 @@ git commit -m "feat(telyra): rewrite multilingual content dictionary to Studio C
 - Consumes: Apple TV / Infuse color palette, typography tokens, TV bezel styling.
 - Produces: Clean, modern, responsive CSS rules for all TELYRA sections without neon or cyberpunk bloat.
 
-- [ ] **Step 1: Overhaul `:root` variables and typography in `telyra.css`**
+- [x] **Step 1: Overhaul `:root` variables and typography in `telyra.css`**
 
 Define `--telyra-bg: #050608`, `--telyra-surface: #090a0f`, `--telyra-surface-raised: #11131a`, `--telyra-border: rgba(255, 255, 255, 0.08)`, `--telyra-border-subtle: rgba(255, 255, 255, 0.04)`, `--telyra-text: #f5f5f7`, `--telyra-text-muted: #86868b`, `--telyra-accent-blue: #2997ff`.
 
-- [ ] **Step 2: Add 4K TV bezel, screen glare, and stand styles**
+- [x] **Step 2: Add 4K TV bezel, screen glare, and stand styles**
 
 Implement `.telyra-tv-bezel`, `.telyra-tv-screen`, `.telyra-tv-stand`, `.telyra-tv-shadow` with authentic 16:9 ratio, subtle bevel borders, and D-Pad focus styling.
 
-- [ ] **Step 3: Add Four Pillars and Hardware Matrix styles**
+- [x] **Step 3: Add Four Pillars and Hardware Matrix styles**
 
 Implement `.telyra-pillars-grid`, `.telyra-pillar-card`, `.telyra-spec-table`, `.telyra-spec-chip` with refined titanium borders and subtle hover glass effects.
 
-- [ ] **Step 4: Add Direct Downloads and License Portal styles**
+- [x] **Step 4: Add Direct Downloads and License Portal styles**
 
 Implement `.telyra-download-grid`, `.telyra-apk-card`, `.telyra-hash-box`, `.telyra-license-card` with high-contrast text and crisp buttons.
 
-- [ ] **Step 5: Verify CSS build and lint**
+- [x] **Step 5: Verify CSS build and lint**
 
 Run: `npm run lint`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/telyra/styles/telyra.css
@@ -154,23 +154,23 @@ git commit -m "style(telyra): implement Studio Cinema design system and TV frame
 - Consumes: `TELYRA_CONTENT[lang].hero`, `TELYRA_CONTENT[lang].mockup`, icons from `TelyraIcons.tsx`.
 - Produces: Integrated Hero and 4K TV Mockup showcasing real UI screens (Live TV, EPG Guide, Movies, Sources).
 
-- [ ] **Step 1: Refactor `HeroSection.tsx`**
+- [x] **Step 1: Refactor `HeroSection.tsx`**
 
 Implement dignified headline, release status pill, primary download action, Downloader quick-copy code with clipboard error fallback.
 
-- [ ] **Step 2: Refactor `TvMockupShowcase.tsx`**
+- [x] **Step 2: Refactor `TvMockupShowcase.tsx`**
 
 Implement 4K OLED TV frame mockup with realistic bezel and stand:
 - Top status bar: 10-foot navigation tabs (Canlı TV, EPG Rehberi, Filmler, Kaynaklar).
 - Screen preview: High-resolution screenshots (`tv-home.webp`, `tv-live.webp`, etc.) with HUD telemetries (Direct Stream 1080p50, Media3 ExoPlayer, AES-256 StrongBox active).
 - Interactive tab switching with keyboard and mouse support.
 
-- [ ] **Step 3: Run typecheck and verify standards**
+- [x] **Step 3: Run typecheck and verify standards**
 
 Run: `npm run typecheck && node scripts/verify-telyra-standards.mjs`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/telyra/components/HeroSection.tsx src/telyra/components/TvMockupShowcase.tsx
@@ -189,23 +189,23 @@ git commit -m "feat(telyra): build Studio Cinema hero and 4K OLED TV showcase ce
 - Consumes: `TELYRA_CONTENT[lang].pillars`, `TELYRA_CONTENT[lang].specs`.
 - Produces: 4 solid engineering cards and factual chipset & codec compatibility matrix.
 
-- [ ] **Step 1: Refactor `FeatureGrid.tsx` for The Four Pillars**
+- [x] **Step 1: Refactor `FeatureGrid.tsx` for The Four Pillars**
 
 Render the 4 engineering pillars (Memory & 60 FPS, Universal Sources, Dual-Core Player, Hardware Isolation) with clean tags and structured bullet points.
 
-- [ ] **Step 2: Create `TechnicalSpecsSection.tsx`**
+- [x] **Step 2: Create `TechnicalSpecsSection.tsx`**
 
 Replace the old competitor comparison table with the Chipset & Format Compatibility Matrix:
 - Chipsets: Amlogic (S905X4, S928X), MediaTek (Pentonic 700/1000), Realtek RTD1619B, Google TV Streamer, Fire TV Cube 3rd Gen.
 - Video: H.264/AVC, H.265/HEVC Main 10, AV1, VP9 Profile 2, MPEG-2 TS.
 - Audio & Passthrough: Dolby Digital Plus with Atmos, Dolby TrueHD, DTS-HD Master Audio, AAC, FLAC.
 
-- [ ] **Step 3: Run typecheck and verify standards**
+- [x] **Step 3: Run typecheck and verify standards**
 
 Run: `npm run typecheck && node scripts/verify-telyra-standards.mjs`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/telyra/components/FeatureGrid.tsx src/telyra/components/TechnicalSpecsSection.tsx src/telyra/components/ComparisonMatrix.tsx

@@ -1435,6 +1435,26 @@
   color: var(--telyra-text);
 }
 
+.telyra-pillar-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.telyra-pillar-metric {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--telyra-accent-blue-soft);
+  border: 1px solid rgba(41, 151, 255, 0.35);
+  color: var(--telyra-accent-blue);
+  letter-spacing: 0.02em;
+}
+
 .telyra-pillar-tag,
 .telyra-feature-tag {
   font-family: var(--telyra-font-mono);
@@ -1496,53 +1516,100 @@
 }
 
 /* ==========================================================================
-   HARDWARE & CODEC COMPATIBILITY MATRIX / COMPARISON TABLE
+   HARDWARE & CODEC COMPATIBILITY MATRIX
    ========================================================================== */
-.telyra-spec-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 24px;
+.telyra-spec-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
 }
 
-.telyra-spec-group {
+.telyra-spec-tab-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--telyra-border);
+  color: var(--telyra-text-muted);
+  font-family: var(--telyra-font-display);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.telyra-spec-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--telyra-text);
+  border-color: var(--telyra-border-hover);
+}
+
+.telyra-spec-tab-btn.active {
+  background: var(--telyra-accent-blue-soft);
+  border-color: rgba(41, 151, 255, 0.45);
+  color: var(--telyra-accent-blue);
+  box-shadow: 0 0 20px rgba(41, 151, 255, 0.15);
+}
+
+.telyra-spec-category-block {
   background: var(--telyra-surface);
   border: 1px solid var(--telyra-border);
-  border-radius: 18px;
-  padding: 28px;
+  border-radius: 20px;
+  padding: 32px 28px;
   box-shadow: var(--telyra-shadow-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  margin-bottom: 32px;
 }
 
-.telyra-spec-group-title {
+.telyra-spec-category-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--telyra-border-subtle);
+  flex-wrap: wrap;
+}
+
+.telyra-spec-category-title {
   font-family: var(--telyra-font-display);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.telyra-spec-group-desc {
-  font-size: 0.88rem;
+.telyra-spec-category-desc {
+  font-size: 0.92rem;
   color: var(--telyra-text-muted);
-  margin-bottom: 20px;
+  max-width: 680px;
+  line-height: 1.5;
 }
 
-.telyra-spec-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.telyra-spec-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 11px;
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--telyra-border-subtle);
+.telyra-spec-category-badge {
   font-family: var(--telyra-font-mono);
-  font-size: 0.78rem;
-  color: var(--telyra-text);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(41, 151, 255, 0.08);
+  border: 1px solid rgba(41, 151, 255, 0.25);
+  color: var(--telyra-accent-blue);
+  white-space: nowrap;
+}
+
+.telyra-spec-desktop-view {
+  display: block;
+  width: 100%;
+}
+
+.telyra-spec-mobile-view {
+  display: none;
+  width: 100%;
 }
 
 .telyra-table-wrap {
@@ -1558,50 +1625,159 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  min-width: 800px;
 }
 
-.telyra-table th,
-.telyra-spec-table th {
-  padding: 18px 24px;
-  font-family: var(--telyra-font-display);
-  font-size: 0.95rem;
+.telyra-spec-table th,
+.telyra-table th {
+  padding: 16px 20px;
+  font-family: var(--telyra-font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   font-weight: 700;
   border-bottom: 1px solid var(--telyra-border);
   background: rgba(255, 255, 255, 0.02);
-  color: #ffffff;
-}
-
-.telyra-table th:nth-child(2) {
-  background: var(--telyra-accent-blue-soft);
-  color: var(--telyra-accent-blue);
-  border-left: 1px solid rgba(41, 151, 255, 0.2);
-  border-right: 1px solid rgba(41, 151, 255, 0.2);
-}
-
-.telyra-table td,
-.telyra-spec-table td {
-  padding: 16px 24px;
-  font-size: 0.92rem;
-  border-bottom: 1px solid var(--telyra-border-subtle);
   color: var(--telyra-text-muted);
 }
 
-.telyra-table td:nth-child(2) {
-  background: rgba(41, 151, 255, 0.04);
-  color: var(--telyra-text);
-  font-weight: 600;
-  border-left: 1px solid rgba(41, 151, 255, 0.15);
-  border-right: 1px solid rgba(41, 151, 255, 0.15);
+.telyra-spec-table td,
+.telyra-table td {
+  padding: 16px 20px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--telyra-border-subtle);
+  color: #c9ccd6;
+  line-height: 1.5;
 }
 
-.telyra-table tr:hover td,
-.telyra-spec-table tr:hover td {
+.telyra-spec-table tr:hover td,
+.telyra-table tr:hover td {
   background: rgba(255, 255, 255, 0.02);
 }
 
-.telyra-table tr:hover td:nth-child(2) {
-  background: rgba(41, 151, 255, 0.08);
+.telyra-spec-table tr:last-child td {
+  border-bottom: none;
+}
+
+.telyra-spec-col-primary {
+  font-family: var(--telyra-font-display);
+  font-weight: 700;
+  color: #ffffff !important;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.telyra-spec-col-mono {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.82rem;
+  color: var(--telyra-accent-blue) !important;
+}
+
+.telyra-spec-mobile-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.telyra-spec-mobile-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--telyra-border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+}
+
+.telyra-spec-mobile-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--telyra-border-subtle);
+}
+
+.telyra-spec-mobile-card__title {
+  font-family: var(--telyra-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.telyra-spec-mobile-card__badge {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--telyra-accent-blue-soft);
+  border: 1px solid rgba(41, 151, 255, 0.3);
+  color: var(--telyra-accent-blue);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.telyra-spec-mobile-card__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.telyra-spec-mobile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.telyra-spec-mobile-field__label {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--telyra-text-muted);
+}
+
+.telyra-spec-mobile-field__val {
+  font-size: 0.86rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+}
+
+.telyra-spec-mobile-field__val--mono {
+  font-family: var(--telyra-font-mono);
+  font-size: 0.8rem;
+  color: var(--telyra-accent-blue);
+}
+
+.telyra-spec-footnote {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--telyra-border-subtle);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  color: var(--telyra-text-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.telyra-spec-footnote__icon {
+  flex-shrink: 0;
+  color: var(--telyra-accent-blue);
+  display: flex;
+  align-items: center;
+}
+
+.telyra-spec-footnote__text {
+  margin: 0;
 }
 
 .telyra-metric-cell {
@@ -2174,5 +2350,59 @@
   .telyra-apk-card,
   .telyra-apk-box {
     padding: 18px;
+  }
+
+  .telyra-pillar-card {
+    padding: 24px 18px;
+  }
+
+  .telyra-pillar-title {
+    font-size: 1.18rem;
+  }
+
+  .telyra-pillar-desc {
+    font-size: 0.9rem;
+  }
+
+  .telyra-pillar-list li {
+    font-size: 0.84rem;
+  }
+
+  .telyra-spec-category-block {
+    padding: 20px 16px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+
+  .telyra-spec-category-header {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .telyra-spec-category-title {
+    font-size: 1.15rem;
+  }
+
+  .telyra-spec-filter-bar {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .telyra-spec-tab-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .telyra-spec-desktop-view {
+    display: none !important;
+  }
+
+  .telyra-spec-mobile-view {
+    display: flex !important;
+  }
+
+  .telyra-spec-footnote {
+    padding: 14px 16px;
+    font-size: 0.78rem;
   }
 }
